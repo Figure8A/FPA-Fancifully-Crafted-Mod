@@ -11,7 +11,7 @@
 		"homepage": "https://modrinth.com/mod/fancifully-crafted",
 		"sources": "https://github.com/Figure8A/FPA-Fancifully-Crafted-Mod"
 	},
-	"license": "CC0-1.0-Universal",
+	"license": "CC0-1.0",
 	"icon": "assets/fpaore/icon.png",
 	"environment": "*",
 	"entrypoints": {
