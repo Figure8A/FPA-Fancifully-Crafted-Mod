@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "fpaore:block/fpagroundatrimed_slab"
+    },
+    "type=double": {
+      "model": "fpaore:block/fpagroundatrimedo"
+    },
+    "type=top": {
+      "model": "fpaore:block/fpagroundatrimed_slab_top"
+    }
+  }
+}

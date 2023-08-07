@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "fpaore:fcactus",
+    "fpaore:fwood_log",
+    "fpaore:fwood_wood",
+    "fpaore:fwood_planks",
+    "fpaore:stripped_fwood_log",
+    "fpaore:stripped_fwood_wood",
+    "fpaore:fwood_slab",
+    "fpaore:fwood_stair",
+    "fpaore:fwood_door",
+    "fpaore:fwood_gate",
+    "fpaore:fwood_fence",
+    "fpaore:fwood_plate",
+    "fpaore:fwood_trapdoor",
+    "fpaore:fwood_button",
+    "fpaore:fwood_sign"
+
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "fpaore:block/fpagrounda", "uvlock": false },
+    "facing=east":  { "model": "fpaore:block/fpagrounda", "y":  90, "uvlock": false },
+    "facing=south": { "model": "fpaore:block/fpagrounda", "y": 180, "uvlock": false },
+    "facing=west":  { "model": "fpaore:block/fpagrounda", "y": 270, "uvlock": false }
+  }
+}

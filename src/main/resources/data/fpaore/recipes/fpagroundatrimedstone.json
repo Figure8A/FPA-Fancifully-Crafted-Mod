@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "fpaore:fpagroundatrimed"
+  },
+  "result": "fpaore:fpagroundatrimed_slab",
+  "count": 1
+}

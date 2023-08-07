@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "GG"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:gray_dye"
+    },
+    "G": {
+      "item": "minecraft:gravel"
+    }
+  },
+  "result": {
+    "item": "fpaore:toughf",
+    "count": 4
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "GG"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:warped_planks"
+    },
+    "G": {
+      "item": "minecraft:gravel"
+    }
+  },
+  "result": {
+    "item": "fpaore:fpagrounda",
+    "count": 4
+  }
+}

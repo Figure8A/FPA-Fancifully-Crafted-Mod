@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "fpaore:block/fpagroundatrimed_verticalslab", "uvlock": false },
+    "facing=east":  { "model": "fpaore:block/fpagroundatrimed_verticalslab", "y":  90, "uvlock": false },
+    "facing=south": { "model": "fpaore:block/fpagroundatrimed_verticalslab", "y": 180, "uvlock": false },
+    "facing=west":  { "model": "fpaore:block/fpagroundatrimed_verticalslab", "y": 270, "uvlock": false }
+  }
+}

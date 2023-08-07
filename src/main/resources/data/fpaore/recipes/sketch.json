@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "FF"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:ink_sac"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "fpaore:sketch",
+    "count": 4
+  }
+}

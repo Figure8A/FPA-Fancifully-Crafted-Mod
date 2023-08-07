@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "fpaore:block/mayorglassi",
+    "east": "fpaore:block/mayorglassi",
+    "north": "fpaore:block/mayorglass",
+    "particle": "fpaore:block/mayorglassi",
+    "south": "fpaore:block/mayorglassi",
+    "up": "fpaore:block/mayorglassi",
+    "west": "fpaore:block/mayorglassi"
+  }
+}

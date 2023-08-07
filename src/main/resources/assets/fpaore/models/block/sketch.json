@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "fpaore:block/sketch0",
+    "east": "fpaore:block/sketch1",
+    "north": "fpaore:block/sketch2",
+    "particle": "fpaore:block/sketch1",
+    "south": "fpaore:block/sketch3",
+    "up": "fpaore:block/sketch5",
+    "west": "fpaore:block/sketch4"
+  }
+}

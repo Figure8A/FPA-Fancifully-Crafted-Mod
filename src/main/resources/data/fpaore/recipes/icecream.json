@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#C",
+    "MB"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:ice"
+    },
+    "C": {
+      "item": "minecraft:cocoa_beans"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "B": {
+      "item": "minecraft:bread"
+    }
+  },
+  "result": {
+    "item": "fpaore:icecream",
+    "count": 1
+  }
+}

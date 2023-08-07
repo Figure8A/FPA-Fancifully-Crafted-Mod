@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#W#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:cactus"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+    "item": "fpaore:fcactus",
+    "count": 8
+  }
+}

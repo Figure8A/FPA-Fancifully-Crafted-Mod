@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "FFF",
+    " N "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:diamond"
+    },
+    "F": {
+      "item": "fpaore:bradblock"
+    },
+    "N": {
+      "item": "minecraft:netherite_scrap"
+    }
+  },
+  "result": {
+    "item": "fpaore:mayor_of_undying",
+    "count": 1
+  }
+}

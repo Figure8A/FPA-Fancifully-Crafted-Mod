@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "fpaore:block/fcactusside",
+    "side": "fpaore:block/fcactus"
+  }
+}

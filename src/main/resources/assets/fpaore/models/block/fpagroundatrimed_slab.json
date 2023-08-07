@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "fpaore:block/fpagroundatrimmedb",
+    "side": "fpaore:block/fpagroundatrimedside",
+    "top": "fpaore:block/fpagroundatrimmedtopo"
+  }
+}

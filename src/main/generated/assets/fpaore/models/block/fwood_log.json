@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "fpaore:block/fwood_log_top",
+    "side": "fpaore:block/fwood_log"
+  }
+}

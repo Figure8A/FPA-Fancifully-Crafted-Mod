@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "fpaore:bradore",
+    "fpaore:bradoredsl",
+    "fpaore:bradblock",
+    "fpaore:sketch",
+    "fpaore:spring",
+    "fpaore:fpagrounda",
+    "fpaore:toughf",
+    "fpaore:mayorglass",
+    "fpaore:fpagroundatrimed",
+    "fpaore:fpagroundatrimed_stair",
+    "fpaore:fpagrounda_slab",
+    "fpaore:fpagrounda_verticalslab",
+    "fpaore:fpagrounda_stair",
+    "fpaore:toughf_wall",
+    "fpaore:fpagroundatrimed_slab",
+    "fpaore:fpagroundatrimed_verticalslab",
+    "fpaore:fpvground",
+    "fpaore:packed_fpvground",
+    "fpaore:packed_fpvground_column",
+    "fpaore:spike",
+    "fpaore:fchiseled_sandstone",
+    "fpaore:smoothsandstone_verticalslab"
+  ]
+}

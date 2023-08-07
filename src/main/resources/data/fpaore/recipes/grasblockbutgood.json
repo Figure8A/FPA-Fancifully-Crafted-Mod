@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "GG"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:ink_sac"
+    },
+    "G": {
+      "item": "minecraft:grass_block"
+    }
+  },
+  "result": {
+    "item": "fpaore:grasblockbutgood",
+    "count": 2
+  }
+}

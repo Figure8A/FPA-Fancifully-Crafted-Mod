@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "fpaore:fpagroundatrimed"
+    }
+  },
+  "result": {
+    "item": "fpaore:fpagroundatrimed_slab",
+    "count": 6
+  }
+}

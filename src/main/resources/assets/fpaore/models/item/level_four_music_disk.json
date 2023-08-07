@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fpaore:item/level_four_music_disk"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "spring_block_walk": {
+    "sounds": [
+      "fpaore:spring_block_walk"
+    ]
+  },
+  "spring_block_break": {
+    "sounds": [
+      "fpaore:spring_block_break"
+    ]
+  },
+  "spring_block_hit": {
+    "sounds": [
+      "fpaore:spring_block_hit"
+    ]
+  },
+  "spring_block_place": {
+    "sounds": [
+      "fpaore:spring_block_place"
+    ]
+  },
+  "lounge_inside_music_disk": {
+    "sounds": [
+      {
+        "name": "fpaore:lounge_inside_music_disk",
+        "stream": true
+      }
+    ]
+  },
+  "angry_baddie_music_disk": {
+    "sounds": [
+      {
+        "name": "fpaore:angry_baddie_music_disk",
+        "stream": true
+      }
+    ]
+  },
+  "mayor_theme_music_disk": {
+    "sounds": [
+      {
+        "name": "fpaore:mayor_theme_music_disk",
+        "stream": true
+      }
+    ]
+  },
+  "level_four_music_disk": {
+    "sounds": [
+      {
+        "name": "fpaore:level_four_music_disk",
+        "stream": true
+      }
+    ]
+  },
+  "bradblock_block_step": {
+    "sounds": [
+      "fpaore:bradblock_block_step"
+    ]
+  },
+  "bradblock_block_place": {
+    "sounds": [
+      "fpaore:bradblock_block_place"
+    ]
+  },
+  "bradblock_block_break": {
+    "sounds": [
+      "fpaore:bradblock_block_break"
+    ]
+  },
+  "grasspop_block_break": {
+    "sounds": [
+      "fpaore:grasspop_block_break"
+    ]
+  }
+}

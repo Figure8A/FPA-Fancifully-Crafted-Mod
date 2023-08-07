@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "fpaore:fpagroundatrimed"
+    }
+  },
+  "result": {
+    "item": "fpaore:fpagroundatrimed_stair",
+    "count": 4
+  }
+}

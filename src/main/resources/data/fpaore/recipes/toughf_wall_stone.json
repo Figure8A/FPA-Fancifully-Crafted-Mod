@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "fpaore:toughf"
+  },
+  "result": "fpaore:toughf_wall",
+  "count": 1
+}

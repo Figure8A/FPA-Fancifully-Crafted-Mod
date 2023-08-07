@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "fpaore:block/fpvgroundt6H",
+    "east": "fpaore:block/fpvgroundt2H",
+    "north": "fpaore:block/fpvgroundt3H",
+    "particle": "fpaore:block/fpvgroundt1H",
+    "south": "fpaore:block/fpvgroundt4H",
+    "up": "fpaore:block/fpvgroundt1H",
+    "west": "fpaore:block/fpvgroundt5H"
+  }
+}

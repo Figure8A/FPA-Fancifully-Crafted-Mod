@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "/",
+    "F"
+  ],
+  "key": {
+    "#": {
+      "item": "fpaore:bradium"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "F": {
+      "item": "fpaore:bradblock"
+    }
+  },
+  "result": {
+    "item": "fpaore:pencilsword",
+    "count": 1
+  }
+}

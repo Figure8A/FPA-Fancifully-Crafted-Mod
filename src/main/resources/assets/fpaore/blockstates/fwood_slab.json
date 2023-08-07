@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "fpaore:block/fwood_slab"
+    },
+    "type=double": {
+      "model": "fpaore:block/fwood_planks"
+    },
+    "type=top": {
+      "model": "fpaore:block/fwood_slab_top"
+    }
+  }
+}

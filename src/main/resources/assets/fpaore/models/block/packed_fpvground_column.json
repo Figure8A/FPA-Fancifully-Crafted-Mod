@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "fpaore:block/packed_fpvground_column_top",
+    "side": "fpaore:block/packed_fpvground_column"
+  }
+}

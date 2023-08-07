@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "fpaore:fwood_log",
+    "fpaore:fwood_wood",
+    "fpaore:stripped_fwood_log",
+    "fpaore:stripped_fwood_wood"
+
+  ]
+}

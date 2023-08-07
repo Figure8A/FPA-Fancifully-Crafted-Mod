@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "fpaore:toughf"
+    }
+  },
+  "result": {
+    "item": "fpaore:toughf_wall",
+    "count": 6
+  }
+}

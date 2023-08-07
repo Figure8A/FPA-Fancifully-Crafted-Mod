@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.figure8.mixin.client",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "fpaoreMixin",
+    "LivingEntityMixin",
+    "ExampleClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

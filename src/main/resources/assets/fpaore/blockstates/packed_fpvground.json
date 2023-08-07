@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "fpaore:block/packed_fpvground_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "fpaore:block/packed_fpvground"
+    },
+    "axis=z": {
+      "model": "fpaore:block/packed_fpvground_horizontal",
+      "x": 90
+    }
+  }
+}

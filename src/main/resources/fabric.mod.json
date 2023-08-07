@@ -1,0 +1,45 @@
+{
+	"schemaVersion": 1,
+	"id": "fpaore",
+	"version": "${version}",
+	"name": "Fancifully Crafted",
+	"description": "A mod that adds various Fancy Pants related block items from the Fancy Pants Adventures series.",
+	"authors": [
+		"Figure8"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "LGPL-3.0-only",
+	"icon": "assets/fpaore/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-datagen": [
+			"com.figure8.fpaoreDataGenerator"
+		],
+		"main": [
+			"com.figure8.fpaore"
+		],
+		"client": [
+			"com.figure8.fpaoreClient"
+		]
+
+	},
+	"mixins": [
+		"fpaore.mixins.json",
+		{
+			"config": "fpaore.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.14.21",
+		"minecraft": "~1.20",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "fpaore:fpagrounda"
+  },
+  "result": "fpaore:fpagrounda_slab",
+  "count": 2
+}

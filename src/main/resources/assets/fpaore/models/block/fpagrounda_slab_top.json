@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "fpaore:block/fpagroundatop",
+    "side": "fpaore:block/fpagroundaside",
+    "top": "fpaore:block/fpagroundatop"
+  }
+}
