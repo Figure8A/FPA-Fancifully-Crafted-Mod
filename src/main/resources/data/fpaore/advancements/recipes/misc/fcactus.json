@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_bradium": {
+    "has_planks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "fpaore:bradblock"
+              "minecraft:cactus"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fpaore:bradium"
+        "recipe": "fpaore:fcactus"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_bradium",
+      "has_planks",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "fpaore:bradium"
+      "fpaore:fcactus"
     ]
   },
   "sends_telemetry_event": false

@@ -7,7 +7,7 @@
       "item": "minecraft:stick"
     },
     "W": {
-      "item": "minecraft:fwood_planks"
+      "item": "fpaore:fwood_planks"
     }
   },
   "pattern": [
