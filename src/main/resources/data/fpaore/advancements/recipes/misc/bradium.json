@@ -1,5 +1,5 @@
 {
-  "parent": "fpaore:recipes/root",
+  "parent": "minecraft:recipes/root",
   "criteria": {
     "has_bradium": {
       "conditions": {
@@ -12,17 +12,17 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
-    }
-  },
-  "requirements": [
-    [
-      "has_bradium"
-    ]
-  ],
-  "rewards": {
-    "recipes": [
-      "fpaore:bradblock"
-    ]
-  },
-  "sends_telemetry_event": false
+    },
+    "requirements": [
+      [
+        "has_bradium"
+      ]
+    ],
+    "rewards": {
+      "recipes": [
+        "fpaore:bradblock"
+      ]
+    },
+    "sends_telemetry_event": false
+  }
 }
