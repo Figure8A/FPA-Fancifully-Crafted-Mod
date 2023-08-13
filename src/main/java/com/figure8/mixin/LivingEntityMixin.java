@@ -64,24 +64,23 @@ public abstract class LivingEntityMixin  extends Entity {
 
 	@Inject(at = @At("HEAD"), method = "tryUseTotem", cancellable = true)
 	public void usemayor_of_undying(DamageSource damageSource_1, CallbackInfoReturnable<Boolean> callback) {
-		/*inits PlayerEntity entity, which is a copy of this casted to Living Entity and then PlayerEntity*/
+
 		Entity entity = this;
 
-		/*ItemStack object that is set to the offhand item that entity is carrying*/
+
 		ItemStack offhand_stack = ((LivingEntityMixin) entity).getStackInHand(Hand.OFF_HAND);
 
 		ItemStack mainhand_stack = ((LivingEntityMixin) entity).getStackInHand(Hand.MAIN_HAND);
 
-		//Executes if the item in offhand_stack is equal to the ghastly totem of Undying
+
 		if ((offhand_stack.getItem() == fpaore.mayor_of_undying) || (mainhand_stack.getItem() == fpaore.mayor_of_undying)) {
 
-			/*If the damagesource is something that could kill a player in creative mode, the totem does not work*/
+
 			if (damageSource_1.getType().equals(DamageTypes.OUT_OF_WORLD)) {
 
 				callback.setReturnValue(false);
 			} else {
-				/*sets copy to offhand_stack*/
-				/*deletes  totem from offhand*/
+
 				if ((offhand_stack.getItem() == fpaore.mayor_of_undying)) {
 					offhand_stack.decrement(1);
 				} else if ((mainhand_stack.getItem() == fpaore.mayor_of_undying)) {
@@ -89,7 +88,7 @@ public abstract class LivingEntityMixin  extends Entity {
 					mainhand_stack.decrement(1);
 
 				}
-				/*totem saves player from an untimely death*/
+
 				this.setHealth(10.0F);
 				this.clearStatusEffects();
 				this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 1205, 4));

@@ -162,7 +162,7 @@ public class fpaore implements ModInitializer {
 
 	public static final Item bradium = new Item(new FabricItemSettings());
 
-	public static final EntityType<ThrowableBlobEntity> THROWABLE_BLOB_ENTITY = registerThrowableTorch("throwable_blob");
+	public static final EntityType<ThrowableBlobEntity> THROWABLE_BLOB_ENTITY = registerThrowableBlob("throwable_blob");
 	public static final Item inkblob = new inkblob(new Item.Settings(), THROWABLE_BLOB_ENTITY);
 
 
@@ -211,7 +211,7 @@ public class fpaore implements ModInitializer {
 		return true;
 	}
 
-	private static EntityType<ThrowableBlobEntity> registerThrowableTorch(final String id) {
+	private static EntityType<ThrowableBlobEntity> registerThrowableBlob(final String id) {
 		return Registry.register(Registries.ENTITY_TYPE, new Identifier(fpaore.MOD_ID, id),
 				FabricEntityTypeBuilder.<ThrowableBlobEntity>create(SpawnGroup.MISC, ThrowableBlobEntity::new)
 						.dimensions(EntityDimensions.fixed(0.25F, 0.25F))
