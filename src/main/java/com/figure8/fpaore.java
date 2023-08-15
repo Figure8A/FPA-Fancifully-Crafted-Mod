@@ -29,6 +29,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.*;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
@@ -148,7 +149,8 @@ public class fpaore implements ModInitializer {
 	public static final Block fpvground = new fpvground(FabricBlockSettings.copyOf(GRANITE).strength(10.0f).requiresTool());
 	public static final Block packed_fpvground = new PillarBlock(FabricBlockSettings.copyOf(GRANITE).strength(12.0f).requiresTool());
 	public static final Block packed_fpvground_column = new PillarBlock(FabricBlockSettings.copyOf(GRANITE).strength(12.0f).requiresTool());
-	public static final Block inkblot = new inkblot(FabricBlockSettings.copyOf(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).luminance(8).slipperiness(2));
+	public static final Block inkblot = new inkblot(FabricBlockSettings.copyOf(SEA_LANTERN).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).luminance(state -> 8).slipperiness(2));
+	public static final Block inkblot_wall = new Wallinkblot(FabricBlockSettings.create().sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).luminance(state -> 8));
 
 	public static final Block spike = new spike(StatusEffects.HASTE,
 			FabricBlockSettings.copy(OBSIDIAN).strength(25.0f).requiresTool().nonOpaque().solidBlock(fpaore::always));
@@ -283,6 +285,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "spike"), spike);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "fchiseled_sandstone"), fchiseled_sandstone);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "smoothsandstone_verticalslab"), smoothsandstone_verticalslab);
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "inkblot_wall"), inkblot_wall);
 
 
 
@@ -333,7 +336,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "fchiseled_sandstone"), new BlockItem(fchiseled_sandstone, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "smoothsandstone_verticalslab"), new BlockItem(smoothsandstone_verticalslab, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "sandstonebedrock"), new BlockItem(sandstonebedrock, new FabricItemSettings()));
-
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "inkblot_wall"), new BlockItem(inkblot_wall, new FabricItemSettings()));
 
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradium"), bradium);
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "icecream"), icecream);

@@ -32,6 +32,7 @@ public class fpaoreClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.fwood_leaves, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.fwood_trapdoor, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.spike, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.inkblot_wall, RenderLayer.getCutout());
 
 
 

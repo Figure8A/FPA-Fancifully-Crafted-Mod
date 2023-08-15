@@ -1,5 +1,6 @@
 package com.figure8.entity;
 
+import com.figure8.blocks.Wallinkblot;
 import com.figure8.fpaore;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -50,12 +51,23 @@ public class ThrowableBlobEntity extends ThrownItemEntity {
             final Direction dir = blockHitResult.getSide();
             final BlockPos sidePos = blockHitResult.getBlockPos().offset(dir);
             if (world.getBlockState(sidePos).isAir()) {
-                if (Objects.requireNonNull(dir) == Direction.UP) {
-                    final BlockState torch = fpaore.inkblot.getDefaultState();
-                    if (torch.canPlaceAt(world, sidePos)) {
-                        world.setBlockState(sidePos, torch);
-                    } else {
-                        onFailed();
+                switch (dir) {
+                    case UP -> {
+                        final BlockState torch = fpaore.inkblot.getDefaultState();
+                        if (torch.canPlaceAt(world, sidePos)) {
+                            world.setBlockState(sidePos, torch);
+                        } else {
+                            onFailed();
+                        }
+                    }
+                    case DOWN -> onFailed();
+                    default -> {
+                        final BlockState state = fpaore.inkblot_wall.getDefaultState().with(Wallinkblot.FACING, dir);
+                        if (state.canPlaceAt(world, sidePos)) {
+                            world.setBlockState(sidePos, state);
+                        } else {
+                            onFailed();
+                        }
                     }
                 }
             } else {
