@@ -1,8 +1,17 @@
 {
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "fpaore:fpagrounda"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "fpaore:toughf"
+    }
   },
-  "result": "fpaore:fpagrounda_slab",
-  "count": 2
+  "result": {
+    "item": "fpaore:toughf_wall",
+    "count": 1
+  }
 }
