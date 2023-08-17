@@ -83,6 +83,16 @@ public class Wallinkblot extends HorizontalFacingBlock {
     }
 
     @Override
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        Direction direction = state.get(FACING);
+        BlockPos blockPos = pos.offset(direction.getOpposite());
+        BlockState blockState = world.getBlockState(blockPos);
+        return blockState.isOpaqueFullCube(world, blockPos);
+    }
+
+
+
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
