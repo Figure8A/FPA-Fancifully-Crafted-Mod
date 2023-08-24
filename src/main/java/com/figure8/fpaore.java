@@ -115,7 +115,7 @@ public class fpaore implements ModInitializer {
 
 	public static final Block spring = new spring(FabricBlockSettings.copyOf(Blocks.SLIME_BLOCK).sounds(ModSounds.SPRING_BLOCK_SOUNDS).nonOpaque().strength(1f));
 
-	public static final Block mayorglass = new mayorglass(FabricBlockSettings.copyOf(Blocks.GLASS).nonOpaque().strength(10f));
+	public static final Block mayorglass = new mayorglass(AbstractBlock.Settings.create().instrument(Instrument.HAT).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(fpaore::never).solidBlock(fpaore::never).suffocates(fpaore::never).blockVision(fpaore::never));
 
 	public static final Block fcactus = new PillarBlock(FabricBlockSettings.copyOf(Blocks.BASALT).strength(20f).sounds(BlockSoundGroup.CALCITE));
 
@@ -174,6 +174,25 @@ public class fpaore implements ModInitializer {
 	public static final Item icecream = new Item(new FabricItemSettings().food(new FoodComponent.Builder().statusEffect(new StatusEffectInstance(SPEED, 200, 3), 0.1f).statusEffect(new StatusEffectInstance(JUMP_BOOST, 250, 3), 0.25f).statusEffect(new StatusEffectInstance(STRENGTH, 150, 3), 0.10f).statusEffect(new StatusEffectInstance(RESISTANCE, 300, 3), 0.25f).hunger(5).saturationModifier(4.5F).build()));
 
 	public static final Item squiggle = new Item(new FabricItemSettings().food(new FoodComponent.Builder().statusEffect(new StatusEffectInstance(INSTANT_HEALTH, 2, 1), 1f).hunger(1).saturationModifier(0.2F).build()));
+
+	public static final Block stripped_fwood_planks = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(2.0f));
+
+	public static final Block stripped_fwood_planksvar = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(2.0f));
+	public static final Block stripped_fwood_slab = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB).strength(1f));
+	public static final Block stripped_fwood_stair = new ModStairsBlock(stripped_fwood_planks.getDefaultState(),FabricBlockSettings.copyOf(Blocks.OAK_STAIRS).strength(1f));
+
+	public static final Block stripped_fwood_door = new DoorBlock(AbstractBlock.Settings.copy(OAK_DOOR).mapColor(stripped_fwood_planks.getDefaultMapColor()).instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable().pistonBehavior(PistonBehavior.DESTROY).strength(1.0f).sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
+
+	public static final Block stripped_fwood_gate = new FenceGateBlock(AbstractBlock.Settings.create().mapColor(stripped_fwood_planks.getDefaultMapColor()).solid().instrument(Instrument.BASS).strength(2.0f, 3.0f).burnable(), WoodType.OAK);
+
+	public static final Block stripped_fwood_plate = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.create().mapColor(fwood_planks.getDefaultMapColor()).solid().instrument(Instrument.BASS).noCollision().strength(0.5f).burnable().pistonBehavior(PistonBehavior.DESTROY), BlockSetType.OAK);
+
+	public static final Block stripped_fwood_fence = new FenceBlock(AbstractBlock.Settings.copy(OAK_FENCE_GATE).strength(1.0f));
+
+	public static final Block stripped_fwood_trapdoor = new TrapdoorBlock(AbstractBlock.Settings.create().instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable(), BlockSetType.OAK);
+
+	public static final Block stripped_fwood_button = new ButtonBlock(AbstractBlock.Settings.copy(OAK_BUTTON).noCollision().strength(0.5f), BlockSetType.OAK, 30, true);
+
 
 
 	public static final RegistryKey<PlacedFeature> CUSTOM_ORE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier("fpaore","custombore"));
@@ -238,7 +257,7 @@ public class fpaore implements ModInitializer {
 		StrippableBlockRegistry.register(fpaore.fwood_wood, fpaore.stripped_fwood_wood);
 		StrippableBlockRegistry.register(fpaore.packed_fpvground, fpaore.packed_fpvground_column);
 		StrippableBlockRegistry.register(fpaore.packed_fpvground_column, fpaore.packed_fpvground);
-
+		StrippableBlockRegistry.register(fpaore.stripped_fwood_planks, fpaore.stripped_fwood_planksvar);
 
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "bradore"), BradOre);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "bradoredsl"), bradoredsl);
@@ -286,9 +305,16 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "fchiseled_sandstone"), fchiseled_sandstone);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "smoothsandstone_verticalslab"), smoothsandstone_verticalslab);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "inkblot_wall"), inkblot_wall);
-
-
-
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_stair"), stripped_fwood_stair);
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_slab"), stripped_fwood_slab);
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_door"), stripped_fwood_door);
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_gate"), stripped_fwood_gate);
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_plate"), stripped_fwood_plate);
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_fence"), stripped_fwood_fence);
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_trapdoor"), stripped_fwood_trapdoor);
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_button"), stripped_fwood_button);
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_planks"), stripped_fwood_planks);
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_planksvar"), stripped_fwood_planksvar);
 
 
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradore"), new BlockItem(BradOre, new FabricItemSettings()));
@@ -337,6 +363,16 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "smoothsandstone_verticalslab"), new BlockItem(smoothsandstone_verticalslab, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "sandstonebedrock"), new BlockItem(sandstonebedrock, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "inkblot_wall"), new BlockItem(inkblot_wall, new FabricItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_stair"), new BlockItem(stripped_fwood_stair, new FabricItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_slab"), new BlockItem(stripped_fwood_slab, new FabricItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_door"), new BlockItem(stripped_fwood_door, new FabricItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_gate"), new BlockItem(stripped_fwood_gate, new FabricItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_plate"), new BlockItem(stripped_fwood_plate, new FabricItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_fence"), new BlockItem(stripped_fwood_fence, new FabricItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_button"), new BlockItem(stripped_fwood_button, new FabricItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_trapdoor"), new BlockItem(stripped_fwood_trapdoor, new FabricItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_planks"), new BlockItem(stripped_fwood_planks, new FabricItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_planksvar"), new BlockItem(stripped_fwood_planksvar, new FabricItemSettings()));
 
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradium"), bradium);
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "icecream"), icecream);

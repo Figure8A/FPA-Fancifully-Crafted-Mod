@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
-    "fpaore:fwood_slab"
+    "fpaore:fwood_slab",
+    "fpaore:stripped_fwood_slab"
 
   ]
 }

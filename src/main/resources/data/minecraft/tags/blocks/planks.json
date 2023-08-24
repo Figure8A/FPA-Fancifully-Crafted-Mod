@@ -1,7 +1,9 @@
 {
   "replace": false,
   "values": [
-    "fpaore:fwood_planks"
+    "fpaore:fwood_planks",
+    "fpaore:stripped_fwood_planks",
+    "fpaore:stripped_fwood_planksvar"
 
   ]
 }

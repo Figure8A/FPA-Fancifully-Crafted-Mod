@@ -61,6 +61,16 @@ public class ModItemGroup {    public static ItemGroup fpablocks = Registry.regi
                     entries.add(fpaore.fwood_wood);
                     entries.add(fpaore.stripped_fwood_log);
                     entries.add(fpaore.stripped_fwood_wood);
+                    entries.add(fpaore.stripped_fwood_planks);
+                    entries.add(fpaore.stripped_fwood_planksvar);
+                    entries.add(fpaore.stripped_fwood_door);
+                    entries.add(fpaore.stripped_fwood_gate);
+                    entries.add(fpaore.stripped_fwood_fence);
+                    entries.add(fpaore.stripped_fwood_plate);
+                    entries.add(fpaore.stripped_fwood_button);
+                    entries.add(fpaore.stripped_fwood_slab);
+                    entries.add(fpaore.stripped_fwood_stair);
+                    entries.add(fpaore.stripped_fwood_trapdoor);
                     entries.add(fpaore.fpvground);
                     entries.add(fpaore.packed_fpvground);
                     entries.add(fpaore.packed_fpvground_column);

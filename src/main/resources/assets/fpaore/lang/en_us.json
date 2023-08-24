@@ -59,5 +59,15 @@
   "block.fpaore.sandstonebedrock":"Sandstone But VERY HARD",
   "block.fpaore.toughf_wall":"Fancy Wall",
   "biome.fpaore.fbiome":"Fancy Area",
+  "block.fpaore.stripped_fwood_slab":"Stripped Fancy Wood Slab",
+  "block.fpaore.stripped_fwood_planks":"Stripped Fancy Wood Planks",
+  "block.fpaore.stripped_fwood_planksvar":"Twofold Stripped Fancy Wood Planks",
+  "block.fpaore.stripped_fwood_stair":"Stripped Fancy Wood Stair",
+  "block.fpaore.stripped_fwood_door":"Stripped Fancy Wood Door",
+  "block.fpaore.stripped_fwood_gate":"Stripped Fancy Fence Gate",
+  "block.fpaore.stripped_fwood_plate":"Stripped Fancy Pressure Plate",
+  "block.fpaore.stripped_fwood_fence":"Stripped Fancy Fence",
+  "block.fpaore.stripped_fwood_button":"Stripped Fancy Button",
+  "block.fpaore.stripped_fwood_trapdoor":"Stripped Fancy Trapdoor",
   "itemgroup.fpaore": "The Fancy Pants Adventures"
 }

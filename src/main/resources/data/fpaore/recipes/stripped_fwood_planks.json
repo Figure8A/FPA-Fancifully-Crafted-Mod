@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "fpaore:stripped_fwood_log"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "fpaore:stripped_fwood_planks"
+  }
+}

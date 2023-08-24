@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "fpaore:stripped_fwood_planks"
+    }
+  },
+  "result": {
+    "item": "fpaore:stripped_fwood_stair",
+    "count": 4
+  }
+}

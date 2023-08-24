@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
-    "fpaore:fwood_fence"
+    "fpaore:fwood_fence",
+    "fpaore:stripped_fwood_fence"
 
   ]
 }

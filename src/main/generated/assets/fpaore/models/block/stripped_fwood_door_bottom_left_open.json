@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_left_open",
+  "textures": {
+    "bottom": "fpaore:block/stripped_fwood_door_bottom",
+    "top": "fpaore:block/stripped_fwood_door_top"
+  }
+}
