@@ -206,7 +206,6 @@ public class fpaore implements ModInitializer {
 
 
 
-
 	public static final Block bradblock = new bradblock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).sounds(ModSounds.BRADBLOCK_BLOCK_SOUNDS).strength(60f).requiresTool());
 
 	private static boolean always(BlockState state, BlockView world, BlockPos pos) {
@@ -394,6 +393,7 @@ public class fpaore implements ModInitializer {
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, FPVGROUND_PLACED_KEY);
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, VEGETAL_DECORATION_PLACED_KEY);
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, fVEGETAL_DECORATION_PLACED_KEY);
+
 
 	}
 }

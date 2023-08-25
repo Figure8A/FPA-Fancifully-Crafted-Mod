@@ -67,11 +67,12 @@ public class spring extends Block {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         world.playSound(player, pos, ModSounds.SPRING_BLOCK_HIT, SoundCategory.BLOCKS, 1f,1f);
+
+
         return super.onUse(state, world, pos, player, hand, hit);
 
+
     }
-
-
 
 
 }
