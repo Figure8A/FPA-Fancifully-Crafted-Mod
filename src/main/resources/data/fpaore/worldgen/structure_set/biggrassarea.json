@@ -1,0 +1,22 @@
+{
+
+  "structures": [
+    {
+      "structure": "fpaore:biggrassarea",
+      "weight": 1
+    }
+  ],
+  "placement": {
+
+    "salt": 1642136471,
+
+
+    "spacing": 15,
+
+
+    "separation": 10,
+
+
+    "type": "minecraft:random_spread"
+  }
+}

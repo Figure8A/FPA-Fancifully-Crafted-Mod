@@ -1,0 +1,22 @@
+{
+
+  "structures": [
+    {
+      "structure": "fpaore:largefpadirt",
+      "weight": 1
+    }
+  ],
+  "placement": {
+
+    "salt": 1642136473,
+
+
+    "spacing": 10,
+
+
+    "separation": 7,
+
+
+    "type": "minecraft:random_spread"
+  }
+}
