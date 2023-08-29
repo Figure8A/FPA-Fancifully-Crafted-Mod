@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,7 +31,6 @@ import java.util.Objects;
 public class ThrowableBlobEntity extends ThrownItemEntity {
 
 
-    public PersistentProjectileEntity.PickupPermission pickupType;
 
     public ThrowableBlobEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
@@ -54,7 +54,7 @@ public class ThrowableBlobEntity extends ThrownItemEntity {
 
     @Override
     protected Item getDefaultItem() {
-        return null;
+        return fpaore.inkblob;
     }
 
     @Override
@@ -97,20 +97,17 @@ public class ThrowableBlobEntity extends ThrownItemEntity {
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         if (!this.getWorld().isClient) {
-            this.damage(this.getDamageSources().thrown(this, this.getOwner()), 4.0f);
-            this.discard();
+            this.damage(this.getDamageSources().mobAttack(null), 4.0f);
         }
-        super.discard();
+
+        this.discard();
 
     }
 
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
-        Entity entity = this.getOwner();
-        if (entity instanceof PlayerEntity) {
-            entityHitResult.getEntity().damage(this.getDamageSources().thrown(this, this.getOwner()), 4.0f);
-        }
+        entityHitResult.getEntity().damage(this.getDamageSources().thrown(this, this.getOwner()), 4.0f);
     }
 
 

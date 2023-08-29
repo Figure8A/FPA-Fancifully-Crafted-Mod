@@ -3,6 +3,7 @@ package com.figure8;
 import com.figure8.blocks.*;
 
 
+
 import com.figure8.entity.ThrowableBlobEntity;
 import com.figure8.item.ModItemGroup;
 
@@ -167,6 +168,7 @@ public class fpaore implements ModInitializer {
 	public static final Item bradium = new Item(new FabricItemSettings());
 
 	public static final EntityType<ThrowableBlobEntity> THROWABLE_BLOB_ENTITY = registerThrowableBlob("throwable_blob");
+
 	public static final Item inkblob = new inkblob(new Item.Settings(), THROWABLE_BLOB_ENTITY);
 
 
@@ -175,7 +177,7 @@ public class fpaore implements ModInitializer {
 
 	public static final Item icecream = new Item(new FabricItemSettings().food(new FoodComponent.Builder().statusEffect(new StatusEffectInstance(SPEED, 200, 3), 0.1f).statusEffect(new StatusEffectInstance(JUMP_BOOST, 250, 3), 0.25f).statusEffect(new StatusEffectInstance(STRENGTH, 150, 3), 0.10f).statusEffect(new StatusEffectInstance(RESISTANCE, 300, 3), 0.25f).hunger(5).saturationModifier(4.5F).build()));
 
-	public static final Item squiggle = new Item(new FabricItemSettings().food(new FoodComponent.Builder().statusEffect(new StatusEffectInstance(INSTANT_HEALTH, 2, 1), 1f).hunger(1).saturationModifier(0.2F).build()));
+	public static final Item squiggle = new Item(new FabricItemSettings().food(new FoodComponent.Builder().statusEffect(new StatusEffectInstance(INSTANT_HEALTH, 2, 1, true, false, false), 1f).hunger(1).saturationModifier(0.2F).build()));
 
 	public static final Block stripped_fwood_planks = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(2.0f));
 

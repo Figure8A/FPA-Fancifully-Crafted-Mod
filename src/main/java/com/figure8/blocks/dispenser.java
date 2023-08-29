@@ -1,5 +1,6 @@
 package com.figure8.blocks;
 
+
 import com.figure8.entity.ThrowableBlobEntity;
 import com.figure8.fpaore;
 import net.minecraft.block.DispenserBlock;
@@ -31,6 +32,7 @@ public class dispenser implements DispenserBehavior {
             @Override
             protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
                 return Util.make(new ThrowableBlobEntity(world, position.getX(), position.getY(), position.getZ()), entity -> entity.setItem(stack));
+
             }
         });
     }

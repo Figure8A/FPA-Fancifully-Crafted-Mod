@@ -148,7 +148,7 @@ public class spike extends HorizontalFacingBlock implements Waterloggable {
             return;
         }
         if (entity instanceof LivingEntity && !(livingEntity = (LivingEntity)entity).isInvulnerableTo(world.getDamageSources().wither())) {
-            livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 10));
+            livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 10, false, false, false));
         }
     }
     @Override
