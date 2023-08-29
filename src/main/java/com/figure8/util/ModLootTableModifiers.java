@@ -32,8 +32,8 @@ public class ModLootTableModifiers {
             = new Identifier("minecraft", "entities/creeper");
     private static final Identifier Warden_ID
             = new Identifier("minecraft", "entities/warden");
-    private static final Identifier DRAGON_EGG_ID
-            = new Identifier("minecraft", "blocks/dragon_egg");
+    private static final Identifier CHESTS_ID
+            = new Identifier("minecraft", "chests/end_city_treasure");
     private static final Identifier fishing_ID
             = new Identifier("minecraft", "gameplay/fishing/treasure");
 
@@ -99,13 +99,13 @@ public class ModLootTableModifiers {
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 3.0f)).build());
                 tableBuilder.pool(poolBuilder.build());
             }
-            if(DRAGON_EGG_ID.equals(id)) {
+            if(CHESTS_ID.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(2))
-                        .conditionally(RandomChanceLootCondition.builder(1f)) // Drops 35% of the time
+                        .conditionally(RandomChanceLootCondition.builder(0.8f)) // Drops 35% of the time
                         .with(ItemEntry.builder(fpaore.angry_baddie_music_disk))
                         .with(ItemEntry.builder(fpaore.mayor_theme_music_disk))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 3.0f)).build());
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(6.0f, 14.0f)).build());
                 tableBuilder.pool(poolBuilder.build());
             }
             if(fishing_ID.equals(id)) {

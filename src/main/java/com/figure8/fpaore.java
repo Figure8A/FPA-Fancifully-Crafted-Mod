@@ -5,6 +5,7 @@ import com.figure8.blocks.*;
 
 import com.figure8.entity.ThrowableBlobEntity;
 import com.figure8.item.ModItemGroup;
+
 import com.figure8.item.inkblob;
 import com.figure8.sound.ModSounds;
 import com.figure8.util.ModLootTableModifiers;
@@ -27,6 +28,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.*;
 
 import net.minecraft.particle.ParticleTypes;
@@ -74,10 +76,10 @@ public class fpaore implements ModInitializer {
 	public static ToolItem pencilsword = new SwordItem(fpaoreMaterial.INSTANCE, 6, -3.4F, new Item.Settings());
 
 
-	public static final Block BradOre = new bradore(FabricBlockSettings.copyOf(Blocks.STONE).strength(30f).requiresTool());
+	public static final Block BradOre = new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.STONE).sounds(ModSounds.BRADBLOCK_BLOCK_SOUNDS).strength(40f).requiresTool(), UniformIntProvider.create(5, 10));
 	public static final Block bradoredsl = new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).sounds(ModSounds.BRADBLOCK_BLOCK_SOUNDS).strength(55f).requiresTool(), UniformIntProvider.create(5, 10));
 
-	public static final Block sketch = new sketch(FabricBlockSettings.copyOf(Blocks.SEA_LANTERN).nonOpaque().strength(3f).requiresTool());
+	public static final Block sketch = new sketch(FabricBlockSettings.copyOf(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).nonOpaque().strength(3f).requiresTool());
 
 	public static final Block fpagrounda = new fpagrounda(FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(3f).requiresTool());
 
@@ -120,6 +122,7 @@ public class fpaore implements ModInitializer {
 	public static final Block fcactus = new PillarBlock(FabricBlockSettings.copyOf(Blocks.BASALT).strength(20f).sounds(BlockSoundGroup.CALCITE));
 
 
+
 	public static final Block fwood_log = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG).strength(1.0f));
 	public static final Block fwood_wood = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD).strength(1.0f));
 	public static final Block stripped_fwood_log = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_LOG).strength(3.0f));
@@ -149,11 +152,10 @@ public class fpaore implements ModInitializer {
 	public static final Block fpvground = new fpvground(FabricBlockSettings.copyOf(GRANITE).strength(10.0f).requiresTool());
 	public static final Block packed_fpvground = new PillarBlock(FabricBlockSettings.copyOf(GRANITE).strength(12.0f).requiresTool());
 	public static final Block packed_fpvground_column = new PillarBlock(FabricBlockSettings.copyOf(GRANITE).strength(12.0f).requiresTool());
-	public static final Block inkblot = new inkblot(FabricBlockSettings.copyOf(SEA_LANTERN).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).luminance(state -> 8).slipperiness(2));
-	public static final Block inkblot_wall = new Wallinkblot(FabricBlockSettings.create().sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).luminance(state -> 8));
+	public static final Block inkblot = new inkblot(FabricBlockSettings.copyOf(SEA_LANTERN).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).notSolid().pistonBehavior(PistonBehavior.DESTROY).luminance(state -> 8).slipperiness(2));
+	public static final Block inkblot_wall = new Wallinkblot(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).luminance(state -> 8));
 
-	public static final Block spike = new spike(StatusEffects.HASTE,
-			FabricBlockSettings.copy(OBSIDIAN).strength(25.0f).requiresTool().nonOpaque().solidBlock(fpaore::always));
+	public static final Block spike = new spike(FabricBlockSettings.copy(OBSIDIAN).strength(65.0f).requiresTool().nonOpaque().solidBlock(fpaore::always));
 
 
 	public static final Block fchiseled_sandstone = new Block(AbstractBlock.Settings.create().mapColor(MapColor.PALE_YELLOW).instrument(Instrument.BASEDRUM).requiresTool().strength(0.8f));
@@ -251,12 +253,16 @@ public class fpaore implements ModInitializer {
 		ModItemGroup.registerItemGroups();
 		ModWorldGeneration.generateModWorldGen();
 
+		dispenser.registerDefaults();
+
 		ModFlammableBlockRegistry.registerFlammableBlocks();
 		StrippableBlockRegistry.register(fpaore.fwood_log, fpaore.stripped_fwood_log);
 		StrippableBlockRegistry.register(fpaore.fwood_wood, fpaore.stripped_fwood_wood);
 		StrippableBlockRegistry.register(fpaore.packed_fpvground, fpaore.packed_fpvground_column);
 		StrippableBlockRegistry.register(fpaore.packed_fpvground_column, fpaore.packed_fpvground);
 		StrippableBlockRegistry.register(fpaore.stripped_fwood_planks, fpaore.stripped_fwood_planksvar);
+
+
 
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "bradore"), BradOre);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "bradoredsl"), bradoredsl);
@@ -328,6 +334,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "grasblockbutgood"), new BlockItem(grasblockbutgood, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "coursegrasblockbutgood"), new BlockItem(coursegrasblockbutgood, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "inkblot"), new BlockItem(inkblot, new FabricItemSettings()));
+
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "mayorglass"), new BlockItem(mayorglass, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "fpagroundatrimed"), new BlockItem(fpagroundatrimed, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "fcactus"), new BlockItem(fcactus, new FabricItemSettings()));
@@ -372,6 +379,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_trapdoor"), new BlockItem(stripped_fwood_trapdoor, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_planks"), new BlockItem(stripped_fwood_planks, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_planksvar"), new BlockItem(stripped_fwood_planksvar, new FabricItemSettings()));
+
 
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradium"), bradium);
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "icecream"), icecream);

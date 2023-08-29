@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": { "model": "fpaore:block/spike" }
+    "facing=north": { "model": "fpaore:block/spike", "uvlock": false },
+    "facing=east":  { "model": "fpaore:block/spike", "y":  90, "uvlock": false },
+    "facing=south": { "model": "fpaore:block/spike", "y": 180, "uvlock": false },
+    "facing=west":  { "model": "fpaore:block/spike", "y": 270, "uvlock": false }
   }
 }

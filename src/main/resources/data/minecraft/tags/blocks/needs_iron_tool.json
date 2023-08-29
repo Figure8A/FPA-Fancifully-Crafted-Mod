@@ -1,9 +1,6 @@
 {
   "replace": false,
   "values": [
-    "fpaore:sketch",
-    "fpaore:fpagrounda",
-    "fpaore:toughf",
-    "fpaore:spike"
+    "fpaore:sketch"
   ]
 }

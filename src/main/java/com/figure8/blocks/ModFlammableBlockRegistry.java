@@ -13,5 +13,7 @@ public class ModFlammableBlockRegistry {
 
         registry.add(fpaore.fwood_leaves, 30, 60);
         registry.add(fpaore.fwood_planks, 5, 20);
+        registry.add(fpaore.stripped_fwood_planksvar, 5, 20);
+        registry.add(fpaore.stripped_fwood_planks, 5, 20);
     }
 }
