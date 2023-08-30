@@ -4,6 +4,7 @@ import com.figure8.fpaore;
 import com.figure8.sound.ModSounds;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.SlabType;
+import net.minecraft.block.enums.Tilt;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -50,7 +51,7 @@ public class spring extends SlimeBlock implements Waterloggable {
 
     public spring(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.UP));
+        this.setDefaultState((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.UP).with(CROUCH, false));
     }
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
@@ -68,7 +69,7 @@ public class spring extends SlimeBlock implements Waterloggable {
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (state.get(CROUCH).booleanValue()) {
-            world.setBlockState(pos, (BlockState)state.with(CROUCH, false), Block.NOTIFY_ALL);
+            world.setBlockState(pos, (BlockState)state.with(CROUCH, true), Block.NOTIFY_ALL);
         }
     }
     @Override
@@ -76,10 +77,9 @@ public class spring extends SlimeBlock implements Waterloggable {
         boolean dir = state.get(CROUCH);
         if (dir) {
             return VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
-        } else if (!(dir)) {
+        } else {
             return VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 0.7f, 1.0f);
         }
-        return VoxelShapes.fullCube();
     }
 
     @Override
@@ -94,7 +94,7 @@ public class spring extends SlimeBlock implements Waterloggable {
     private void bounce(Entity entity) {
         Vec3d vec3d = entity.getVelocity();
         if (vec3d.y < 0.0) {
-            double d = entity instanceof LivingEntity ? 10.0 : 1.0;
+            double d = entity instanceof LivingEntity ? 5.0 : 1.0;
             entity.setVelocity(vec3d.x * d, -vec3d.y * d, vec3d.z * d);
         }
     }
@@ -105,13 +105,18 @@ public class spring extends SlimeBlock implements Waterloggable {
         double d = Math.abs(entity.getVelocity().y);
         if (d < 0.1 && !entity.bypassesSteppingEffects()) {
             double e = 0.4 + d * 0.2;
-            entity.setVelocity(entity.getVelocity().multiply(e, 50.0, e));
+            entity.setVelocity(entity.getVelocity().multiply(e, 10.0, e));
+        }
+        if (state.get(CROUCH).booleanValue()) {
+            double e = 0.4 + d * 0.2;
+            entity.setVelocity(entity.getVelocity().multiply(e, 2, e));
         }
         super.onSteppedOn(world, pos, state, entity);
     }
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         world.playSound(player, pos, ModSounds.SPRING_BLOCK_HIT, SoundCategory.BLOCKS, 1f,1f);
+        world.setBlockState(pos, state.cycle(CROUCH), 20, 2);
 
 
         return super.onUse(state, world, pos, player, hand, hit);
@@ -159,5 +164,6 @@ public class spring extends SlimeBlock implements Waterloggable {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED, FACING, CROUCH);
     }
+
 
 }
