@@ -1,5 +1,10 @@
 {
   "variants": {
-    "": { "model": "fpaore:block/spring" }
+    "crouch=true": {
+      "model": "fpaore:block/spring"
+    },
+    "crouch=false": {
+      "model": "fpaore:block/springc"
+    }
   }
 }

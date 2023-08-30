@@ -1,8 +1,30 @@
 {
   "variants": {
-    "facing=north": { "model": "fpaore:block/spike", "uvlock": false },
-    "facing=east":  { "model": "fpaore:block/spike", "y":  90, "uvlock": false },
-    "facing=south": { "model": "fpaore:block/spike", "y": 180, "uvlock": false },
-    "facing=west":  { "model": "fpaore:block/spike", "y": 270, "uvlock": false }
+    "facing=down": {
+      "model": "fpaore:block/spike",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "fpaore:block/spike",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "fpaore:block/spike",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "fpaore:block/spike",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "fpaore:block/spike"
+    },
+    "facing=west": {
+      "model": "fpaore:block/spike",
+      "x": 90,
+      "y": 270
+    }
   }
 }

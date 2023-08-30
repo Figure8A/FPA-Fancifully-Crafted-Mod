@@ -116,7 +116,7 @@ public class fpaore implements ModInitializer {
 
 
 
-	public static final Block spring = new spring(FabricBlockSettings.copyOf(Blocks.SLIME_BLOCK).sounds(ModSounds.SPRING_BLOCK_SOUNDS).nonOpaque().strength(1f));
+	public static final Block spring = new spring(FabricBlockSettings.create().sounds(ModSounds.SPRING_BLOCK_SOUNDS).nonOpaque().strength(2f));
 
 	public static final Block mayorglass = new mayorglass(AbstractBlock.Settings.create().instrument(Instrument.HAT).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(fpaore::never).solidBlock(fpaore::never).suffocates(fpaore::never).blockVision(fpaore::never));
 
@@ -156,7 +156,7 @@ public class fpaore implements ModInitializer {
 	public static final Block inkblot = new inkblot(FabricBlockSettings.copyOf(SEA_LANTERN).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).notSolid().pistonBehavior(PistonBehavior.DESTROY).luminance(state -> 8).slipperiness(2));
 	public static final Block inkblot_wall = new Wallinkblot(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).luminance(state -> 8));
 
-	public static final Block spike = new spike(FabricBlockSettings.copy(OBSIDIAN).strength(65.0f).requiresTool().nonOpaque().solidBlock(fpaore::always));
+	public static final Block spike = new spike(9, 4, FabricBlockSettings.copy(OBSIDIAN).strength(65.0f).requiresTool().nonOpaque().solid());
 
 
 	public static final Block fchiseled_sandstone = new Block(AbstractBlock.Settings.create().mapColor(MapColor.PALE_YELLOW).instrument(Instrument.BASEDRUM).requiresTool().strength(0.8f));

@@ -14,7 +14,10 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -22,103 +25,72 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
 
 import static net.minecraft.state.property.Properties.HORIZONTAL_FACING;
 
-public class spike extends HorizontalFacingBlock implements Waterloggable {
-
+public class spike extends AmethystBlock
+        implements Waterloggable {
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
-    public spike(AbstractBlock.Settings settings) {
+    public static final DirectionProperty FACING = Properties.FACING;
+    protected final VoxelShape northShape;
+    protected final VoxelShape southShape;
+    protected final VoxelShape eastShape;
+    protected final VoxelShape westShape;
+    protected final VoxelShape upShape;
+    protected final VoxelShape downShape;
+
+    public spike(int height, int xzOffset, AbstractBlock.Settings settings) {
         super(settings);
-        setDefaultState(getDefaultState().with(HORIZONTAL_FACING, Direction.NORTH));
-
+        this.setDefaultState((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.UP));
+        this.upShape = Block.createCuboidShape(xzOffset, 0.0, xzOffset, 16 - xzOffset, height, 16 - xzOffset);
+        this.downShape = Block.createCuboidShape(xzOffset, 16 - height, xzOffset, 16 - xzOffset, 16.0, 16 - xzOffset);
+        this.northShape = Block.createCuboidShape(xzOffset, xzOffset, 16 - height, 16 - xzOffset, 16 - xzOffset, 16.0);
+        this.southShape = Block.createCuboidShape(xzOffset, xzOffset, 0.0, 16 - xzOffset, 16 - xzOffset, height);
+        this.eastShape = Block.createCuboidShape(0.0, xzOffset, xzOffset, height, 16 - xzOffset, 16 - xzOffset);
+        this.westShape = Block.createCuboidShape(16 - height, xzOffset, xzOffset, 16.0, 16 - xzOffset, 16 - xzOffset);
     }
-
-    private static final VoxelShape SHAPE_N = Stream.of(
-            Block.createCuboidShape(4, 0, 4, 12, 2, 12),
-            Block.createCuboidShape(5, 2, 5, 11, 3, 11),
-            Block.createCuboidShape(6, 3, 6, 10, 5, 10),
-            Block.createCuboidShape(5, 4, 5, 6, 6, 7),
-            Block.createCuboidShape(7, 5, 7, 8, 9, 9),
-            Block.createCuboidShape(8, 5, 7, 10, 6, 9),
-            Block.createCuboidShape(9, 6, 8, 10, 7, 9),
-            Block.createCuboidShape(10, 4, 7, 11, 5, 10)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
-
-    private static final VoxelShape SHAPE_E = Stream.of(
-            Block.createCuboidShape(4, 0, 4, 12, 2, 12),
-            Block.createCuboidShape(5, 2, 5, 11, 3, 11),
-            Block.createCuboidShape(6, 3, 6, 10, 5, 10),
-            Block.createCuboidShape(9, 4, 5, 11, 6, 6),
-            Block.createCuboidShape(7, 5, 7, 9, 9, 8),
-            Block.createCuboidShape(7, 5, 8, 9, 6, 10),
-            Block.createCuboidShape(7, 6, 9, 8, 7, 10),
-            Block.createCuboidShape(6, 4, 10, 9, 5, 11)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
-
-    private static final VoxelShape SHAPE_S = Stream.of(
-            Block.createCuboidShape(4, 0, 4, 12, 2, 12),
-            Block.createCuboidShape(5, 2, 5, 11, 3, 11),
-            Block.createCuboidShape(6, 3, 6, 10, 5, 10),
-            Block.createCuboidShape(10, 4, 9, 11, 6, 11),
-            Block.createCuboidShape(8, 5, 7, 9, 9, 9),
-            Block.createCuboidShape(6, 5, 7, 8, 6, 9),
-            Block.createCuboidShape(6, 6, 7, 7, 7, 8),
-            Block.createCuboidShape(5, 4, 6, 6, 5, 9)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
-
-    private static final VoxelShape SHAPE_W = Stream.of(
-            Block.createCuboidShape(4, 0, 4, 12, 2, 12),
-            Block.createCuboidShape(5, 2, 5, 11, 3, 11),
-            Block.createCuboidShape(6, 3, 6, 10, 5, 10),
-            Block.createCuboidShape(5, 4, 10, 7, 6, 11),
-            Block.createCuboidShape(7, 5, 8, 9, 9, 9),
-            Block.createCuboidShape(7, 5, 6, 9, 6, 8),
-            Block.createCuboidShape(8, 6, 6, 9, 7, 7),
-            Block.createCuboidShape(7, 4, 5, 10, 5, 6)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)) {
-            case NORTH:
-                return SHAPE_N;
-            case SOUTH:
-                return SHAPE_S;
-            case WEST:
-                return SHAPE_W;
-            case EAST:
-                return SHAPE_E;
-            default:
-                return SHAPE_N;
+        Direction direction = state.get(FACING);
+        switch (direction) {
+            case NORTH: {
+                return this.northShape;
+            }
+            case SOUTH: {
+                return this.southShape;
+            }
+            case EAST: {
+                return this.eastShape;
+            }
+            case WEST: {
+                return this.westShape;
+            }
+            case DOWN: {
+                return this.downShape;
+            }
         }
+        return this.upShape;
     }
 
     @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        VoxelShape voxelShape = this.getOutlineShape(state, world, pos, ShapeContext.absent());
-        Vec3d vec3d = voxelShape.getBoundingBox().getCenter();
-        double d = (double)pos.getX() + vec3d.x;
-        double e = (double)pos.getZ() + vec3d.z;
-        for (int i = 0; i < 3; ++i) {
-            if (!random.nextBoolean()) continue;
-            world.addParticle(ParticleTypes.DRAGON_BREATH, d + random.nextDouble() / 5.0, (double)pos.getY() + (0.5 - random.nextDouble()), e + random.nextDouble() / 5.0, 0.0, 0.005, 0.0);
-        }
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        Direction direction = state.get(FACING);
+        BlockPos blockPos = pos.offset(direction.getOpposite());
+        return world.getBlockState(blockPos).isSideSolidFullSquare(world, blockPos, direction);
     }
+
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (direction.getOpposite() == state.get(FACING) && !state.canPlaceAt(world, pos)) {
-            return Blocks.AIR.getDefaultState();
-        }
         if (state.get(WATERLOGGED).booleanValue()) {
             world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        }
+        if (direction == state.get(FACING).getOpposite() && !state.canPlaceAt(world, pos)) {
+            return Blocks.AIR.getDefaultState();
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
@@ -126,21 +98,33 @@ public class spike extends HorizontalFacingBlock implements Waterloggable {
     @Override
     @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        BlockState blockState;
-        if (!ctx.canReplaceExisting() && (blockState = ctx.getWorld().getBlockState(ctx.getBlockPos().offset(ctx.getSide().getOpposite()))).isOf(this) && blockState.get(HORIZONTAL_FACING) == ctx.getSide()) {
-            return null;
-        }
-        blockState = this.getDefaultState();
-        World worldView = ctx.getWorld();
+        World worldAccess = ctx.getWorld();
         BlockPos blockPos = ctx.getBlockPos();
-        FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
-        for (Direction direction : ctx.getPlacementDirections()) {
-            if (!direction.getAxis().isHorizontal() || !(blockState = (BlockState)blockState.with(FACING, direction.getOpposite())).canPlaceAt(worldView, blockPos)) continue;
-            return (BlockState)blockState.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-        }
-        return null;
+        return (BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, worldAccess.getFluidState(blockPos).getFluid() == Fluids.WATER)).with(FACING, ctx.getSide());
     }
 
+    @Override
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
+        return (BlockState)state.with(FACING, rotation.rotate(state.get(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, BlockMirror mirror) {
+        return state.rotate(mirror.getRotation(state.get(FACING)));
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        if (state.get(WATERLOGGED).booleanValue()) {
+            return Fluids.WATER.getStill(false);
+        }
+        return super.getFluidState(state);
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(WATERLOGGED, FACING);
+    }
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         LivingEntity livingEntity;
@@ -152,17 +136,14 @@ public class spike extends HorizontalFacingBlock implements Waterloggable {
         }
     }
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(HORIZONTAL_FACING, WATERLOGGED);
-    }
-
-    @Override
-    public FluidState getFluidState(BlockState state) {
-        if (state.get(WATERLOGGED).booleanValue()) {
-            return Fluids.WATER.getStill(false);
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        VoxelShape voxelShape = this.getOutlineShape(state, world, pos, ShapeContext.absent());
+        Vec3d vec3d = voxelShape.getBoundingBox().getCenter();
+        double d = (double)pos.getX() + vec3d.x;
+        double e = (double)pos.getZ() + vec3d.z;
+        for (int i = 0; i < 3; ++i) {
+            if (!random.nextBoolean()) continue;
+            world.addParticle(ParticleTypes.DRAGON_BREATH, d + random.nextDouble() / 5.0, (double)pos.getY() + (0.5 - random.nextDouble()), e + random.nextDouble() / 5.0, 0.0, 0.0005, 0.0);
         }
-        return super.getFluidState(state);
     }
-
 }
-
