@@ -12,8 +12,8 @@ public class fgrass extends PlantBlock {
     public fgrass(AbstractBlock.Settings settings) {
         super(settings);
     }
-
-    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+    @Override
+    public boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.isIn((RegistryEntryList<Block>) fpaore.grasblockbutgood) || floor.isOf(Blocks.FARMLAND);
     }
     @Override

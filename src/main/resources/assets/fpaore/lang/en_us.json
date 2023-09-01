@@ -69,5 +69,6 @@
   "block.fpaore.stripped_fwood_fence":"Stripped Fancy Fence",
   "block.fpaore.stripped_fwood_button":"Stripped Fancy Button",
   "block.fpaore.stripped_fwood_trapdoor":"Stripped Fancy Trapdoor",
+  "tooltip.fpaore.squiggle.tooltip": "Right Click To Restore HP~",
   "itemgroup.fpaore": "The Fancy Pants Adventures"
 }

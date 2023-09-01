@@ -7,6 +7,7 @@ import com.figure8.blocks.*;
 import com.figure8.entity.ThrowableBlobEntity;
 import com.figure8.item.ModItemGroup;
 
+import com.figure8.item.SquiggleItem;
 import com.figure8.item.inkblob;
 import com.figure8.sound.ModSounds;
 import com.figure8.util.ModLootTableModifiers;
@@ -37,6 +38,7 @@ import net.minecraft.registry.*;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.BlockView;
@@ -74,7 +76,7 @@ public class fpaore implements ModInitializer {
 
 
 
-	public static ToolItem pencilsword = new SwordItem(fpaoreMaterial.INSTANCE, 6, -3.4F, new Item.Settings());
+	public static ToolItem pencilsword = new SwordItem(fpaoreMaterial.INSTANCE, 6, -3.4F, new Item.Settings().rarity(Rarity.UNCOMMON));
 
 
 	public static final Block BradOre = new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.STONE).sounds(ModSounds.BRADBLOCK_BLOCK_SOUNDS).strength(40f).requiresTool(), UniformIntProvider.create(5, 10));
@@ -98,7 +100,8 @@ public class fpaore implements ModInitializer {
 
 	public static final Block fpagroundatrimed_stair = new ModStairsBlock(fpagroundatrimed.getDefaultState(),FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(5f).requiresTool());
 
-	public static final Block toughf = new toughf(FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(3f).requiresTool());
+	public static final Block toughf = new toughf(FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(3f).requiresTool()) {
+	};
 
 	public static final Block toughf_wall = new WallBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(3f).requiresTool());
 
@@ -165,19 +168,19 @@ public class fpaore implements ModInitializer {
 
 	public static final Block sandstonebedrock = new Block(AbstractBlock.Settings.copy(BEDROCK).mapColor(MapColor.STONE_GRAY).instrument(Instrument.BASEDRUM).strength(-1.0f, 3600000.0f).dropsNothing().allowsSpawning(fpaore::never));
 
-	public static final Item bradium = new Item(new FabricItemSettings());
+	public static final Item bradium = new Item(new FabricItemSettings().rarity(Rarity.RARE).fireproof());
 
 	public static final EntityType<ThrowableBlobEntity> THROWABLE_BLOB_ENTITY = registerThrowableBlob("throwable_blob");
 
 	public static final Item inkblob = new inkblob(new Item.Settings(), THROWABLE_BLOB_ENTITY);
 
 
-	public static final Item mayor_of_undying = new Item(new FabricItemSettings().maxCount(1));
+	public static final Item mayor_of_undying = new Item(new FabricItemSettings().rarity(Rarity.EPIC).maxCount(1));
 
 
 	public static final Item icecream = new Item(new FabricItemSettings().food(new FoodComponent.Builder().statusEffect(new StatusEffectInstance(SPEED, 200, 3), 0.1f).statusEffect(new StatusEffectInstance(JUMP_BOOST, 250, 3), 0.25f).statusEffect(new StatusEffectInstance(STRENGTH, 150, 3), 0.10f).statusEffect(new StatusEffectInstance(RESISTANCE, 300, 3), 0.25f).hunger(5).saturationModifier(4.5F).build()));
 
-	public static final Item squiggle = new Item(new FabricItemSettings().food(new FoodComponent.Builder().statusEffect(new StatusEffectInstance(INSTANT_HEALTH, 2, 1, true, false, false), 1f).hunger(1).saturationModifier(0.2F).build()));
+	public static final Item squiggle = new SquiggleItem(new FabricItemSettings());
 
 	public static final Block stripped_fwood_planks = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(2.0f));
 
@@ -197,6 +200,7 @@ public class fpaore implements ModInitializer {
 
 	public static final Block stripped_fwood_button = new ButtonBlock(AbstractBlock.Settings.copy(OAK_BUTTON).noCollision().strength(0.5f), BlockSetType.OAK, 30, true);
 
+	public static final Block squiggleblock = new squiggleblock(AbstractBlock.Settings.create().strength(1, 1).nonOpaque().noCollision().allowsSpawning(fpaore::never).noBlockBreakParticles().pistonBehavior(PistonBehavior.BLOCK));
 
 
 	public static final RegistryKey<PlacedFeature> CUSTOM_ORE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier("fpaore","custombore"));
@@ -322,7 +326,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_button"), stripped_fwood_button);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_planks"), stripped_fwood_planks);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_planksvar"), stripped_fwood_planksvar);
-
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "squiggleblock"), squiggleblock);
 
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradore"), new BlockItem(BradOre, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradoredsl"), new BlockItem(bradoredsl, new FabricItemSettings()));
@@ -381,6 +385,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_trapdoor"), new BlockItem(stripped_fwood_trapdoor, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_planks"), new BlockItem(stripped_fwood_planks, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_planksvar"), new BlockItem(stripped_fwood_planksvar, new FabricItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "squiggleblock"), new BlockItem(squiggleblock, new FabricItemSettings()));
 
 
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradium"), bradium);

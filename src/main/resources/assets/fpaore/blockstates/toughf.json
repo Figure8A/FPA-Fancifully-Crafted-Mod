@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": { "model": "fpaore:block/toughf" }
+    "facing=north": { "model": "fpaore:block/toughf", "uvlock": false },
+    "facing=east":  { "model": "fpaore:block/toughf", "y":  90, "uvlock": false },
+    "facing=south": { "model": "fpaore:block/toughf", "y": 180, "uvlock": false },
+    "facing=west":  { "model": "fpaore:block/toughf", "y": 270, "uvlock": false }
   }
 }

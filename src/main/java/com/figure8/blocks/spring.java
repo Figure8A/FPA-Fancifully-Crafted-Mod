@@ -2,11 +2,14 @@ package com.figure8.blocks;
 
 import com.figure8.fpaore;
 import com.figure8.sound.ModSounds;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.block.enums.Tilt;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -15,17 +18,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
+import net.minecraft.text.Text;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
@@ -33,9 +38,14 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+import java.util.Map;
+
 import static com.ibm.icu.text.PluralRules.Operand.e;
+import static java.awt.Color.*;
 import static net.minecraft.block.SlabBlock.TYPE;
 import static net.minecraft.block.enums.SlabType.DOUBLE;
 import static net.minecraft.block.enums.SlabType.TOP;
@@ -44,14 +54,21 @@ public class spring extends SlimeBlock implements Waterloggable {
 
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
-    public static final BooleanProperty CROUCH = BooleanProperty.of("crouch");
-    public static final DirectionProperty FACING = Properties.FACING;
+    public static final EnumProperty<springy> CROUCHES = EnumProperty.of("crouches", springy.class);
 
+    public static final DirectionProperty FACING = Properties.FACING;
+    private static final Map<springy, VoxelShape> SHAPES_FOR_CROUCH = ImmutableMap.of(springy.CROUCH, Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 14.0, 16.0), springy.CROUCH1, Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 10.0, 16.0), springy.CROUCH2, Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0), springy.CROUCHF, Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 16.0));
+
+    private final Map<BlockState, VoxelShape> shapes;
 
 
     public spring(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.UP).with(CROUCH, false));
+        this.setDefaultState((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.UP).with(CROUCHES, springy.CROUCH));
+        this.shapes = this.getShapesForStates(spring::getShapeForState);
+    }
+    private static VoxelShape getShapeForState(BlockState state) {
+        return VoxelShapes.union(SHAPES_FOR_CROUCH.get(state.get(CROUCHES)));
     }
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
@@ -63,23 +80,13 @@ public class spring extends SlimeBlock implements Waterloggable {
     }
     @Override
     public boolean hasRandomTicks(BlockState state) {
-        return state.get(CROUCH);
+        return (state.get(CROUCHES) != springy.CROUCH1);
     }
 
+
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (state.get(CROUCH).booleanValue()) {
-            world.setBlockState(pos, (BlockState)state.with(CROUCH, true), Block.NOTIFY_ALL);
-        }
-    }
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext ctx) {
-        boolean dir = state.get(CROUCH);
-        if (dir) {
-            return VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
-        } else {
-            return VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 0.7f, 1.0f);
-        }
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return this.shapes.get(state);
     }
 
     @Override
@@ -94,31 +101,41 @@ public class spring extends SlimeBlock implements Waterloggable {
     private void bounce(Entity entity) {
         Vec3d vec3d = entity.getVelocity();
         if (vec3d.y < 0.0) {
-            double d = entity instanceof LivingEntity ? 5.0 : 1.0;
+            double d = 2.0;
             entity.setVelocity(vec3d.x * d, -vec3d.y * d, vec3d.z * d);
         }
     }
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-        world.setBlockState(pos, state.cycle(CROUCH), 20, 2);
         double d = Math.abs(entity.getVelocity().y);
-        if (d < 0.1 && !entity.bypassesSteppingEffects()) {
-            double e = 0.4 + d * 0.2;
-            entity.setVelocity(entity.getVelocity().multiply(e, 10.0, e));
+        if (state.get(CROUCHES) == springy.CROUCH) {
+            double e = 1 + d * 1;
+            entity.setVelocity(entity.getVelocity().multiply(e, 3.5, e));
+            return;
         }
-        if (state.get(CROUCH).booleanValue()) {
-            double e = 0.4 + d * 0.2;
+        if (state.get(CROUCHES) == springy.CROUCHF) {
+            double e = 1 + d * 1;
+            entity.setVelocity(entity.getVelocity().multiply(e, 4, e));
+            return;
+        }
+        if (state.get(CROUCHES) == springy.CROUCH1) {
+            double e = 1 + d * 1;
             entity.setVelocity(entity.getVelocity().multiply(e, 2, e));
+            return;
         }
+        if (state.get(CROUCHES) == springy.CROUCH2) {
+            double e = 1 + d * 1;
+            entity.setVelocity(entity.getVelocity().multiply(e, 1.5, e));
+            return;
+        }
+
         super.onSteppedOn(world, pos, state, entity);
     }
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         world.playSound(player, pos, ModSounds.SPRING_BLOCK_HIT, SoundCategory.BLOCKS, 1f,1f);
-        world.setBlockState(pos, state.cycle(CROUCH), 20, 2);
-
-
+        world.setBlockState(pos, state.cycle(CROUCHES), 4, 1);
         return super.onUse(state, world, pos, player, hand, hit);
 
 
@@ -162,7 +179,12 @@ public class spring extends SlimeBlock implements Waterloggable {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED, FACING, CROUCH);
+        builder.add(WATERLOGGED, FACING, CROUCHES);
+    }
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+        tooltip.add(Text.literal("Right Click To Change The Strength!").formatted(Formatting.DARK_AQUA));
+        super.appendTooltip(stack, world, tooltip, options);
     }
 
 

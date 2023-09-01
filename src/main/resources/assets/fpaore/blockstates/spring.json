@@ -1,10 +1,16 @@
 {
   "variants": {
-    "crouch=true": {
-      "model": "fpaore:block/spring"
+    "crouches=crouch": {
+      "model": "fpaore:block/spring1"
     },
-    "crouch=false": {
+    "crouches=crouch1": {
       "model": "fpaore:block/springc"
+    },
+    "crouches=crouch2": {
+      "model": "fpaore:block/spring2"
+    },
+    "crouches=crouchf": {
+      "model": "fpaore:block/spring"
     }
   }
 }

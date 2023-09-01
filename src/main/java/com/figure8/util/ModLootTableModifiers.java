@@ -81,15 +81,16 @@ public class ModLootTableModifiers {
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(10.0f, 20.0f)).build());
                 tableBuilder.pool(poolBuilder.build());
             }
-
             if(CREEPER_ID.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.35f))
                         .conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.KILLER,
                                 new EntityPredicate.Builder().equipment(EntityEquipmentPredicate.Builder.create()
                                         .mainhand(ItemPredicate.Builder.create().items(fpaore.pencilsword).build()).build()).build()))
                         .with(ItemEntry.builder(fpaore.bradium))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+
                 tableBuilder.pool(poolBuilder.build());
             }
             if(Warden_ID.equals(id)) {
