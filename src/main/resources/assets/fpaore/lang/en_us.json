@@ -71,5 +71,6 @@
   "block.fpaore.stripped_fwood_trapdoor":"Stripped Fancy Trapdoor",
   "block.fpaore.squiggleblock":"Floating Squiggle",
   "tooltip.fpaore.squiggle.tooltip": "Right Click To Restore HP!",
+  "effect.fpaore.squiggleheal": "Squiggle",
   "itemgroup.fpaore": "The Fancy Pants Adventures"
 }

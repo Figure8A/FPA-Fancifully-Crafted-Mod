@@ -6,40 +6,26 @@
       "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "name": "fpaore:squiggleblock",
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "enchantments": [
-                      {
-                        "enchantment": "minecraft:silk_touch",
-                        "levels": {
-                          "min": 1
-                        }
-                      }
-                    ]
-                  }
+          "type": "minecraft:item",
+          "name": "fpaore:squiggleblock"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
                 }
-              ]
-            },
-            {
-              "type": "minecraft:item",
-              "name": "fpaore:squiggle",
-              "conditions": [
-                {
-                  "condition": "minecraft:survives_explosion"
-                }
-              ]
-            }
-          ]
+              }
+            ]
+          }
         }
       ]
     }
   ],
-  "random_sequence": "fpaore:blocks/grasspop"
+  "random_sequence": "fpaore:blocks/squiggleblock"
 }

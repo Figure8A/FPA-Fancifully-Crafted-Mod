@@ -3,7 +3,7 @@ package com.figure8;
 import com.figure8.blocks.*;
 
 
-
+import com.figure8.effects.ModEffects;
 import com.figure8.entity.ThrowableBlobEntity;
 import com.figure8.item.ModItemGroup;
 
@@ -35,6 +35,7 @@ import net.minecraft.item.*;
 
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.*;
+import net.minecraft.resource.featuretoggle.FeatureFlag;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
@@ -114,8 +115,14 @@ public class fpaore implements ModInitializer {
 	public static final Block grasspop = new FlowerBlock(StatusEffects.HASTE, 8,
 					FabricBlockSettings.copy(Blocks.DANDELION).sounds(ModSounds.GRASSPOP_BLOCK_SOUNDS));
 
+	public static final Block potted_grasspop = registerBlockWithoutItem("potted_grasspop",
+			new FlowerPotBlock(fpaore.grasspop, FabricBlockSettings.copy(POTTED_DANDELION)));
+
 	public static final Block fgrass = new FlowerBlock(StatusEffects.HASTE, 8,
 			FabricBlockSettings.copy(Blocks.DANDELION));
+
+	public static final Block potted_fgrass = registerBlockWithoutItem("potted_fgrass",
+			new FlowerPotBlock(fpaore.fgrass, FabricBlockSettings.copy(POTTED_DANDELION)));
 
 
 
@@ -152,6 +159,10 @@ public class fpaore implements ModInitializer {
 	public static final Block fwood_leaves = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.AZALEA_LEAVES).nonOpaque().strength(0.1f));
 
 	public static final Block fwood_sapling = new SaplingBlock(new fwoodSaplingGenerator(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).strength(0.2f));
+
+	public static final Block potted_fwood_sapling = registerBlockWithoutItem("potted_fwood_sapling",
+			new FlowerPotBlock(fpaore.fwood_sapling, FabricBlockSettings.copy(POTTED_BIRCH_SAPLING)));
+
 
 	public static final Block fpvground = new fpvground(FabricBlockSettings.copyOf(GRANITE).strength(10.0f).requiresTool());
 	public static final Block packed_fpvground = new PillarBlock(FabricBlockSettings.copyOf(GRANITE).strength(12.0f).requiresTool());
@@ -200,7 +211,7 @@ public class fpaore implements ModInitializer {
 
 	public static final Block stripped_fwood_button = new ButtonBlock(AbstractBlock.Settings.copy(OAK_BUTTON).noCollision().strength(0.5f), BlockSetType.OAK, 30, true);
 
-	public static final Block squiggleblock = new squiggleblock(AbstractBlock.Settings.create().strength(1, 1).nonOpaque().noCollision().allowsSpawning(fpaore::never).noBlockBreakParticles().pistonBehavior(PistonBehavior.BLOCK));
+	public static final Block squiggleblock = new squiggleblock(AbstractBlock.Settings.create().strength(0.1f).nonOpaque().allowsSpawning(fpaore::never).noBlockBreakParticles());
 
 
 	public static final RegistryKey<PlacedFeature> CUSTOM_ORE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier("fpaore","custombore"));
@@ -247,6 +258,9 @@ public class fpaore implements ModInitializer {
 						.trackedUpdateRate(10)
 						.build());
 	}
+	private static Block registerBlockWithoutItem(String name, Block block) {
+		return Registry.register(Registries.BLOCK, new Identifier(fpaore.MOD_ID, name), block);
+	}
 
 
 
@@ -267,6 +281,7 @@ public class fpaore implements ModInitializer {
 		StrippableBlockRegistry.register(fpaore.packed_fpvground, fpaore.packed_fpvground_column);
 		StrippableBlockRegistry.register(fpaore.packed_fpvground_column, fpaore.packed_fpvground);
 		StrippableBlockRegistry.register(fpaore.stripped_fwood_planks, fpaore.stripped_fwood_planksvar);
+		ModEffects.registerEffects();
 
 
 
@@ -327,6 +342,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_planks"), stripped_fwood_planks);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_planksvar"), stripped_fwood_planksvar);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "squiggleblock"), squiggleblock);
+
 
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradore"), new BlockItem(BradOre, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradoredsl"), new BlockItem(bradoredsl, new FabricItemSettings()));

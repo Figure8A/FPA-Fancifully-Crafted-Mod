@@ -3,6 +3,7 @@ package com.figure8;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.render.RenderLayer;
 
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
@@ -35,6 +36,10 @@ public class fpaoreClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.spike, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.inkblot_wall, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.squiggleblock, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.potted_fwood_sapling, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.potted_fgrass, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.potted_grasspop, RenderLayer.getCutout());
+
 
 
 

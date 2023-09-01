@@ -1,0 +1,22 @@
+{
+
+  "structures": [
+    {
+      "structure": "fpaore:squigglelarge",
+      "weight": 1
+    }
+  ],
+  "placement": {
+
+    "salt": 1542136474,
+
+
+    "spacing": 4,
+
+
+    "separation": 1,
+
+
+    "type": "minecraft:random_spread"
+  }
+}
