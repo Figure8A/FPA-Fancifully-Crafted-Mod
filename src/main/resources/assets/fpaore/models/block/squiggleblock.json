@@ -1,5 +1,29 @@
 {
-  "textures": {
-    "particle": "fpaore:item/squiggleblock"
-  }
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "fpaore:item/squiggleblock",
+		"particle": "fpaore:item/squiggleblock"
+	},
+	"elements": [
+		{
+			"from": [4, 2, 4],
+			"to": [12, 13, 12],
+			"faces": {
+				"north": {"uv": [4, 3, 12, 14], "texture": "#0"},
+				"east": {"uv": [4, 3, 12, 14], "texture": "#0"},
+				"south": {"uv": [4, 3, 12, 14], "texture": "#0"},
+				"west": {"uv": [4, 3, 12, 14], "texture": "#0"},
+				"up": {"uv": [12, 14, 16, 16], "texture": "#0"},
+				"down": {"uv": [12, 14, 16, 16], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0]
+		}
+	]
 }

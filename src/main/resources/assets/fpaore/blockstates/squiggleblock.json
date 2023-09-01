@@ -1,7 +1,8 @@
 {
   "variants": {
-    "": {
-      "model": "fpaore:block/squiggleblock"
-    }
+    "facing=north": { "model": "fpaore:item/squiggleblock", "uvlock": false },
+    "facing=east":  { "model": "fpaore:item/squiggleblock", "y":  90, "uvlock": false },
+    "facing=south": { "model": "fpaore:item/squiggleblock", "y": 180, "uvlock": false },
+    "facing=west":  { "model": "fpaore:item/squiggleblock", "y": 270, "uvlock": false }
   }
 }
