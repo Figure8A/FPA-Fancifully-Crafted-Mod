@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_pbradium": {
+    "has_bradblock": {
       "conditions": {
         "items": [
           {
             "items": [
-              "fpaore:pbradium"
+              "fpaore:bradblock"
             ]
           }
         ]
@@ -22,13 +22,13 @@
   },
   "requirements": [
     [
-      "has_pbradium",
+      "has_bradblock",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "fpaore:bradblock"
+      "fpaore:pbradium"
     ]
   },
   "sends_telemetry_event": false

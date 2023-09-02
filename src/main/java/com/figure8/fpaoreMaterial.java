@@ -29,6 +29,6 @@ public class fpaoreMaterial implements ToolMaterial {
     }
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(fpaore.BradOre);
+        return Ingredient.ofItems(fpaore.pbradium);
     }
 }

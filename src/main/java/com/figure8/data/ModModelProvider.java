@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.TexturedModel;
+import net.minecraft.item.ArmorItem;
 
 
 public class ModModelProvider extends FabricModelProvider {
@@ -45,6 +46,9 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 
-
+        itemModelGenerator.registerArmor(((ArmorItem) fpaore.BRADIUM_HELMET));
+        itemModelGenerator.registerArmor(((ArmorItem) fpaore.BRADIUM_CHESTPLATE));
+        itemModelGenerator.registerArmor(((ArmorItem) fpaore.BRADIUM_LEGGINGS));
+        itemModelGenerator.registerArmor(((ArmorItem) fpaore.BRADIUM_BOOTS));
     }
 }

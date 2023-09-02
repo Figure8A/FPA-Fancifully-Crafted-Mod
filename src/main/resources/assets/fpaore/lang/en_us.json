@@ -8,6 +8,11 @@
   "item.fpaore.inkblob":"Ink Blob",
   "item.fpaore.squiggle":"Squiggle",
   "item.fpaore.pencilsword":"Pencil Sword",
+  "item.fpaore.bradium_boots":"Mayor's Boots",
+  "item.fpaore.bradium_chestplate":"Mayor's Shirt",
+  "item.fpaore.bradium_helmet":"Mayor's Mustache",
+  "item.fpaore.bradium_leggings":"Mayor's Pants",
+
   "item.fpaore.lounge_inside_music_disk":"Bathtub Lounge",
   "item.fpaore.lounge_inside_music_disk.desc":"Bathtub Lounge by Mike Raznick",
   "item.fpaore.angry_baddie_music_disk":"World 2 Boss",
@@ -72,5 +77,6 @@
   "block.fpaore.squiggleblock":"Floating Squiggle",
   "tooltip.fpaore.squiggle.tooltip": "Right Click To Restore HP!",
   "effect.fpaore.squiggleheal": "Squiggle",
+  "item.fpaore.pbradium":"The Purified Essence of Bradium",
   "itemgroup.fpaore": "The Fancy Pants Adventures"
 }

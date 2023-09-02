@@ -64,7 +64,7 @@ public class spring extends SlimeBlock implements Waterloggable {
 
     public spring(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.UP).with(CROUCHES, springy.CROUCH));
+        this.setDefaultState((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.UP).with(CROUCHES, springy.CROUCH2));
         this.shapes = this.getShapesForStates(spring::getShapeForState);
     }
     private static VoxelShape getShapeForState(BlockState state) {

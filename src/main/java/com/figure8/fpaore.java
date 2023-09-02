@@ -5,6 +5,7 @@ import com.figure8.blocks.*;
 
 import com.figure8.effects.ModEffects;
 import com.figure8.entity.ThrowableBlobEntity;
+import com.figure8.item.ModArmorMaterials;
 import com.figure8.item.ModItemGroup;
 
 import com.figure8.item.SquiggleItem;
@@ -19,6 +20,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
@@ -60,10 +62,8 @@ import static net.minecraft.entity.effect.StatusEffects.*;
 
 public class fpaore implements ModInitializer {
 
-
-
 	public static final String MOD_ID = "fpaore";
-
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 
 
@@ -169,7 +169,7 @@ public class fpaore implements ModInitializer {
 	public static final Block fpvground = new fpvground(FabricBlockSettings.copyOf(GRANITE).strength(10.0f).requiresTool());
 	public static final Block packed_fpvground = new PillarBlock(FabricBlockSettings.copyOf(GRANITE).strength(12.0f).requiresTool());
 	public static final Block packed_fpvground_column = new PillarBlock(FabricBlockSettings.copyOf(GRANITE).strength(12.0f).requiresTool());
-	public static final Block inkblot = new inkblot(FabricBlockSettings.copyOf(SEA_LANTERN).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).notSolid().pistonBehavior(PistonBehavior.DESTROY).luminance(state -> 8).slipperiness(1.5f));
+	public static final Block inkblot = new inkblot(FabricBlockSettings.copyOf(SEA_LANTERN).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).notSolid().pistonBehavior(PistonBehavior.DESTROY).luminance(state -> 8).slipperiness(1.1f));
 
 	public static final Block spike = new spike(9, 4, FabricBlockSettings.copy(OBSIDIAN).strength(65.0f).requiresTool().nonOpaque().solid());
 
@@ -225,7 +225,7 @@ public class fpaore implements ModInitializer {
 
 	public static final RegistryKey<PlacedFeature> fVEGETAL_DECORATION_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier("fpaore","fgrassc"));
 
-
+	public static final Item pbradium = new Item(new FabricItemSettings().fireproof().rarity(Rarity.RARE));
 
 
 	public static final Block bradblock = new bradblock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).sounds(ModSounds.BRADBLOCK_BLOCK_SOUNDS).strength(60f).requiresTool());
@@ -261,9 +261,21 @@ public class fpaore implements ModInitializer {
 						.trackedUpdateRate(10)
 						.build());
 	}
+	public static final Item BRADIUM_HELMET = registerItem("bradium_helmet",
+			new ArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.HELMET, new FabricItemSettings()));
+	public static final Item BRADIUM_CHESTPLATE = registerItem("bradium_chestplate",
+			new ArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.CHESTPLATE, new FabricItemSettings()));
+	public static final Item BRADIUM_LEGGINGS = registerItem("rbradium_leggings",
+			new ArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.LEGGINGS, new FabricItemSettings()));
+	public static final Item BRADIUM_BOOTS = registerItem("bradium_boots",
+			new ArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.BOOTS, new FabricItemSettings()));
 	private static Block registerBlockWithoutItem(String name, Block block) {
 		return Registry.register(Registries.BLOCK, new Identifier(fpaore.MOD_ID, name), block);
 	}
+	private static Item registerItem(String name, Item item) {
+		return Registry.register(Registries.ITEM, new Identifier(fpaore.MOD_ID, name), item);
+	}
+
 
 
 	public static final DefaultParticleType SQUIGGLETHING = FabricParticleTypes.simple();
@@ -419,7 +431,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "angry_baddie_music_disk"), angry_baddie_music_disk);
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "mayor_theme_music_disk"), mayor_theme_music_disk);
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "level_four_music_disk"), level_four_music_disk);
-
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "pbradium"), pbradium);
 
 
 

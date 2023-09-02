@@ -1,9 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "###",
-    "###",
-    "###"
+    "##",
+    "##"
   ],
   "key": {
     "#": {
@@ -11,7 +10,7 @@
     }
   },
   "result": {
-    "item": "fpaore:bradblock",
+    "item": "fpaore:pbradium",
     "count": 1
   }
 }

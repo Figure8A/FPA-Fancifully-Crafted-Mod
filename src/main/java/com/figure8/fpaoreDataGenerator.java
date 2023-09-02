@@ -4,6 +4,7 @@ import com.figure8.data.ModLootTableGenerator;
 import com.figure8.data.ModModelProvider;
 import com.figure8.data.ModRecipeGenerator;
 import com.figure8.data.ModWorldGenerator;
+import com.figure8.data.ModItemTagProvider;
 import com.figure8.world.ModConfiguredFeatures;
 import com.figure8.world.ModPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -20,6 +21,8 @@ public class fpaoreDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModRecipeGenerator::new);
         pack.addProvider(ModModelProvider::new);
         pack.addProvider(ModWorldGenerator::new);
+        pack.addProvider(ModItemTagProvider::new);
+
     }
 
     @Override

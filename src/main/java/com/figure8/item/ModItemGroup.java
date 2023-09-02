@@ -17,6 +17,12 @@ public class ModItemGroup {    public static ItemGroup fpablocks = Registry.regi
                     entries.add(fpaore.BradOre);
                     entries.add(fpaore.bradoredsl);
                     entries.add(fpaore.bradblock);
+                    entries.add(fpaore.bradium);
+                    entries.add(fpaore.pbradium);
+                    entries.add(fpaore.BRADIUM_HELMET);
+                    entries.add(fpaore.BRADIUM_CHESTPLATE);
+                    entries.add(fpaore.BRADIUM_LEGGINGS);
+                    entries.add(fpaore.BRADIUM_BOOTS);
                     entries.add(fpaore.spring);
                     entries.add(fpaore.sketch);
                     entries.add(fpaore.fgrass);
@@ -25,7 +31,6 @@ public class ModItemGroup {    public static ItemGroup fpablocks = Registry.regi
                     entries.add(fpaore.grasspop);
                     entries.add(fpaore.squiggle);
                     entries.add(fpaore.squiggleblock);
-                    entries.add(fpaore.bradium);
                     entries.add(fpaore.icecream);
                     entries.add(fpaore.inkblob);
                     entries.add(fpaore.mayor_of_undying);

@@ -2,19 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",
-    "i i",
-    " i "
+    "###",
+    "###"
   ],
   "key": {
     "#": {
       "item": "fpaore:pbradium"
-    },
-    "i": {
-      "item": "minecraft:iron_ingot"
     }
   },
   "result": {
-    "item": "fpaore:spring",
+    "item": "fpaore:bradblock",
     "count": 1
   }
 }
