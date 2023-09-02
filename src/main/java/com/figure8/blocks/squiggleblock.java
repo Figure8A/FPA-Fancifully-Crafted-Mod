@@ -19,6 +19,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -86,9 +87,17 @@ public class squiggleblock
 
 
     private void breakSquiggle(World world, BlockPos pos, BlockState state) {
-        world.playSound(null, pos, ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.0f, 0.75f + world.random.nextFloat() * 0.5f);
+
+
+        world.playSound(null, pos, ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.7f, 0.75f + world.random.nextFloat() * 0.5f);
         world.setBlockState(pos, (BlockState)state, Block.NOTIFY_LISTENERS);
         world.breakBlock(pos, false);
+        world.addParticle(fpaore.SQUIGGLETHINGM, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 1, 0, 0, -0.0005);
+        world.addParticle(fpaore.SQUIGGLETHING, (double)pos.getX() + 0.05, (double)pos.getY() + 0.05, (double)pos.getZ() + 0.05, 0.05, 0.05, 0.05);
+        world.addParticle(fpaore.SQUIGGLETHING, (double)pos.getX() + 0.05, (double)pos.getY() + 0.05, (double)pos.getZ() + 0.05, 0.0, -0.05, 0.0);
+        world.addParticle(fpaore.SQUIGGLETHING, (double)pos.getX() + 0.05, (double)pos.getY() + 0.05, (double)pos.getZ() + 0.05, 0.0, -0.05, 0.0);
+        world.addParticle(fpaore.SQUIGGLETHING, (double)pos.getX() + 0.05, (double)pos.getY() + 0.05, (double)pos.getZ() + 0.05, 0.0, 0.0, 0.05);
+
     }
 
     @Override

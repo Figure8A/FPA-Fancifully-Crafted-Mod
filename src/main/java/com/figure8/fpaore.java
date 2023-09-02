@@ -21,6 +21,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.Instrument;
@@ -33,6 +34,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.*;
 
+import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.*;
 import net.minecraft.resource.featuretoggle.FeatureFlag;
@@ -83,11 +85,11 @@ public class fpaore implements ModInitializer {
 	public static final Block BradOre = new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.STONE).sounds(ModSounds.BRADBLOCK_BLOCK_SOUNDS).strength(40f).requiresTool(), UniformIntProvider.create(5, 10));
 	public static final Block bradoredsl = new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).sounds(ModSounds.BRADBLOCK_BLOCK_SOUNDS).strength(55f).requiresTool(), UniformIntProvider.create(5, 10));
 
-	public static final Block sketch = new sketch(FabricBlockSettings.copyOf(Blocks.SEA_LANTERN).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).nonOpaque().strength(3f).requiresTool());
+	public static final Block sketch = new sketch(FabricBlockSettings.copyOf(Blocks.SEA_LANTERN).luminance(state -> 122).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).nonOpaque().strength(3f).requiresTool());
 
 	public static final Block fpagrounda = new fpagrounda(FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(3f).requiresTool());
 
-	public static final Block fpagrounda_verticalslab = new fpagrounda_verticalslab(FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(3f).requiresTool());
+	public static final Block fpagrounda_verticalslab = new fpagrounda_verticalslab(FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(3f).nonOpaque().requiresTool());
 
 	public static final Block fpagrounda_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(3f).requiresTool());
 
@@ -97,7 +99,7 @@ public class fpaore implements ModInitializer {
 
 	public static final Block fpagroundatrimed_slab = new SlabBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(5f).requiresTool());
 
-	public static final Block fpagroundatrimed_verticalslab = new fpagroundatrimed_verticalslab(FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(5f).requiresTool());
+	public static final Block fpagroundatrimed_verticalslab = new fpagroundatrimed_verticalslab(FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).nonOpaque().strength(5f).requiresTool());
 
 	public static final Block fpagroundatrimed_stair = new ModStairsBlock(fpagroundatrimed.getDefaultState(),FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(5f).requiresTool());
 
@@ -167,15 +169,14 @@ public class fpaore implements ModInitializer {
 	public static final Block fpvground = new fpvground(FabricBlockSettings.copyOf(GRANITE).strength(10.0f).requiresTool());
 	public static final Block packed_fpvground = new PillarBlock(FabricBlockSettings.copyOf(GRANITE).strength(12.0f).requiresTool());
 	public static final Block packed_fpvground_column = new PillarBlock(FabricBlockSettings.copyOf(GRANITE).strength(12.0f).requiresTool());
-	public static final Block inkblot = new inkblot(FabricBlockSettings.copyOf(SEA_LANTERN).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).notSolid().pistonBehavior(PistonBehavior.DESTROY).luminance(state -> 8).slipperiness(2));
-	public static final Block inkblot_wall = new Wallinkblot(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).luminance(state -> 8));
+	public static final Block inkblot = new inkblot(FabricBlockSettings.copyOf(SEA_LANTERN).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).notSolid().pistonBehavior(PistonBehavior.DESTROY).luminance(state -> 8).slipperiness(1.5f));
 
 	public static final Block spike = new spike(9, 4, FabricBlockSettings.copy(OBSIDIAN).strength(65.0f).requiresTool().nonOpaque().solid());
 
 
 	public static final Block fchiseled_sandstone = new Block(AbstractBlock.Settings.create().mapColor(MapColor.PALE_YELLOW).instrument(Instrument.BASEDRUM).requiresTool().strength(0.8f));
 
-	public static final Block smoothsandstone_verticalslab = new smoothsandstone_verticalslab(AbstractBlock.Settings.create().mapColor(MapColor.PALE_YELLOW).instrument(Instrument.BASEDRUM).requiresTool().strength(0.8f));
+	public static final Block smoothsandstone_verticalslab = new smoothsandstone_verticalslab(AbstractBlock.Settings.create().nonOpaque().mapColor(MapColor.PALE_YELLOW).instrument(Instrument.BASEDRUM).requiresTool().strength(0.8f));
 
 	public static final Block sandstonebedrock = new Block(AbstractBlock.Settings.copy(BEDROCK).mapColor(MapColor.STONE_GRAY).instrument(Instrument.BASEDRUM).strength(-1.0f, 3600000.0f).dropsNothing().allowsSpawning(fpaore::never));
 
@@ -184,6 +185,9 @@ public class fpaore implements ModInitializer {
 	public static final EntityType<ThrowableBlobEntity> THROWABLE_BLOB_ENTITY = registerThrowableBlob("throwable_blob");
 
 	public static final Item inkblob = new inkblob(new Item.Settings(), THROWABLE_BLOB_ENTITY);
+
+	public static final Block inkblot_wall = new Wallinkblot(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).luminance(state -> 8));
+
 
 
 	public static final Item mayor_of_undying = new Item(new FabricItemSettings().rarity(Rarity.EPIC).maxCount(1));
@@ -211,7 +215,7 @@ public class fpaore implements ModInitializer {
 
 	public static final Block stripped_fwood_button = new ButtonBlock(AbstractBlock.Settings.copy(OAK_BUTTON).noCollision().strength(0.5f), BlockSetType.OAK, 30, true);
 
-	public static final Block squiggleblock = new squiggleblock(AbstractBlock.Settings.create().strength(0.1f).nonOpaque().allowsSpawning(fpaore::never).noBlockBreakParticles());
+	public static final Block squiggleblock = new squiggleblock(AbstractBlock.Settings.create().noCollision().strength(0.1f).nonOpaque().allowsSpawning(fpaore::never).noBlockBreakParticles());
 
 
 	public static final RegistryKey<PlacedFeature> CUSTOM_ORE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier("fpaore","custombore"));
@@ -220,7 +224,6 @@ public class fpaore implements ModInitializer {
 	public static final RegistryKey<PlacedFeature> VEGETAL_DECORATION_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier("fpaore","grasspops"));
 
 	public static final RegistryKey<PlacedFeature> fVEGETAL_DECORATION_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier("fpaore","fgrassc"));
-
 
 
 
@@ -263,7 +266,8 @@ public class fpaore implements ModInitializer {
 	}
 
 
-
+	public static final DefaultParticleType SQUIGGLETHING = FabricParticleTypes.simple();
+	public static final DefaultParticleType SQUIGGLETHINGM = FabricParticleTypes.simple();
 
 	@Override
 	public void onInitialize() {
@@ -283,7 +287,8 @@ public class fpaore implements ModInitializer {
 		StrippableBlockRegistry.register(fpaore.stripped_fwood_planks, fpaore.stripped_fwood_planksvar);
 		ModEffects.registerEffects();
 
-
+		Registry.register(Registries.PARTICLE_TYPE, new Identifier("fpaore", "squigglething"), SQUIGGLETHING);
+		Registry.register(Registries.PARTICLE_TYPE, new Identifier("fpaore", "squigglethingm"), SQUIGGLETHINGM);
 
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "bradore"), BradOre);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "bradoredsl"), bradoredsl);
@@ -390,7 +395,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "fchiseled_sandstone"), new BlockItem(fchiseled_sandstone, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "smoothsandstone_verticalslab"), new BlockItem(smoothsandstone_verticalslab, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "sandstonebedrock"), new BlockItem(sandstonebedrock, new FabricItemSettings()));
-		Registry.register(Registries.ITEM, new Identifier("fpaore", "inkblot_wall"), new BlockItem(inkblot_wall, new FabricItemSettings()));
+
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_stair"), new BlockItem(stripped_fwood_stair, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_slab"), new BlockItem(stripped_fwood_slab, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_door"), new BlockItem(stripped_fwood_door, new FabricItemSettings()));

@@ -34,7 +34,6 @@ public class ModItemGroup {    public static ItemGroup fpablocks = Registry.regi
                     entries.add(fpaore.angry_baddie_music_disk);
                     entries.add(fpaore.mayor_theme_music_disk);
                     entries.add(fpaore.level_four_music_disk);
-                    entries.add(fpaore.inkblot);
                     entries.add(fpaore.mayorglass);
                     entries.add(fpaore.fcactus);
                     entries.add(fpaore.toughf);
