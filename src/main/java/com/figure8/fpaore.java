@@ -5,11 +5,8 @@ import com.figure8.blocks.*;
 
 import com.figure8.effects.ModEffects;
 import com.figure8.entity.ThrowableBlobEntity;
-import com.figure8.item.ModArmorMaterials;
-import com.figure8.item.ModItemGroup;
+import com.figure8.item.*;
 
-import com.figure8.item.SquiggleItem;
-import com.figure8.item.inkblob;
 import com.figure8.sound.ModSounds;
 import com.figure8.util.ModLootTableModifiers;
 import com.figure8.world.gen.ModWorldGeneration;
@@ -262,13 +259,13 @@ public class fpaore implements ModInitializer {
 						.build());
 	}
 	public static final Item BRADIUM_HELMET = registerItem("bradium_helmet",
-			new ArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.HELMET, new FabricItemSettings()));
+			new ModArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.HELMET, new FabricItemSettings()));
 	public static final Item BRADIUM_CHESTPLATE = registerItem("bradium_chestplate",
-			new ArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.CHESTPLATE, new FabricItemSettings()));
-	public static final Item BRADIUM_LEGGINGS = registerItem("rbradium_leggings",
-			new ArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.LEGGINGS, new FabricItemSettings()));
+			new ModArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.CHESTPLATE, new FabricItemSettings()));
+	public static final Item BRADIUM_LEGGINGS = registerItem("bradium_leggings",
+			new ModArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.LEGGINGS, new FabricItemSettings()));
 	public static final Item BRADIUM_BOOTS = registerItem("bradium_boots",
-			new ArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.BOOTS, new FabricItemSettings()));
+			new ModArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.BOOTS, new FabricItemSettings()));
 	private static Block registerBlockWithoutItem(String name, Block block) {
 		return Registry.register(Registries.BLOCK, new Identifier(fpaore.MOD_ID, name), block);
 	}

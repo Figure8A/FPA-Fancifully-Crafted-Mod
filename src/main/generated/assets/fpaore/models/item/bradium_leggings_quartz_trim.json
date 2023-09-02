@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "fpaore:item/rbradium_leggings",
+    "layer0": "fpaore:item/bradium_leggings",
     "layer1": "minecraft:trims/items/leggings_trim_quartz"
   }
 }
