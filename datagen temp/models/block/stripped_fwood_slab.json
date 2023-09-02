@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "fpaore:block/stripped_fwood_planks_top",
+    "side": "fpaore:block/stripped_fwood_planks",
+    "top": "fpaore:block/stripped_fwood_planks_top"
+  }
+}

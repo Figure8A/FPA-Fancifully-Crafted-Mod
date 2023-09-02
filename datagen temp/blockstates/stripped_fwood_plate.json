@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "fpaore:block/stripped_fwood_plate"
+    },
+    "powered=true": {
+      "model": "fpaore:block/stripped_fwood_plate_down"
+    }
+  }
+}
