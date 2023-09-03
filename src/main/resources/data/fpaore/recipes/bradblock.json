@@ -1,12 +1,18 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "fpaore:bradblock"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "fpaore:pbradium"
     }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
   ],
   "result": {
-    "item": "fpaore:pbradium",
-    "count": 9
-  }
+    "item": "fpaore:bradblock"
+  },
+  "show_notification": true
 }

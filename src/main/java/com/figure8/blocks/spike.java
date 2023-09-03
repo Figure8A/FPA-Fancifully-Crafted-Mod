@@ -6,6 +6,7 @@ import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -144,7 +145,7 @@ public class spike extends AmethystBlock
         if (world.isClient || world.getDifficulty() == Difficulty.PEACEFUL) {
             return;
         }
-        if (entity instanceof LivingEntity && !(livingEntity = (LivingEntity)entity).isInvulnerableTo(world.getDamageSources().wither())) {
+        if (entity instanceof LivingEntity && !(livingEntity = (LivingEntity)entity).damage(entity.getDamageSources().magic(), 1)) {
             double d = entity.getX();
             double e = entity.getY();
             double f = entity.getZ();

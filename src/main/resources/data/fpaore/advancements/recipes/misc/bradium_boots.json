@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:bradium_boots"
+        "recipe": "fpaore:bradium_boots"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

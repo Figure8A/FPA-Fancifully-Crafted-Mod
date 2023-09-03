@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_bradblock": {
+    "has_bradium": {
       "conditions": {
         "items": [
           {
             "items": [
-              "fpaore:bradblock"
+              "fpaore:bradium"
             ]
           }
         ]
@@ -15,14 +15,14 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fpaore:bradblock"
+        "recipe": "fpaore:pbradium"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_bradblock",
+      "has_bradium",
       "has_the_recipe"
     ]
   ],

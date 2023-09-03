@@ -19,6 +19,7 @@ public abstract class ItemRendererMixin {
         if (stack.isOf(fpaore.pencilsword) && renderMode != ModelTransformationMode.GUI) {
             return ((ItemRendererAccessor) this).mccourse$getModels().getModelManager().getModel(new ModelIdentifier(fpaore.MOD_ID, "pencilsword_3d", "inventory"));
         }
+
         return value;
     }
 }
