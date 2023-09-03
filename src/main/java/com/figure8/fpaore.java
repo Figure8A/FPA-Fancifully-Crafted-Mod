@@ -170,6 +170,7 @@ public class fpaore implements ModInitializer {
 
 	public static final Block spike = new spike(9, 4, FabricBlockSettings.copy(OBSIDIAN).strength(65.0f).requiresTool().nonOpaque().solid());
 
+	public static final Block spikebuth = new spikebuth(9, 4, FabricBlockSettings.copy(OBSIDIAN).strength(65.0f).requiresTool().nonOpaque().solid());
 
 	public static final Block fchiseled_sandstone = new Block(AbstractBlock.Settings.create().mapColor(MapColor.PALE_YELLOW).instrument(Instrument.BASEDRUM).requiresTool().strength(0.8f));
 
@@ -356,7 +357,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_planks"), stripped_fwood_planks);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_planksvar"), stripped_fwood_planksvar);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "squiggleblock"), squiggleblock);
-
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "spikebuth"), spikebuth);
 
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradore"), new BlockItem(BradOre, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradoredsl"), new BlockItem(bradoredsl, new FabricItemSettings()));
@@ -416,6 +417,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_planks"), new BlockItem(stripped_fwood_planks, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "stripped_fwood_planksvar"), new BlockItem(stripped_fwood_planksvar, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "squiggleblock"), new BlockItem(squiggleblock, new FabricItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "spikebuth"), new BlockItem(spikebuth, new FabricItemSettings()));
 
 
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradium"), bradium);

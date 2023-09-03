@@ -68,7 +68,7 @@ public class ModLootTableModifiers {
             if(ruin_port_CHEST_ID.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(2))
-                        .conditionally(RandomChanceLootCondition.builder(0.50f)) // Drops 100% of the time
+                        .conditionally(RandomChanceLootCondition.builder(0.20f)) // Drops 100% of the time
                         .with(ItemEntry.builder(fpaore.bradium))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 11.0f)).build());
                 tableBuilder.pool(poolBuilder.build());
@@ -84,12 +84,12 @@ public class ModLootTableModifiers {
             if(CREEPER_ID.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(0.35f))
+                        .conditionally(RandomChanceLootCondition.builder(0.15f))
                         .conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.KILLER,
                                 new EntityPredicate.Builder().equipment(EntityEquipmentPredicate.Builder.create()
                                         .mainhand(ItemPredicate.Builder.create().items(fpaore.pencilsword).build()).build()).build()))
                         .with(ItemEntry.builder(fpaore.bradium))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)).build());
 
                 tableBuilder.pool(poolBuilder.build());
             }
@@ -97,7 +97,7 @@ public class ModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(2))
                         .with(ItemEntry.builder(fpaore.mayor_of_undying))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 3.0f)).build());
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 4.0f)).build());
                 tableBuilder.pool(poolBuilder.build());
             }
             if(CHESTS_ID.equals(id)) {

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "fpaore:block/spikebuth",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "fpaore:block/spikebuth",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "fpaore:block/spikebuth",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "fpaore:block/spikebuth",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "fpaore:block/spikebuth"
+    },
+    "facing=west": {
+      "model": "fpaore:block/spikebuth",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

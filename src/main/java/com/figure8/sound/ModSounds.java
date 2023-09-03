@@ -27,6 +27,7 @@ public class ModSounds {
 
     public static SoundEvent BRADBLOCK_BLOCK_WALK = registerSoundEvent("bradblock_block_step");
     public static SoundEvent BRADBLOCK_BLOCK_BREAK = registerSoundEvent("bradblock_block_break");
+    public static SoundEvent SPIKE_OW_OWHIT = registerSoundEvent("spike_ow_onhit");
 
     public static final BlockSoundGroup BRADBLOCK_BLOCK_SOUNDS = new BlockSoundGroup(2f, 1f,
             ModSounds.BRADBLOCK_BLOCK_BREAK, ModSounds.BRADBLOCK_BLOCK_PLACE, ModSounds.BRADBLOCK_BLOCK_PLACE, ModSounds.BRADBLOCK_BLOCK_WALK,ModSounds.BRADBLOCK_BLOCK_WALK);

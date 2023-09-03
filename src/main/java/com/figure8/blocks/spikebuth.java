@@ -1,23 +1,15 @@
 package com.figure8.blocks;
 
-import com.figure8.fpaore;
-import com.figure8.sound.ModSounds;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.EndermiteEntity;
 import net.minecraft.entity.passive.FoxEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -28,24 +20,17 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
-import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.*;
-import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.stream.Stream;
-
-import static net.minecraft.state.property.Properties.HORIZONTAL_FACING;
-
-public class spike extends AmethystBlock
+public class spikebuth extends AmethystBlock
         implements Waterloggable {
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     public static final DirectionProperty FACING = Properties.FACING;
@@ -56,7 +41,7 @@ public class spike extends AmethystBlock
     protected final VoxelShape upShape;
     protected final VoxelShape downShape;
 
-    public spike(int height, int xzOffset, AbstractBlock.Settings settings) {
+    public spikebuth(int height, int xzOffset, Settings settings) {
         super(settings);
         this.setDefaultState((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.UP));
         this.upShape = Block.createCuboidShape(xzOffset, 0.0, xzOffset, 16 - xzOffset, height, 16 - xzOffset);
@@ -145,25 +130,7 @@ public class spike extends AmethystBlock
             return;
         }
         if (entity instanceof LivingEntity && !(livingEntity = (LivingEntity)entity).isInvulnerableTo(world.getDamageSources().wither())) {
-            double d = entity.getX();
-            double e = entity.getY();
-            double f = entity.getZ();
-            for (int i = 0; i < 16; ++i) {
-                double g = entity.getX() + (((LivingEntity) entity).getRandom().nextDouble() - 0.5) * 16.0;
-                double h = MathHelper.clamp(entity.getY() + (double)(((LivingEntity) entity).getRandom().nextInt(16) - 8), (double) world.getBottomY(), (double)(world.getBottomY() + ((ServerWorld)world).getLogicalHeight() - 1));
-                double j = entity.getZ() + (((LivingEntity) entity).getRandom().nextDouble() - 0.5) * 16.0;
-                if (entity.hasVehicle()) {
-                    entity.stopRiding();
-                }
-                Vec3d vec3d = entity.getPos();
-                if (!livingEntity.teleport(g, h, j, true)) continue;
-                world.emitGameEvent(GameEvent.TELEPORT, vec3d, GameEvent.Emitter.of(entity));
-                SoundEvent soundEvent = livingEntity instanceof FoxEntity ? ModSounds.SPIKE_OW_OWHIT : ModSounds.SPIKE_OW_OWHIT;
-                world.playSound(null, d, e, f, soundEvent, SoundCategory.PLAYERS, 1.0f, 1.0f);
-                livingEntity.playSound(soundEvent, 1.0f, 1.0f);
-
-                break;
-            }
+            livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 10, false, false, false));
         }
     }
 
@@ -175,7 +142,7 @@ public class spike extends AmethystBlock
         double e = (double)pos.getZ() + vec3d.z;
         for (int i = 0; i < 3; ++i) {
             if (!random.nextBoolean()) continue;
-            world.addParticle(ParticleTypes.PORTAL, d + random.nextDouble() / 5.0, (double)pos.getY() + (0.5 - random.nextDouble()), e + random.nextDouble() / 5.0, 0.0, 0.00005, 0.0);
+            world.addParticle(ParticleTypes.DRAGON_BREATH, d + random.nextDouble() / 5.0, (double)pos.getY() + (0.5 - random.nextDouble()), e + random.nextDouble() / 5.0, 0.0, 0.0005, 0.0);
         }
     }
 }

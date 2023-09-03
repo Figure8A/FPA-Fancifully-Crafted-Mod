@@ -81,6 +81,8 @@ public class ModItemGroup {    public static ItemGroup fpablocks = Registry.regi
                     entries.add(fpaore.packed_fpvground);
                     entries.add(fpaore.packed_fpvground_column);
                     entries.add(fpaore.spike);
+                    entries.add(fpaore.spikebuth);
+
                     entries.add(fpaore.fchiseled_sandstone);
                     entries.add(fpaore.smoothsandstone_verticalslab);
                     entries.add(fpaore.sandstonebedrock);

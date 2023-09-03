@@ -70,5 +70,10 @@
     "sounds": [
       "fpaore:grasspop_block_break"
     ]
+  },
+  "spike_ow_onhit": {
+    "sounds": [
+      "fpaore:spike_ow_onhit"
+    ]
   }
 }

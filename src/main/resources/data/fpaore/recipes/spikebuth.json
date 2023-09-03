@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#W#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "fpaore:spike"
+    },
+    "W": {
+      "item": "minecraft:dragon_breath"
+    }
+  },
+  "result": {
+    "item": "fpaore:spikebuth",
+    "count": 8
+  }
+}
