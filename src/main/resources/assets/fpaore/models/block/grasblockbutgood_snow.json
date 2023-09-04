@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "fpaore:block/grasblockbutgoodb",
+    "particle": "fpaore:block/coursegrasblockbutgood",
+    "side": "fpaore:block/grasblockbutgood_snow",
+    "top": "fpaore:block/grasblockbutgoodt_snow"
+  }
+}

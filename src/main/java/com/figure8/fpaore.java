@@ -106,9 +106,9 @@ public class fpaore implements ModInitializer {
 	public static final Block toughf_wall = new WallBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CONCRETE).strength(3f).requiresTool());
 
 
-	public static final Block coursegrasblockbutgood = new coursegrasblockbutgood(FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).strength(1f));
+	public static final Block coursegrasblockbutgood = new coursegrasblockbutgood(FabricBlockSettings.create().sounds(BlockSoundGroup.GRAVEL).ticksRandomly().strength(1f));
 
-	public static final Block grasblockbutgood = new grasblockbutgood(AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK).strength(1f));
+	public static final Block grasblockbutgood = new grasblockbutgood(AbstractBlock.Settings.create().ticksRandomly().sounds(BlockSoundGroup.GRASS).strength(1f));
 
 
 	public static final Block grasspop = new FlowerBlock(StatusEffects.HASTE, 8,
@@ -219,9 +219,7 @@ public class fpaore implements ModInitializer {
 	public static final RegistryKey<PlacedFeature> CUSTOM_ORE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier("fpaore","custombore"));
 
 	public static final RegistryKey<PlacedFeature> FPVGROUND_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier("fpaore","fpvgroundspawn"));
-	public static final RegistryKey<PlacedFeature> VEGETAL_DECORATION_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier("fpaore","grasspops"));
 
-	public static final RegistryKey<PlacedFeature> fVEGETAL_DECORATION_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier("fpaore","fgrassc"));
 
 	public static final Item pbradium = new Item(new FabricItemSettings().fireproof().rarity(Rarity.RARE));
 
@@ -438,8 +436,7 @@ public class fpaore implements ModInitializer {
 
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, CUSTOM_ORE_PLACED_KEY);
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, FPVGROUND_PLACED_KEY);
-		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, VEGETAL_DECORATION_PLACED_KEY);
-		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, fVEGETAL_DECORATION_PLACED_KEY);
+
 
 
 	}

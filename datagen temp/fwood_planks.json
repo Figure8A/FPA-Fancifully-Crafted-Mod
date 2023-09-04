@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "fpaore:block/fwood_planks_top",
-    "side": "fpaore:block/fwood_planks",
-    "top": "fpaore:block/fwood_planks_top"
-  }
-}

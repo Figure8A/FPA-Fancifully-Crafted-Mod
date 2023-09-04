@@ -1,8 +1,24 @@
 {
   "variants": {
-    "facing=north": { "model": "fpaore:block/grasblockbutgood", "uvlock": false },
-    "facing=east":  { "model": "fpaore:block/grasblockbutgood", "y":  90, "uvlock": false },
-    "facing=south": { "model": "fpaore:block/grasblockbutgood", "y": 180, "uvlock": false },
-    "facing=west":  { "model": "fpaore:block/grasblockbutgood", "y": 270, "uvlock": false }
+    "snowy=false": [
+      {
+        "model": "fpaore:block/grasblockbutgood"
+      },
+      {
+        "model": "fpaore:block/grasblockbutgood",
+        "y": 90
+      },
+      {
+        "model": "fpaore:block/grasblockbutgood",
+        "y": 180
+      },
+      {
+        "model": "fpaore:block/grasblockbutgood",
+        "y": 270
+      }
+    ],
+    "snowy=true": {
+      "model": "fpaore:block/grasblockbutgood_snow"
+    }
   }
 }

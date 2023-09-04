@@ -150,9 +150,9 @@ public class spike extends AmethystBlock
             double e = entity.getY();
             double f = entity.getZ();
             for (int i = 0; i < 16; ++i) {
-                double g = entity.getX() + (((LivingEntity) entity).getRandom().nextDouble() - 0.5) * 16.0;
-                double h = MathHelper.clamp(entity.getY() + (double)(((LivingEntity) entity).getRandom().nextInt(16) - 8), (double) world.getBottomY(), (double)(world.getBottomY() + ((ServerWorld)world).getLogicalHeight() - 1));
-                double j = entity.getZ() + (((LivingEntity) entity).getRandom().nextDouble() - 0.5) * 16.0;
+                double g = entity.getX() + (((LivingEntity) entity).getRandom().nextDouble() - 0.5) * 20.0;
+                double h = MathHelper.clamp(entity.getY() + (double)(((LivingEntity) entity).getRandom().nextInt(20) - 8), (double) world.getBottomY(), (double)(world.getBottomY() + ((ServerWorld)world).getLogicalHeight() - 1));
+                double j = entity.getZ() + (((LivingEntity) entity).getRandom().nextDouble() - 0.5) * 20.0;
                 if (entity.hasVehicle()) {
                     entity.stopRiding();
                 }
