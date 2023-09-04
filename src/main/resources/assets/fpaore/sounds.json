@@ -75,5 +75,25 @@
     "sounds": [
       "fpaore:spike_ow_onhit"
     ]
+  },
+  "popper": {
+    "sounds": [
+      "fpaore:popper"
+    ]
+  },
+  "doorclose": {
+    "sounds": [
+      "fpaore:doorclose"
+    ]
+  },
+  "dooropen": {
+    "sounds": [
+      "fpaore:dooropen"
+    ]
+  },
+  "footstep": {
+    "sounds": [
+      "fpaore:footstep"
+    ]
   }
 }

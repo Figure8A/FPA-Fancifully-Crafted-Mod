@@ -5,10 +5,13 @@ import com.figure8.blocks.*;
 
 import com.figure8.blocks.signstuffs.ModStandingSignBlock;
 import com.figure8.blocks.signstuffs.ModWallSignBlock;
+import com.figure8.blocks.signstuffs.StrippedModStandingSignBlock;
+import com.figure8.blocks.signstuffs.StrippedModWallSignBlock;
 import com.figure8.blocks.woodtype.ModBlockSetType;
 import com.figure8.blocks.woodtype.ModWoodType;
 import com.figure8.effects.ModEffects;
 import com.figure8.entity.ModSignBlockEntity;
+import com.figure8.entity.StrippedModSignBlockEntity;
 import com.figure8.entity.ThrowableBlobEntity;
 import com.figure8.item.*;
 
@@ -149,22 +152,29 @@ public class fpaore implements ModInitializer {
 
 	public static final Block fwood_door = new DoorBlock(AbstractBlock.Settings.copy(OAK_DOOR).mapColor(fwood_planks.getDefaultMapColor()).instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable().pistonBehavior(PistonBehavior.DESTROY).strength(1.0f).sounds(BlockSoundGroup.WOOD), ModBlockSetType.FWOOD);
 
-	public static final Block fwood_gate = new FenceGateBlock(AbstractBlock.Settings.create().mapColor(fwood_planks.getDefaultMapColor()).solid().instrument(Instrument.BASS).strength(2.0f, 3.0f).burnable(), WoodType.OAK);
+	public static final Block fwood_gate = new FenceGateBlock(AbstractBlock.Settings.create().mapColor(fwood_planks.getDefaultMapColor()).solid().instrument(Instrument.BASS).strength(2.0f, 3.0f).burnable(), ModWoodType.FWOOD);
 
-	public static final Block fwood_plate = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.create().mapColor(fwood_planks.getDefaultMapColor()).solid().instrument(Instrument.BASS).noCollision().strength(0.5f).burnable().pistonBehavior(PistonBehavior.DESTROY), BlockSetType.OAK);
+	public static final Block fwood_plate = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.create().mapColor(fwood_planks.getDefaultMapColor()).solid().instrument(Instrument.BASS).noCollision().strength(0.5f).burnable().pistonBehavior(PistonBehavior.DESTROY), ModBlockSetType.FWOOD);
 
 	public static final Block fwood_fence = new FenceBlock(AbstractBlock.Settings.copy(OAK_FENCE_GATE).strength(1.0f));
 
-	public static final Block fwood_trapdoor = new TrapdoorBlock(AbstractBlock.Settings.create().instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable(), BlockSetType.OAK);
+	public static final Block fwood_trapdoor = new TrapdoorBlock(AbstractBlock.Settings.create().instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable(), ModBlockSetType.FWOOD);
 
-	public static final Block fwood_button = new ButtonBlock(AbstractBlock.Settings.copy(OAK_BUTTON).noCollision().strength(0.5f), BlockSetType.OAK, 30, true);
+	public static final Block fwood_button = new ButtonBlock(AbstractBlock.Settings.copy(OAK_BUTTON).noCollision().strength(0.5f), ModBlockSetType.FWOOD, 30, true);
 
 	public static final Block fwood_sign = registerBlockWithoutBlockItem("fwood_sign",
-			new ModStandingSignBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_SIGN), ModWoodType.FWOOD));
+			new ModStandingSignBlock(FabricBlockSettings.copyOf(Blocks.OAK_SIGN), ModWoodType.FWOOD));
 	public static final Block fwood_wall_sign = registerBlockWithoutBlockItem("fwood_wall_sign",
-			new ModWallSignBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WALL_SIGN), ModWoodType.FWOOD));
+			new ModWallSignBlock(FabricBlockSettings.copyOf(Blocks.OAK_WALL_SIGN), ModWoodType.FWOOD));
 	public static final Item fwood_sign_item = registerItem("fwood_sign_item",
 			new SignItem(new FabricItemSettings().maxCount(16), fpaore.fwood_sign, fpaore.fwood_wall_sign));
+
+	public static final Block stripped_fwood_sign = registerBlockWithoutBlockItem("stripped_fwood_sign",
+			new StrippedModStandingSignBlock(FabricBlockSettings.copyOf(OAK_SIGN), ModWoodType.STRIPPED_FWOOD));
+	public static final Block stripped_fwood_wall_sign = registerBlockWithoutBlockItem("stripped_fwood_wall_sign",
+			new StrippedModWallSignBlock(FabricBlockSettings.copyOf(OAK_WALL_SIGN), ModWoodType.STRIPPED_FWOOD));
+	public static final Item stripped_fwood_sign_item = registerItem("stripped_fwood_sign_item",
+			new SignItem(new FabricItemSettings().maxCount(16), fpaore.stripped_fwood_sign, fpaore.stripped_fwood_wall_sign));
 
 	public static final Block fwood_leaves = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.AZALEA_LEAVES).nonOpaque().strength(0.1f));
 
@@ -212,17 +222,17 @@ public class fpaore implements ModInitializer {
 	public static final Block stripped_fwood_slab = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB).strength(1f));
 	public static final Block stripped_fwood_stair = new ModStairsBlock(stripped_fwood_planks.getDefaultState(),FabricBlockSettings.copyOf(Blocks.OAK_STAIRS).strength(1f));
 
-	public static final Block stripped_fwood_door = new DoorBlock(AbstractBlock.Settings.copy(OAK_DOOR).mapColor(stripped_fwood_planks.getDefaultMapColor()).instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable().pistonBehavior(PistonBehavior.DESTROY).strength(1.0f).sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
+	public static final Block stripped_fwood_door = new DoorBlock(AbstractBlock.Settings.copy(OAK_DOOR).mapColor(stripped_fwood_planks.getDefaultMapColor()).instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable().pistonBehavior(PistonBehavior.DESTROY).strength(1.0f).sounds(BlockSoundGroup.WOOD), ModBlockSetType.FWOOD);
 
-	public static final Block stripped_fwood_gate = new FenceGateBlock(AbstractBlock.Settings.create().mapColor(stripped_fwood_planks.getDefaultMapColor()).solid().instrument(Instrument.BASS).strength(2.0f, 3.0f).burnable(), WoodType.OAK);
+	public static final Block stripped_fwood_gate = new FenceGateBlock(AbstractBlock.Settings.create().mapColor(stripped_fwood_planks.getDefaultMapColor()).solid().instrument(Instrument.BASS).strength(2.0f, 3.0f).burnable(), ModWoodType.STRIPPED_FWOOD);
 
-	public static final Block stripped_fwood_plate = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.create().mapColor(fwood_planks.getDefaultMapColor()).solid().instrument(Instrument.BASS).noCollision().strength(0.5f).burnable().pistonBehavior(PistonBehavior.DESTROY), BlockSetType.OAK);
+	public static final Block stripped_fwood_plate = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.create().mapColor(fwood_planks.getDefaultMapColor()).solid().instrument(Instrument.BASS).noCollision().strength(0.5f).burnable().pistonBehavior(PistonBehavior.DESTROY), ModBlockSetType.FWOOD);
 
 	public static final Block stripped_fwood_fence = new FenceBlock(AbstractBlock.Settings.copy(OAK_FENCE_GATE).strength(1.0f));
 
-	public static final Block stripped_fwood_trapdoor = new TrapdoorBlock(AbstractBlock.Settings.create().instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable(), BlockSetType.OAK);
+	public static final Block stripped_fwood_trapdoor = new TrapdoorBlock(AbstractBlock.Settings.create().instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable(), ModBlockSetType.FWOOD);
 
-	public static final Block stripped_fwood_button = new ButtonBlock(AbstractBlock.Settings.copy(OAK_BUTTON).noCollision().strength(0.5f), BlockSetType.OAK, 30, true);
+	public static final Block stripped_fwood_button = new ButtonBlock(AbstractBlock.Settings.copy(OAK_BUTTON).noCollision().strength(0.5f), ModBlockSetType.FWOOD, 30, true);
 
 	public static final Block squiggleblock = new squiggleblock(AbstractBlock.Settings.create().noCollision().strength(0.1f).nonOpaque().allowsSpawning(fpaore::never).noBlockBreakParticles());
 
@@ -272,6 +282,10 @@ public class fpaore implements ModInitializer {
 			new Identifier(fpaore.MOD_ID, "mod_sign_entity"),
 			FabricBlockEntityTypeBuilder.create(ModSignBlockEntity::new,
 					fpaore.fwood_sign, fpaore.fwood_wall_sign).build());
+	public static final BlockEntityType<StrippedModSignBlockEntity> STRIPPED_MOD_SIGN_BLOCK_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
+			new Identifier(fpaore.MOD_ID, "stripped_mod_sign_entity"),
+			FabricBlockEntityTypeBuilder.create(StrippedModSignBlockEntity::new,
+					fpaore.stripped_fwood_sign, fpaore.stripped_fwood_wall_sign).build());
 	public static final Item BRADIUM_HELMET = registerItem("bradium_helmet",
 			new ModArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.HELMET, new FabricItemSettings()));
 	public static final Item BRADIUM_CHESTPLATE = registerItem("bradium_chestplate",

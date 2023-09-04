@@ -52,9 +52,11 @@ public class fpaoreClient implements ClientModInitializer {
 		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHINGM, FlameParticle.Factory::new);
 
 		BlockEntityRendererFactories.register(fpaore.MOD_SIGN_BLOCK_ENTITY, SignBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(fpaore.STRIPPED_MOD_SIGN_BLOCK_ENTITY, SignBlockEntityRenderer::new);
 
 
 		TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ModWoodType.FWOOD, TexturedRenderLayers.getSignTextureId(ModWoodType.FWOOD));
+		TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ModWoodType.STRIPPED_FWOOD, TexturedRenderLayers.getSignTextureId(ModWoodType.STRIPPED_FWOOD));
 	}
 
 

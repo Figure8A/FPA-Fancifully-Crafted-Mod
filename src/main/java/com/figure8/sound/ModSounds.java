@@ -16,7 +16,7 @@ public class ModSounds {
     public static SoundEvent SPRING_BLOCK_HIT = registerSoundEvent("spring_block_hit");
 
     public static final BlockSoundGroup SPRING_BLOCK_SOUNDS = new BlockSoundGroup(3f, 1f,
-            ModSounds.SPRING_BLOCK_BREAK, ModSounds.SPRING_BLOCK_WALK, ModSounds.SPRING_BLOCK_WALK, ModSounds.SPRING_BLOCK_HIT, ModSounds.SPRING_BLOCK_PLACE);
+            ModSounds.SPRING_BLOCK_BREAK, ModSounds.FOOTSTEP, ModSounds.SPRING_BLOCK_WALK, ModSounds.SPRING_BLOCK_HIT, ModSounds.SPRING_BLOCK_PLACE);
 
     public static SoundEvent lounge_inside = registerSoundEvent("lounge_inside_music_disk");
     public static SoundEvent angry_baddie_music_disk = registerSoundEvent("angry_baddie_music_disk");
@@ -28,14 +28,19 @@ public class ModSounds {
     public static SoundEvent BRADBLOCK_BLOCK_WALK = registerSoundEvent("bradblock_block_step");
     public static SoundEvent BRADBLOCK_BLOCK_BREAK = registerSoundEvent("bradblock_block_break");
     public static SoundEvent SPIKE_OW_OWHIT = registerSoundEvent("spike_ow_onhit");
+    public static SoundEvent POPPER = registerSoundEvent("popper");
+    public static SoundEvent DOORCLOSE = registerSoundEvent("doorclose");
+    public static SoundEvent DOOROPEN = registerSoundEvent("dooropen");
+
+    public static SoundEvent FOOTSTEP = registerSoundEvent("footstep");
 
     public static final BlockSoundGroup BRADBLOCK_BLOCK_SOUNDS = new BlockSoundGroup(2f, 1f,
-            ModSounds.BRADBLOCK_BLOCK_BREAK, ModSounds.BRADBLOCK_BLOCK_PLACE, ModSounds.BRADBLOCK_BLOCK_PLACE, ModSounds.BRADBLOCK_BLOCK_WALK,ModSounds.BRADBLOCK_BLOCK_WALK);
+            ModSounds.BRADBLOCK_BLOCK_BREAK, ModSounds.FOOTSTEP, ModSounds.BRADBLOCK_BLOCK_PLACE, ModSounds.BRADBLOCK_BLOCK_WALK,ModSounds.BRADBLOCK_BLOCK_WALK);
 
     public static SoundEvent GRASSPOP_BLOCK_BREAK = registerSoundEvent("grasspop_block_break");
 
-    public static final BlockSoundGroup GRASSPOP_BLOCK_SOUNDS = new BlockSoundGroup(2f, 1f,
-            ModSounds.GRASSPOP_BLOCK_BREAK, SoundEvents.BLOCK_GRASS_PLACE, ModSounds.GRASSPOP_BLOCK_BREAK, ModSounds.GRASSPOP_BLOCK_BREAK,ModSounds.GRASSPOP_BLOCK_BREAK);
+    public static final BlockSoundGroup GRASSPOP_BLOCK_SOUNDS = new BlockSoundGroup(2f, 1.25f,
+            ModSounds.POPPER, ModSounds.FOOTSTEP, SoundEvents.BLOCK_GRASS_PLACE, SoundEvents.BLOCK_GRASS_PLACE, ModSounds.GRASSPOP_BLOCK_BREAK);
 
 
 

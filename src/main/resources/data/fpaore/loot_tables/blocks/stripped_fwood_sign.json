@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "fpaore:fwood_sign_item"
+          "name": "fpaore:stripped_fwood_sign_item"
         }
       ],
       "conditions": [
@@ -17,5 +17,5 @@
       ]
     }
   ],
-  "random_sequence": "fpaore:blocks/fwood_sign"
+  "random_sequence": "fpaore:blocks/stripped_fwood_sign"
 }

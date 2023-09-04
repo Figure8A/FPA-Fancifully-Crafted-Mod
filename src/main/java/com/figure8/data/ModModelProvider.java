@@ -40,6 +40,7 @@ public class ModModelProvider extends FabricModelProvider {
         fwoodPool.pressurePlate(fpaore.stripped_fwood_plate);
         fwoodPool.fence(fpaore.stripped_fwood_fence);
         fwoodPool.fenceGate(fpaore.stripped_fwood_gate);
+        fwoodPool.family(BlockFamilies.register(fpaore.stripped_fwood_planks).sign(fpaore.stripped_fwood_sign, fpaore.stripped_fwood_wall_sign).build());
         blockStateModelGenerator.registerDoor(fpaore.stripped_fwood_door);
         blockStateModelGenerator.registerTrapdoor(fpaore.stripped_fwood_trapdoor);
 
