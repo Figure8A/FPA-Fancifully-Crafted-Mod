@@ -3,7 +3,12 @@ package com.figure8;
 import com.figure8.blocks.*;
 
 
+import com.figure8.blocks.signstuffs.ModStandingSignBlock;
+import com.figure8.blocks.signstuffs.ModWallSignBlock;
+import com.figure8.blocks.woodtype.ModBlockSetType;
+import com.figure8.blocks.woodtype.ModWoodType;
 import com.figure8.effects.ModEffects;
+import com.figure8.entity.ModSignBlockEntity;
 import com.figure8.entity.ThrowableBlobEntity;
 import com.figure8.item.*;
 
@@ -19,10 +24,12 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.enums.Instrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EntityDimensions;
@@ -61,7 +68,6 @@ public class fpaore implements ModInitializer {
 
 	public static final String MOD_ID = "fpaore";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
 
 
 
@@ -141,7 +147,7 @@ public class fpaore implements ModInitializer {
 	public static final Block fwood_slab = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB).strength(1f));
 	public static final Block fwood_stair = new ModStairsBlock(fwood_planks.getDefaultState(),FabricBlockSettings.copyOf(Blocks.OAK_STAIRS).strength(1f));
 
-	public static final Block fwood_door = new DoorBlock(AbstractBlock.Settings.copy(OAK_DOOR).mapColor(fwood_planks.getDefaultMapColor()).instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable().pistonBehavior(PistonBehavior.DESTROY).strength(1.0f).sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
+	public static final Block fwood_door = new DoorBlock(AbstractBlock.Settings.copy(OAK_DOOR).mapColor(fwood_planks.getDefaultMapColor()).instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable().pistonBehavior(PistonBehavior.DESTROY).strength(1.0f).sounds(BlockSoundGroup.WOOD), ModBlockSetType.FWOOD);
 
 	public static final Block fwood_gate = new FenceGateBlock(AbstractBlock.Settings.create().mapColor(fwood_planks.getDefaultMapColor()).solid().instrument(Instrument.BASS).strength(2.0f, 3.0f).burnable(), WoodType.OAK);
 
@@ -153,7 +159,12 @@ public class fpaore implements ModInitializer {
 
 	public static final Block fwood_button = new ButtonBlock(AbstractBlock.Settings.copy(OAK_BUTTON).noCollision().strength(0.5f), BlockSetType.OAK, 30, true);
 
-	public static final Block fwood_sign = new SignBlock(AbstractBlock.Settings.copy(OAK_SIGN).mapColor(MapColor.OAK_TAN).solid().instrument(Instrument.BASS).noCollision().strength(1.0f).burnable(), WoodType.OAK);
+	public static final Block fwood_sign = registerBlockWithoutBlockItem("fwood_sign",
+			new ModStandingSignBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_SIGN), ModWoodType.FWOOD));
+	public static final Block fwood_wall_sign = registerBlockWithoutBlockItem("fwood_wall_sign",
+			new ModWallSignBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WALL_SIGN), ModWoodType.FWOOD));
+	public static final Item fwood_sign_item = registerItem("fpaore_sign_item",
+			new SignItem(new FabricItemSettings().maxCount(16), fpaore.fwood_sign, fpaore.fwood_wall_sign));
 
 	public static final Block fwood_leaves = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.AZALEA_LEAVES).nonOpaque().strength(0.1f));
 
@@ -257,6 +268,10 @@ public class fpaore implements ModInitializer {
 						.trackedUpdateRate(10)
 						.build());
 	}
+	public static final BlockEntityType<ModSignBlockEntity> MOD_SIGN_BLOCK_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
+			new Identifier(fpaore.MOD_ID, "mod_sign_entity"),
+			FabricBlockEntityTypeBuilder.create(ModSignBlockEntity::new,
+					fpaore.fwood_sign, fpaore.fwood_wall_sign).build());
 	public static final Item BRADIUM_HELMET = registerItem("bradium_helmet",
 			new ModArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.HELMET, new FabricItemSettings()));
 	public static final Item BRADIUM_CHESTPLATE = registerItem("bradium_chestplate",
@@ -270,6 +285,9 @@ public class fpaore implements ModInitializer {
 	}
 	private static Item registerItem(String name, Item item) {
 		return Registry.register(Registries.ITEM, new Identifier(fpaore.MOD_ID, name), item);
+	}
+	private static Block registerBlockWithoutBlockItem(String name, Block block) {
+		return Registry.register(Registries.BLOCK, new Identifier(fpaore.MOD_ID, name), block);
 	}
 
 
@@ -339,7 +357,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "fwood_fence"), fwood_fence);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "fwood_trapdoor"), fwood_trapdoor);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "fwood_button"), fwood_button);
-		Registry.register(Registries.BLOCK, new Identifier("fpaore", "fwood_sign"), fwood_sign);
+
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "spike"), spike);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "fchiseled_sandstone"), fchiseled_sandstone);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "smoothsandstone_verticalslab"), smoothsandstone_verticalslab);
@@ -396,7 +414,6 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "fwood_fence"), new BlockItem(fwood_fence, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "fwood_button"), new BlockItem(fwood_button, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "fwood_trapdoor"), new BlockItem(fwood_trapdoor, new FabricItemSettings()));
-		Registry.register(Registries.ITEM, new Identifier("fpaore", "fwood_sign"), new BlockItem(fwood_sign, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "packed_fpvground"), new BlockItem(packed_fpvground, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "packed_fpvground_column"), new BlockItem(packed_fpvground_column, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "spike"), new BlockItem(spike, new FabricItemSettings()));

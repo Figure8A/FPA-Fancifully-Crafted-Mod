@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.TexturedModel;
+import net.minecraft.data.family.BlockFamilies;
 import net.minecraft.item.ArmorItem;
 
 
@@ -24,7 +25,10 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerLog(fpaore.fwood_log).log(fpaore.fwood_log).wood(fpaore.fwood_wood);
         blockStateModelGenerator.registerLog(fpaore.stripped_fwood_log).log(fpaore.stripped_fwood_log).wood(fpaore.stripped_fwood_wood);
 
-        blockStateModelGenerator.registerCubeAllModelTexturePool(fpaore.fwood_planks);
+        BlockStateModelGenerator.BlockTexturePool tPlnaks = blockStateModelGenerator.registerCubeAllModelTexturePool(fpaore.fwood_planks);
+        tPlnaks.family(BlockFamilies.register(fpaore.fwood_planks).sign(fpaore.fwood_sign, fpaore.fwood_wall_sign).build());
+
+
         blockStateModelGenerator.registerCubeAllModelTexturePool(fpaore.stripped_fwood_planksvar);
         blockStateModelGenerator.registerCubeAllModelTexturePool(fpaore.fwood_leaves);
 
