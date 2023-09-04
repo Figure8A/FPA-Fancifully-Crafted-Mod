@@ -1,5 +1,7 @@
 package com.figure8;
 
+import com.figure8.blocks.woodtype.ModWoodType;
+
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
@@ -8,6 +10,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.render.RenderLayer;
 
+import net.minecraft.client.render.TexturedRenderLayers;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.client.render.block.entity.SignBlockEntityRenderer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.Identifier;
@@ -46,6 +51,10 @@ public class fpaoreClient implements ClientModInitializer {
 		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHING, FlameParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHINGM, FlameParticle.Factory::new);
 
+		BlockEntityRendererFactories.register(fpaore.MOD_SIGN_BLOCK_ENTITY, SignBlockEntityRenderer::new);
+
+
+		TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ModWoodType.FWOOD, TexturedRenderLayers.getSignTextureId(ModWoodType.FWOOD));
 	}
 
 

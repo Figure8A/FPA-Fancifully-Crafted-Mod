@@ -163,7 +163,7 @@ public class fpaore implements ModInitializer {
 			new ModStandingSignBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_SIGN), ModWoodType.FWOOD));
 	public static final Block fwood_wall_sign = registerBlockWithoutBlockItem("fwood_wall_sign",
 			new ModWallSignBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WALL_SIGN), ModWoodType.FWOOD));
-	public static final Item fwood_sign_item = registerItem("fpaore_sign_item",
+	public static final Item fwood_sign_item = registerItem("fwood_sign_item",
 			new SignItem(new FabricItemSettings().maxCount(16), fpaore.fwood_sign, fpaore.fwood_wall_sign));
 
 	public static final Block fwood_leaves = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.AZALEA_LEAVES).nonOpaque().strength(0.1f));

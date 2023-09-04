@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "fpaore:item/fpaore_sign_item"
+    "layer0": "fpaore:item/fwood_sign_item"
   }
 }
