@@ -16,7 +16,7 @@ public class ModSounds {
     public static SoundEvent SPRING_BLOCK_HIT = registerSoundEvent("spring_block_hit");
 
     public static final BlockSoundGroup SPRING_BLOCK_SOUNDS = new BlockSoundGroup(3f, 1f,
-            ModSounds.SPRING_BLOCK_BREAK, ModSounds.FOOTSTEP, ModSounds.SPRING_BLOCK_WALK, ModSounds.SPRING_BLOCK_HIT, ModSounds.SPRING_BLOCK_PLACE);
+            ModSounds.SPRING_BLOCK_BREAK, ModSounds.SPRING_BLOCK_WALK, ModSounds.SPRING_BLOCK_WALK, ModSounds.SPRING_BLOCK_HIT, ModSounds.SPRING_BLOCK_PLACE);
 
     public static SoundEvent lounge_inside = registerSoundEvent("lounge_inside_music_disk");
     public static SoundEvent angry_baddie_music_disk = registerSoundEvent("angry_baddie_music_disk");

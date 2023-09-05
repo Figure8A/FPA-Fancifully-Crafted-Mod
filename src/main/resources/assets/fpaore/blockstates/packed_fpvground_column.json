@@ -1,16 +1,10 @@
 {
   "variants": {
-    "axis=x": {
-      "model": "fpaore:block/packed_fpvground_column_horizontal",
-      "x": 90,
-      "y": 90
-    },
-    "axis=y": {
-      "model": "fpaore:block/packed_fpvground_column"
-    },
-    "axis=z": {
-      "model": "fpaore:block/packed_fpvground_column_horizontal",
-      "x": 90
-    }
+    "facing=north": { "model": "fpaore:block/packed_fpvground_column", "uvlock": false },
+    "facing=east":  { "model": "fpaore:block/packed_fpvground_column", "y":  90, "uvlock": false },
+    "facing=south": { "model": "fpaore:block/packed_fpvground_column", "y": 180, "uvlock": false },
+    "facing=west":  { "model": "fpaore:block/packed_fpvground_column", "y": 270, "uvlock": false },
+    "facing=up":  { "model": "fpaore:block/packed_fpvground_column", "x": 270, "uvlock": false },
+    "facing=down":  { "model": "fpaore:block/packed_fpvground_column", "x": 90, "uvlock": false }
   }
 }
