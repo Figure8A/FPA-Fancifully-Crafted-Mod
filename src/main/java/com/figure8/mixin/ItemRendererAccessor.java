@@ -1,4 +1,4 @@
-package com.figure8.mixin.client;
+package com.figure8.mixin;
 
 import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.item.ItemRenderer;

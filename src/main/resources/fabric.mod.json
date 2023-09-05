@@ -27,11 +27,7 @@
 
 	},
 	"mixins": [
-		"fpaore.mixins.json",
-		{
-			"config": "fpaore.client.mixins.json",
-			"environment": "client"
-		}
+		"fpaore.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.14.21",

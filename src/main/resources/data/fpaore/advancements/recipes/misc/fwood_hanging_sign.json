@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "fpaore:stripped_fwood_log"
+            "items": [ "fpaore:stripped_fwood_log" ]
           }
         ]
       },

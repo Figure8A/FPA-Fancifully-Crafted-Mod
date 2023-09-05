@@ -1,4 +1,4 @@
-package com.figure8.mixin.client;
+package com.figure8.mixin;
 
 import com.figure8.fpaore;
 import net.minecraft.client.render.VertexConsumerProvider;
