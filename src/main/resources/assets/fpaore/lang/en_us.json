@@ -82,5 +82,7 @@
   "block.fpaore.fwood_hanging_sign":"Fancy Hanging Sign",
   "item.fpaore.fwood_boat":"Fancy Boat",
   "item.fpaore.fwood_chest_boat":"Fancy Chest Boat",
+  "item.fpaore.stripped_fwood_boat":"Stripped Fancy Boat",
+  "item.fpaore.stripped_fwood_chest_boat":"Stripped Fancy Chest Boat",
   "itemgroup.fpaore": "The Fancy Pants Adventures"
 }

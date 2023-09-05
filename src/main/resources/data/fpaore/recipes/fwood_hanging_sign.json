@@ -4,7 +4,7 @@
   "group": "hanging_sign",
   "key": {
     "#": {
-      "item": "minecraft:stripped_fwood_log"
+      "item": "fpaore:stripped_fwood_log"
     },
     "X": {
       "item": "minecraft:chain"
@@ -17,7 +17,7 @@
   ],
   "result": {
     "count": 6,
-    "item": "minecraft:fwood_hanging_sign_item"
+    "item": "fpaore:fwood_hanging_sign_item"
   },
   "show_notification": true
 }

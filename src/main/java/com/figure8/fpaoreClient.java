@@ -61,6 +61,7 @@ public class fpaoreClient implements ClientModInitializer {
 		TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ModWoodType.FWOOD, TexturedRenderLayers.getSignTextureId(ModWoodType.FWOOD));
 		TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ModWoodType.STRIPPED_FWOOD, TexturedRenderLayers.getSignTextureId(ModWoodType.STRIPPED_FWOOD));
 		TerraformBoatClientHelper.registerModelLayers(ModBoats.FWOOD_BOAT_ID, false);
+		TerraformBoatClientHelper.registerModelLayers(ModBoats.STRIPPED_FWOOD_BOAT_ID, false);
 	}
 
 

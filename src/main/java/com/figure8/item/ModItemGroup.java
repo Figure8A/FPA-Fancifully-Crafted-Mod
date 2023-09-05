@@ -14,11 +14,6 @@ import net.minecraft.util.Identifier;
 public class ModItemGroup {    public static ItemGroup fpablocks = Registry.register(Registries.ITEM_GROUP, new Identifier(fpaore.MOD_ID, "fpaore"),
         FabricItemGroup.builder().displayName(Text.translatable("itemgroup.fpaore"))
                 .icon(() -> new ItemStack(fpaore.bradium)).entries((displayContext, entries) -> {
-                    entries.add(fpaore.BradOre);
-                    entries.add(fpaore.bradoredsl);
-                    entries.add(fpaore.bradblock);
-                    entries.add(fpaore.bradium);
-                    entries.add(fpaore.pbradium);
                     entries.add(fpaore.BRADIUM_HELMET);
                     entries.add(fpaore.BRADIUM_CHESTPLATE);
                     entries.add(fpaore.BRADIUM_LEGGINGS);
@@ -80,13 +75,19 @@ public class ModItemGroup {    public static ItemGroup fpablocks = Registry.regi
                     entries.add(fpaore.stripped_fwood_stair);
                     entries.add(fpaore.stripped_fwood_trapdoor);
                     entries.add(fpaore.stripped_fwood_sign_item);
+                    entries.add(fpaore.STRIPPED_FWOOD_BOAT);
+                    entries.add(fpaore.STRIPPED_FWOOD_CHEST_BOAT);
                     entries.add(fpaore.fwood_hanging_sign_item);
                     entries.add(fpaore.fpvground);
                     entries.add(fpaore.packed_fpvground);
                     entries.add(fpaore.packed_fpvground_column);
                     entries.add(fpaore.spike);
                     entries.add(fpaore.spikebuth);
-
+                    entries.add(fpaore.BradOre);
+                    entries.add(fpaore.bradoredsl);
+                    entries.add(fpaore.bradblock);
+                    entries.add(fpaore.bradium);
+                    entries.add(fpaore.pbradium);
                     entries.add(fpaore.fchiseled_sandstone);
                     entries.add(fpaore.smoothsandstone_verticalslab);
                     entries.add(fpaore.sandstonebedrock);

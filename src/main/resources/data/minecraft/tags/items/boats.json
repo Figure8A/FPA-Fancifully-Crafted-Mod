@@ -2,7 +2,8 @@
   "replace": false,
   "values": [
     "fpaore:fwood_boat",
-    "fpaore:fwood_chest_boat"
-
+    "fpaore:fwood_chest_boat",
+    "fpaore:stripped_fwood_boat",
+    "fpaore:stripped_fwood_chest_boat"
   ]
 }

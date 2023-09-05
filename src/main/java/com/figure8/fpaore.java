@@ -253,6 +253,8 @@ public class fpaore implements ModInitializer {
 
 	public static final Item FWOOD_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.FWOOD_BOAT_ID, ModBoats.FWOOD_BOAT_KEY, false);
 	public static final Item FWOOD_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.FWOOD_CHEST_BOAT_ID, ModBoats.FWOOD_BOAT_KEY, true);
+	public static final Item STRIPPED_FWOOD_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.STRIPPED_FWOOD_BOAT_ID, ModBoats.STRIPPED_FWOOD_BOAT_KEY, false);
+	public static final Item STRIPPED_FWOOD_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.STRIPPED_FWOOD_CHEST_BOAT_ID, ModBoats.STRIPPED_FWOOD_BOAT_KEY, true);
 	private static boolean always(BlockState state, BlockView world, BlockPos pos) {
 		return true;
 	}

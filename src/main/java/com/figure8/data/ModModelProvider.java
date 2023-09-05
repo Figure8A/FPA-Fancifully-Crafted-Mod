@@ -60,5 +60,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.registerArmor(((ArmorItem) fpaore.BRADIUM_BOOTS));
         itemModelGenerator.register(fpaore.FWOOD_CHEST_BOAT, Models.GENERATED);
         itemModelGenerator.register(fpaore.FWOOD_BOAT, Models.GENERATED);
+        itemModelGenerator.register(fpaore.STRIPPED_FWOOD_BOAT, Models.GENERATED);
+        itemModelGenerator.register(fpaore.STRIPPED_FWOOD_CHEST_BOAT, Models.GENERATED);
     }
 }
