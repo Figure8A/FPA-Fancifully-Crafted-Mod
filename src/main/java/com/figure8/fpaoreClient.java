@@ -2,6 +2,8 @@ package com.figure8;
 
 import com.figure8.blocks.woodtype.ModWoodType;
 
+import com.figure8.entity.ModBoats;
+import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
@@ -58,6 +60,7 @@ public class fpaoreClient implements ClientModInitializer {
 
 		TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ModWoodType.FWOOD, TexturedRenderLayers.getSignTextureId(ModWoodType.FWOOD));
 		TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ModWoodType.STRIPPED_FWOOD, TexturedRenderLayers.getSignTextureId(ModWoodType.STRIPPED_FWOOD));
+		TerraformBoatClientHelper.registerModelLayers(ModBoats.FWOOD_BOAT_ID, false);
 	}
 
 

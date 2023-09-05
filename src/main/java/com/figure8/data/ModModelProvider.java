@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
+import net.minecraft.data.client.Models;
 import net.minecraft.data.client.TexturedModel;
 import net.minecraft.data.family.BlockFamilies;
 import net.minecraft.item.ArmorItem;
@@ -57,5 +58,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.registerArmor(((ArmorItem) fpaore.BRADIUM_CHESTPLATE));
         itemModelGenerator.registerArmor(((ArmorItem) fpaore.BRADIUM_LEGGINGS));
         itemModelGenerator.registerArmor(((ArmorItem) fpaore.BRADIUM_BOOTS));
+        itemModelGenerator.register(fpaore.FWOOD_CHEST_BOAT, Models.GENERATED);
+        itemModelGenerator.register(fpaore.FWOOD_BOAT, Models.GENERATED);
     }
 }

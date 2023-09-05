@@ -61,6 +61,8 @@ public class ModItemGroup {    public static ItemGroup fpablocks = Registry.regi
                     entries.add(fpaore.fwood_button);
                     entries.add(fpaore.fwood_trapdoor);
                     entries.add(fpaore.fwood_sign_item);
+                    entries.add(fpaore.FWOOD_BOAT);
+                    entries.add(fpaore.FWOOD_CHEST_BOAT);
                     entries.add(fpaore.fwood_slab);
                     entries.add(fpaore.fwood_stair);
                     entries.add(fpaore.fwood_sapling);

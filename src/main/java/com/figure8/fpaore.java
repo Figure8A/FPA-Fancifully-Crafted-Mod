@@ -7,16 +7,14 @@ import com.figure8.blocks.signstuffs.*;
 import com.figure8.blocks.woodtype.ModBlockSetType;
 import com.figure8.blocks.woodtype.ModWoodType;
 import com.figure8.effects.ModEffects;
-import com.figure8.entity.ModHangingSignBlockEntity;
-import com.figure8.entity.ModSignBlockEntity;
-import com.figure8.entity.StrippedModSignBlockEntity;
-import com.figure8.entity.ThrowableBlobEntity;
+import com.figure8.entity.*;
 import com.figure8.item.*;
 
 import com.figure8.sound.ModSounds;
 import com.figure8.util.ModLootTableModifiers;
 import com.figure8.world.gen.ModWorldGeneration;
 import com.figure8.world.tree.fwoodSaplingGenerator;
+import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
@@ -66,6 +64,7 @@ import static net.minecraft.entity.effect.StatusEffects.*;
 // The messiest code you've ever seen in your life:
 
 public class fpaore implements ModInitializer {
+
 
 	public static final String MOD_ID = "fpaore";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
@@ -252,6 +251,8 @@ public class fpaore implements ModInitializer {
 
 	public static final Block bradblock = new bradblock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).sounds(ModSounds.BRADBLOCK_BLOCK_SOUNDS).strength(60f).requiresTool());
 
+	public static final Item FWOOD_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.FWOOD_BOAT_ID, ModBoats.FWOOD_BOAT_KEY, false);
+	public static final Item FWOOD_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.FWOOD_CHEST_BOAT_ID, ModBoats.FWOOD_BOAT_KEY, true);
 	private static boolean always(BlockState state, BlockView world, BlockPos pos) {
 		return true;
 	}
@@ -477,7 +478,7 @@ public class fpaore implements ModInitializer {
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, CUSTOM_ORE_PLACED_KEY);
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, FPVGROUND_PLACED_KEY);
 
-
+		ModBoats.registerBoats();
 
 	}
 }
