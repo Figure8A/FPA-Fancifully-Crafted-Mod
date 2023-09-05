@@ -142,13 +142,13 @@ public class fpaore implements ModInitializer {
 
 	public static final Block fwood_log = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG).strength(1.0f));
 	public static final Block fwood_wood = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD).strength(1.0f));
-	public static final Block stripped_fwood_log = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_LOG).strength(3.0f));
-	public static final Block stripped_fwood_wood = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(2.0f));
+	public static final Block stripped_fwood_log = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_LOG).strength(1.0f));
+	public static final Block stripped_fwood_wood = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(1.0f));
 	public static final Block fwood_planks = new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).strength(1.0f));
 	public static final Block fwood_slab = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB).strength(1f));
 	public static final Block fwood_stair = new ModStairsBlock(fwood_planks.getDefaultState(),FabricBlockSettings.copyOf(Blocks.OAK_STAIRS).strength(1f));
 
-	public static final Block fwood_door = new DoorBlock(AbstractBlock.Settings.copy(OAK_DOOR).mapColor(fwood_planks.getDefaultMapColor()).instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable().pistonBehavior(PistonBehavior.DESTROY).strength(1.0f).sounds(BlockSoundGroup.WOOD), ModBlockSetType.FWOOD);
+	public static final Block fwood_door = new DoorBlock(AbstractBlock.Settings.copy(OAK_DOOR).mapColor(fwood_planks.getDefaultMapColor()).instrument(Instrument.BASS).strength(1.0f).nonOpaque().burnable().pistonBehavior(PistonBehavior.DESTROY).strength(1.0f).sounds(BlockSoundGroup.WOOD), ModBlockSetType.FWOOD);
 
 	public static final Block fwood_gate = new FenceGateBlock(AbstractBlock.Settings.create().mapColor(fwood_planks.getDefaultMapColor()).solid().instrument(Instrument.BASS).strength(2.0f, 3.0f).burnable(), ModWoodType.FWOOD);
 
@@ -177,7 +177,7 @@ public class fpaore implements ModInitializer {
 	public static final Block fwood_hanging_sign = registerBlockWithoutBlockItem("fwood_hanging_sign",
 			new ModHangingSignBlock(FabricBlockSettings.copyOf(OAK_HANGING_SIGN), ModWoodType.FWOOD));
 	public static final Block fwood_hanging_wall_sign = registerBlockWithoutBlockItem("fwood_hanging_wall_sign",
-			new ModWallHangingSignBlock(FabricBlockSettings.copyOf(OAK_WALL_HANGING_SIGN), ModWoodType.FWOOD));
+			new ModWallHangingSignBlock(FabricBlockSettings.copyOf(OAK_WALL_HANGING_SIGN).dropsLike(fwood_hanging_sign), ModWoodType.FWOOD));
 	public static final Item fwood_hanging_sign_item = registerItem("fwood_hanging_sign_item",
 			new HangingSignItem(fpaore.fwood_hanging_sign, fpaore.fwood_hanging_wall_sign, new FabricItemSettings().maxCount(16)));
 
@@ -221,9 +221,9 @@ public class fpaore implements ModInitializer {
 
 	public static final Item squiggle = new SquiggleItem(new FabricItemSettings());
 
-	public static final Block stripped_fwood_planks = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(2.0f));
+	public static final Block stripped_fwood_planks = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(1.0f));
 
-	public static final Block stripped_fwood_planksvar = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(2.0f));
+	public static final Block stripped_fwood_planksvar = new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(1.0f));
 	public static final Block stripped_fwood_slab = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB).strength(1f));
 	public static final Block stripped_fwood_stair = new ModStairsBlock(stripped_fwood_planks.getDefaultState(),FabricBlockSettings.copyOf(Blocks.OAK_STAIRS).strength(1f));
 
@@ -235,7 +235,7 @@ public class fpaore implements ModInitializer {
 
 	public static final Block stripped_fwood_fence = new FenceBlock(AbstractBlock.Settings.copy(OAK_FENCE_GATE).strength(1.0f));
 
-	public static final Block stripped_fwood_trapdoor = new TrapdoorBlock(AbstractBlock.Settings.create().instrument(Instrument.BASS).strength(3.0f).nonOpaque().burnable(), ModBlockSetType.FWOOD);
+	public static final Block stripped_fwood_trapdoor = new TrapdoorBlock(AbstractBlock.Settings.create().instrument(Instrument.BASS).strength(1.0f).nonOpaque().burnable(), ModBlockSetType.FWOOD);
 
 	public static final Block stripped_fwood_button = new ButtonBlock(AbstractBlock.Settings.copy(OAK_BUTTON).noCollision().strength(0.5f), ModBlockSetType.FWOOD, 30, true);
 
