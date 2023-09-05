@@ -15,7 +15,19 @@
     "fpaore:fwood_plate",
     "fpaore:fwood_trapdoor",
     "fpaore:fwood_button",
-    "fpaore:fwood_sign"
-
+    "fpaore:fwood_sign",
+    "fpaore:stripped_fwood_planks",
+    "fpaore:stripped_fwood_planksvar",
+    "fpaore:stripped_fwood_slab",
+    "fpaore:stripped_fwood_stair",
+    "fpaore:stripped_fwood_door",
+    "fpaore:stripped_fwood_gate",
+    "fpaore:stripped_fwood_fence",
+    "fpaore:stripped_fwood_plate",
+    "fpaore:stripped_fwood_trapdoor",
+    "fpaore:stripped_fwood_button",
+    "fpaore:stripped_fwood_sign",
+    "fpaore:fwood_hanging_sign",
+    "fpaore:fwood_wall_hanging_sign"
   ]
 }

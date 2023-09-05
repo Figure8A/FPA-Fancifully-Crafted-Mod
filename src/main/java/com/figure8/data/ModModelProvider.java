@@ -28,6 +28,8 @@ public class ModModelProvider extends FabricModelProvider {
         BlockStateModelGenerator.BlockTexturePool tPlnaks = blockStateModelGenerator.registerCubeAllModelTexturePool(fpaore.fwood_planks);
         tPlnaks.family(BlockFamilies.register(fpaore.fwood_planks).sign(fpaore.fwood_sign, fpaore.fwood_wall_sign).build());
 
+        blockStateModelGenerator.registerHangingSign(fpaore.stripped_fwood_log, fpaore.fwood_hanging_sign, fpaore.fwood_hanging_wall_sign);
+
 
         blockStateModelGenerator.registerCubeAllModelTexturePool(fpaore.stripped_fwood_planksvar);
         blockStateModelGenerator.registerCubeAllModelTexturePool(fpaore.fwood_leaves);

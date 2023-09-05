@@ -12,6 +12,7 @@ import net.minecraft.client.render.RenderLayer;
 
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.client.render.block.entity.HangingSignBlockEntityRenderer;
 import net.minecraft.client.render.block.entity.SignBlockEntityRenderer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.screen.PlayerScreenHandler;
@@ -53,7 +54,7 @@ public class fpaoreClient implements ClientModInitializer {
 
 		BlockEntityRendererFactories.register(fpaore.MOD_SIGN_BLOCK_ENTITY, SignBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(fpaore.STRIPPED_MOD_SIGN_BLOCK_ENTITY, SignBlockEntityRenderer::new);
-
+		BlockEntityRendererFactories.register(fpaore.MOD_HANGING_SIGN_BLOCK_ENTITY, HangingSignBlockEntityRenderer::new);
 
 		TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ModWoodType.FWOOD, TexturedRenderLayers.getSignTextureId(ModWoodType.FWOOD));
 		TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ModWoodType.STRIPPED_FWOOD, TexturedRenderLayers.getSignTextureId(ModWoodType.STRIPPED_FWOOD));

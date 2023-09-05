@@ -3,13 +3,11 @@ package com.figure8;
 import com.figure8.blocks.*;
 
 
-import com.figure8.blocks.signstuffs.ModStandingSignBlock;
-import com.figure8.blocks.signstuffs.ModWallSignBlock;
-import com.figure8.blocks.signstuffs.StrippedModStandingSignBlock;
-import com.figure8.blocks.signstuffs.StrippedModWallSignBlock;
+import com.figure8.blocks.signstuffs.*;
 import com.figure8.blocks.woodtype.ModBlockSetType;
 import com.figure8.blocks.woodtype.ModWoodType;
 import com.figure8.effects.ModEffects;
+import com.figure8.entity.ModHangingSignBlockEntity;
 import com.figure8.entity.ModSignBlockEntity;
 import com.figure8.entity.StrippedModSignBlockEntity;
 import com.figure8.entity.ThrowableBlobEntity;
@@ -176,6 +174,13 @@ public class fpaore implements ModInitializer {
 	public static final Item stripped_fwood_sign_item = registerItem("stripped_fwood_sign_item",
 			new SignItem(new FabricItemSettings().maxCount(16), fpaore.stripped_fwood_sign, fpaore.stripped_fwood_wall_sign));
 
+	public static final Block fwood_hanging_sign = registerBlockWithoutBlockItem("fwood_hanging_sign",
+			new ModHangingSignBlock(FabricBlockSettings.copyOf(OAK_HANGING_SIGN), ModWoodType.FWOOD));
+	public static final Block fwood_hanging_wall_sign = registerBlockWithoutBlockItem("fwood_hanging_wall_sign",
+			new ModWallHangingSignBlock(FabricBlockSettings.copyOf(OAK_WALL_HANGING_SIGN), ModWoodType.FWOOD));
+	public static final Item fwood_hanging_sign_item = registerItem("fwood_hanging_sign_item",
+			new HangingSignItem(fpaore.fwood_hanging_sign, fpaore.fwood_hanging_wall_sign, new FabricItemSettings().maxCount(16)));
+
 	public static final Block fwood_leaves = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.AZALEA_LEAVES).nonOpaque().strength(0.1f));
 
 	public static final Block fwood_sapling = new SaplingBlock(new fwoodSaplingGenerator(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).strength(0.2f));
@@ -286,6 +291,10 @@ public class fpaore implements ModInitializer {
 			new Identifier(fpaore.MOD_ID, "stripped_mod_sign_entity"),
 			FabricBlockEntityTypeBuilder.create(StrippedModSignBlockEntity::new,
 					fpaore.stripped_fwood_sign, fpaore.stripped_fwood_wall_sign).build());
+	public static final BlockEntityType<ModHangingSignBlockEntity> MOD_HANGING_SIGN_BLOCK_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
+			new Identifier(fpaore.MOD_ID, "mod_hanging_sign_entity"),
+			FabricBlockEntityTypeBuilder.create(ModHangingSignBlockEntity::new,
+					fpaore.fwood_hanging_sign, fpaore.fwood_hanging_wall_sign).build(null));
 	public static final Item BRADIUM_HELMET = registerItem("bradium_helmet",
 			new ModArmorItem(ModArmorMaterials.BRADIUM, ArmorItem.Type.HELMET, new FabricItemSettings()));
 	public static final Item BRADIUM_CHESTPLATE = registerItem("bradium_chestplate",
