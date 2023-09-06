@@ -16,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -50,6 +51,7 @@ public class spike extends AmethystBlock
         implements Waterloggable {
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     public static final DirectionProperty FACING = Properties.FACING;
+    protected final ParticleEffect particle;
     protected final VoxelShape northShape;
     protected final VoxelShape southShape;
     protected final VoxelShape eastShape;
@@ -57,8 +59,9 @@ public class spike extends AmethystBlock
     protected final VoxelShape upShape;
     protected final VoxelShape downShape;
 
-    public spike(int height, int xzOffset, AbstractBlock.Settings settings) {
+    public spike(int height, int xzOffset, AbstractBlock.Settings settings, ParticleEffect particle) {
         super(settings);
+        this.particle = particle;
         this.setDefaultState((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.UP));
         this.upShape = Block.createCuboidShape(xzOffset, 0.0, xzOffset, 16 - xzOffset, height, 16 - xzOffset);
         this.downShape = Block.createCuboidShape(xzOffset, 16 - height, xzOffset, 16 - xzOffset, 16.0, 16 - xzOffset);
@@ -174,9 +177,10 @@ public class spike extends AmethystBlock
         Vec3d vec3d = voxelShape.getBoundingBox().getCenter();
         double d = (double)pos.getX() + vec3d.x;
         double e = (double)pos.getZ() + vec3d.z;
+        double f = (double)pos.getZ() + 0.5;
         for (int i = 0; i < 3; ++i) {
             if (!random.nextBoolean()) continue;
-            world.addParticle(ParticleTypes.PORTAL, d + random.nextDouble() / 5.0, (double)pos.getY() + (0.5 - random.nextDouble()), e + random.nextDouble() / 5.0, 0.0, 0.00005, 0.0);
+            world.addParticle(ParticleTypes.PORTAL, d + random.nextDouble() / 5.0, (double)pos.getY() + (0.5 - random.nextDouble()), e + random.nextDouble() / 5.0, 0.0, 0.0005, 0.0);
         }
     }
 }

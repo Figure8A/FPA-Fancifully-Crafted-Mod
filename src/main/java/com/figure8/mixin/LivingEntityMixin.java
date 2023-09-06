@@ -92,7 +92,7 @@ public abstract class LivingEntityMixin  extends Entity {
 				this.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 1500, 5));
 				this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 500, 2));
 				this.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 500, 2));
-				this.getWorld().sendEntityStatus(this, EntityStatuses.USE_TOTEM_OF_UNDYING);
+				this.getWorld().sendEntityStatus(this, (byte) 69);
 				callback.setReturnValue(true);
 			}
 		}

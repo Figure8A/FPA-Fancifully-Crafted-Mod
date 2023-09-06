@@ -193,7 +193,7 @@ public class fpaore implements ModInitializer {
 	public static final Block packed_fpvground_column = new PillarBlock(FabricBlockSettings.copyOf(GRANITE).strength(12.0f).requiresTool());
 	public static final Block inkblot = new inkblot(FabricBlockSettings.copyOf(SEA_LANTERN).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS).nonOpaque().strength(0.2f).notSolid().pistonBehavior(PistonBehavior.DESTROY).luminance(state -> 8).slipperiness(1.1f));
 
-	public static final Block spike = new spike(9, 4, FabricBlockSettings.create().strength(65.0f).requiresTool().nonOpaque());
+	public static final Block spike = new spike(9, 4, FabricBlockSettings.create().strength(65.0f).requiresTool().nonOpaque(), ParticleTypes.PORTAL);
 
 	public static final Block spikebuth = new spikebuth(9, 4, FabricBlockSettings.copy(OBSIDIAN).strength(65.0f).requiresTool().nonOpaque());
 
