@@ -1,7 +1,7 @@
 package com.figure8.blocks.woodtype;
 
 import com.figure8.fpaore;
-import com.figure8.util.CommonPlatformHelper;
+
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
 import net.minecraft.block.BlockSetType;
 import net.minecraft.block.WoodType;

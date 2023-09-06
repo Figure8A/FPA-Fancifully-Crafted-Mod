@@ -7,9 +7,6 @@
     "LivingEntityMixin"
   ],
   "client": [
-    "ClientPlayNetworkHandlerMixinTotem",
-    "ExampleClientMixin",
-    "fpaoreMixinb",
     "ItemRendererAccessor",
     "ItemRendererMixin",
     "ModelLoaderMixin"
