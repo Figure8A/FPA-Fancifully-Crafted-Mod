@@ -95,5 +95,10 @@
     "sounds": [
       "fpaore:footstep"
     ]
+  },
+  "mayor_totem_use": {
+    "sounds": [
+      "fpaore:mayor_totem_use"
+    ]
   }
 }

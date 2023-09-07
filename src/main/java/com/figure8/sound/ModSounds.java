@@ -33,7 +33,7 @@ public class ModSounds {
     public static SoundEvent DOOROPEN = registerSoundEvent("dooropen");
 
     public static SoundEvent FOOTSTEP = registerSoundEvent("footstep");
-
+    public static SoundEvent MAYOR_TOTEM_USE = registerSoundEvent("mayor_totem_use");
     public static final BlockSoundGroup BRADBLOCK_BLOCK_SOUNDS = new BlockSoundGroup(2f, 1f,
             ModSounds.BRADBLOCK_BLOCK_BREAK, ModSounds.FOOTSTEP, ModSounds.BRADBLOCK_BLOCK_PLACE, ModSounds.BRADBLOCK_BLOCK_WALK,ModSounds.BRADBLOCK_BLOCK_WALK);
 

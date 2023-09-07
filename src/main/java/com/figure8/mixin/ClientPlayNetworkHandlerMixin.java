@@ -1,6 +1,7 @@
 package com.figure8.mixin;
 
 import com.figure8.fpaore;
+import com.figure8.sound.ModSounds;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.sound.GuardianAttackSoundInstance;
@@ -56,7 +57,7 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
                 case 69:
                     boolean i = true;
                     this.client.particleManager.addEmitter(entity, fpaore.SQUIGGLETHINGM, 30);
-                    this.world.playSound(entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ITEM_TOTEM_USE, entity.getSoundCategory(), 1.0F, 1.0F, false);
+                    this.world.playSound(entity.getX(), entity.getY(), entity.getZ(), ModSounds.MAYOR_TOTEM_USE, entity.getSoundCategory(), 1.0F, 1.0F, false);
                     if (entity == this.client.player) {
                         this.client.gameRenderer.showFloatingItem(getActiveTotemOfUndyingM(this.client.player));
                     }
