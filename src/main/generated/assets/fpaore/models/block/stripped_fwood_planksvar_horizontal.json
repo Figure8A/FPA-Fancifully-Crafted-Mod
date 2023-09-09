@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "fpaore:block/stripped_fwood_planks_top",
+    "side": "fpaore:block/stripped_fwood_planksvar"
+  }
+}
