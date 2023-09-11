@@ -9,6 +9,7 @@ import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvents;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,73 +29,60 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
-
-
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin  extends Entity {
+public abstract class LivingEntityMixin {
+	@Shadow public abstract ItemStack getStackInHand(Hand hand);
 
+	@Shadow public abstract void setHealth(float health);
 
-	@Shadow
-	public native ItemStack getStackInHand(Hand hand_1);
+	@Shadow public abstract boolean clearStatusEffects();
 
-	@Shadow
-	public native boolean hasStatusEffect(StatusEffect effect);
-
-	@Shadow
-	public native void setHealth(float health);
-
-	@Shadow
-	public native boolean clearStatusEffects();
-
-	@Shadow
-	public native boolean addStatusEffect(StatusEffectInstance statusEffectInstance_1);
-
-	@Shadow
-	public native EntityGroup getGroup();
-
-
-	protected LivingEntityMixin(EntityType<?> entityType_1, World world_1, ParticleManager particleManager, MinecraftClient client) {
-		super(entityType_1, world_1);
-
-	}
-
+	@Shadow public abstract boolean addStatusEffect(StatusEffectInstance effect);
 
 	@Inject(at = @At("HEAD"), method = "tryUseTotem", cancellable = true)
-	public void usemayor_of_undying(DamageSource damageSource_1, CallbackInfoReturnable<Boolean> callback) {
+	private void tryUseTotem(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+		if (source.isIn(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			return;
+		} else {
+			ItemStack itemStack = null;
+			Hand[] var4 = Hand.values();
+			int var5 = var4.length;
 
-		Entity entity = this;
+			for(int var6 = 0; var6 < var5; ++var6) {
+				Hand hand = var4[var6];
+				ItemStack itemStack2 = this.getStackInHand(hand);
+				if (itemStack2.isOf(Items.TOTEM_OF_UNDYING) || itemStack2.isOf(fpaore.mayor_of_undying)) {
+					itemStack = itemStack2.copy();
+					itemStack2.decrement(1);
+					break;
+				}
+			}
 
+			if(itemStack != null){
+				if (itemStack.isOf(Items.TOTEM_OF_UNDYING)) {
 
-		ItemStack offhand_stack = ((LivingEntityMixin) entity).getStackInHand(Hand.OFF_HAND);
+					this.setHealth(1.0F);
+					this.clearStatusEffects();
+					this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 900, 1));
+					this.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 100, 1));
+					this.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 800, 0));
+					((LivingEntity) (Object) this).getWorld().sendEntityStatus(((LivingEntity)(Object)this), (byte)35);
+				}
+				if(itemStack.isOf(fpaore.mayor_of_undying)){
 
-		ItemStack mainhand_stack = ((LivingEntityMixin) entity).getStackInHand(Hand.MAIN_HAND);
-
-
-		if ((offhand_stack.getItem() == fpaore.mayor_of_undying) || (mainhand_stack.getItem() == fpaore.mayor_of_undying)) {
-
-
-			if (damageSource_1.getType().equals(DamageTypes.OUT_OF_WORLD)) {
-
-				callback.setReturnValue(false);
-			} else {
-
-				if ((offhand_stack.getItem() == fpaore.mayor_of_undying)) {
-					offhand_stack.decrement(1);
-				} else if ((mainhand_stack.getItem() == fpaore.mayor_of_undying)) {
-
-					mainhand_stack.decrement(1);
+					this.setHealth(10.0F);
+					this.clearStatusEffects();
+					this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 1205, 4));
+					this.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 1500, 5));
+					this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 500, 2));
+					this.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 500, 2));
+					((LivingEntity) (Object) this).getWorld().sendEntityStatus(((LivingEntity)(Object)this), (byte)100);
 
 				}
-
-				this.setHealth(10.0F);
-				this.clearStatusEffects();
-				this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 1205, 4));
-				this.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 1500, 5));
-				this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 500, 2));
-				this.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 500, 2));
-				this.getWorld().sendEntityStatus(this, (byte) 69);
-				callback.setReturnValue(true);
 			}
+
+			cir.setReturnValue(itemStack != null);
 		}
 	}
+
 }

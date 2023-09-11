@@ -17,6 +17,7 @@ import net.minecraft.network.NetworkThreadUtils;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.listener.TickablePacketListener;
 import net.minecraft.network.packet.s2c.play.EntityStatusS2CPacket;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Final;
@@ -30,7 +31,8 @@ import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayNetworkHandler.class)
-public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketListener, ClientPlayPacketListener {
+public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketListener,
+        ClientPlayPacketListener {
 
 
 
@@ -41,30 +43,48 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 
     @Shadow private ClientWorld world;
 
+
     @Shadow
-    protected static ItemStack getActiveTotemOfUndying(PlayerEntity player) {
+    private static ItemStack getActiveTotemOfUndying(PlayerEntity player) {
         return null;
     }
 
 
-
     @Inject(at = @At("HEAD"), method = "onEntityStatus", cancellable = true)
-    public void onEntityStatusMayor(EntityStatusS2CPacket packet, CallbackInfo ci) {
+    public void onEntityStatus(EntityStatusS2CPacket packet, CallbackInfo ci) {
         NetworkThreadUtils.forceMainThread(packet, this, this.client);
         Entity entity = packet.getEntity(this.world);
         if (entity != null) {
             switch (packet.getStatus()) {
-                case 69:
-                    boolean i = true;
+                case 63: {
+                    this.client.getSoundManager().play(new SnifferDigSoundInstance((SnifferEntity)entity));
+                    break;
+                }
+                case 21: {
+                    this.client.getSoundManager().play(new GuardianAttackSoundInstance((GuardianEntity)entity));
+                    break;
+                }
+                case 35: {
+                    int i = 40;
+                    this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
+                    this.world.playSound(entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ITEM_TOTEM_USE, entity.getSoundCategory(), 1.0f, 1.0f, false);
+                    if (entity != this.client.player) break;
+                    this.client.gameRenderer.showFloatingItem(ClientPlayNetworkHandlerMixin.getActiveTotemOfUndying(this.client.player));
+                    break;
+                }
+                case 100:
+                    int i = 40;
                     this.client.particleManager.addEmitter(entity, fpaore.SQUIGGLETHINGM, 30);
                     this.world.playSound(entity.getX(), entity.getY(), entity.getZ(), ModSounds.MAYOR_TOTEM_USE, entity.getSoundCategory(), 1.0F, 1.0F, false);
                     if (entity == this.client.player) {
-                        this.client.gameRenderer.showFloatingItem(getActiveTotemOfUndyingM(this.client.player));
+                        this.client.gameRenderer.showFloatingItem(ClientPlayNetworkHandlerMixin.getActiveTotemOfUndyingM(this.client.player));
                     }
                     break;
+                default: {
+                    entity.handleStatus(packet.getStatus());
+                }
             }
         }
-
     }
     private static ItemStack getActiveTotemOfUndyingM(PlayerEntity player) {
         Hand[] var1 = Hand.values();
