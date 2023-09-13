@@ -1,5 +1,6 @@
 package com.figure8;
 
+import com.figure8.Networktests.ModNetworkRegisters;
 import com.figure8.blocks.*;
 
 
@@ -324,7 +325,7 @@ public class fpaore implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
-
+		ModNetworkRegisters.registerC2SPackets();
 		ModLootTableModifiers.modifyLootTables();
 		ModItemGroup.registerItemGroups();
 		ModWorldGeneration.generateModWorldGen();

@@ -1,8 +1,13 @@
 package com.figure8.blocks;
 
+import com.figure8.Networktests.ModNetworkRegisters;
 import com.figure8.effects.ModEffects;
 import com.figure8.fpaore;
 import com.figure8.sound.ModSounds;
+import com.figure8.util.IEntityDataSaver;
+import com.figure8.util.SquiggleAdd;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
@@ -21,6 +26,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -49,8 +55,6 @@ import java.util.List;
 
 public class squiggleblock
         extends HorizontalFacingBlock {
-    public static final IntProperty EGGS = Properties.EGGS;
-
     protected static final VoxelShape BOUNDING_SHAPE = Block.createCuboidShape(4, 2, 4, 12, 13, 12);
     public squiggleblock(AbstractBlock.Settings settings) {
         super(settings);
@@ -83,12 +87,13 @@ public class squiggleblock
         if (entity instanceof LivingEntity && !(livingEntity = (LivingEntity)entity).isInvulnerableTo(world.getDamageSources().wither())) {
             livingEntity.addStatusEffect(new StatusEffectInstance(ModEffects.HPSQUIGGLEHEAL, 1, 1, false, false, false));
         }
+
     }
 
 
     private void breakSquiggle(World world, BlockPos pos, BlockState state) {
 
-
+        ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
         world.playSound(null, pos, ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.7f, 0.75f + world.random.nextFloat() * 0.5f);
         world.setBlockState(pos, (BlockState)state, Block.NOTIFY_LISTENERS);
         world.breakBlock(pos, false);
@@ -97,13 +102,12 @@ public class squiggleblock
         world.addParticle(fpaore.SQUIGGLETHING, (double)pos.getX() + 0.05, (double)pos.getY() + 0.05, (double)pos.getZ() + 0.05, 0.0, -0.05, 0.0);
         world.addParticle(fpaore.SQUIGGLETHING, (double)pos.getX() + 0.05, (double)pos.getY() + 0.05, (double)pos.getZ() + 0.05, 0.0, -0.05, 0.0);
         world.addParticle(fpaore.SQUIGGLETHING, (double)pos.getX() + 0.05, (double)pos.getY() + 0.05, (double)pos.getZ() + 0.05, 0.0, 0.0, 0.05);
-
     }
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
+
         super.afterBreak(world, player, pos, state, blockEntity, tool);
-        this.breakSquiggle(world, pos, state);
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {

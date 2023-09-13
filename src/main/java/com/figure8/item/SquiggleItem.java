@@ -1,7 +1,10 @@
 package com.figure8.item;
 
+import com.figure8.Networktests.ModNetworkRegisters;
 import com.figure8.entity.ThrowableBlobEntity;
 import com.figure8.sound.ModSounds;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -34,7 +37,7 @@ public class SquiggleItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand ) {
         final ItemStack stack = user.getStackInHand(hand);
         world.playSound(null, user.getX(), user.getY(), user.getZ(), ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.0f, 0.75f + world.random.nextFloat() * 0.5f);
-
+        ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
         if (!user.isCreative()) {
             stack.decrement(1);
         }

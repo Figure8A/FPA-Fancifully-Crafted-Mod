@@ -1,5 +1,6 @@
 package com.figure8;
 
+import com.figure8.Networktests.ModNetworkRegisters;
 import com.figure8.blocks.woodtype.ModWoodType;
 
 import com.figure8.entity.ModBoats;
@@ -31,7 +32,7 @@ public class fpaoreClient implements ClientModInitializer {
 
 		EntityRendererRegistry.register(THROWABLE_BLOB_ENTITY, FlyingItemEntityRenderer::new);
 
-
+		ModNetworkRegisters.registerS2CPackets();
 
 		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
 		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.sketch, RenderLayer.getCutout());
