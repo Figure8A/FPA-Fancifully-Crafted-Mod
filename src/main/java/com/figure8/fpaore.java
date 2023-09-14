@@ -13,6 +13,7 @@ import com.figure8.item.*;
 
 import com.figure8.sound.ModSounds;
 import com.figure8.util.ModLootTableModifiers;
+import com.figure8.util.PlayerCopyHandler;
 import com.figure8.world.gen.ModWorldGeneration;
 import com.figure8.world.tree.fwoodSaplingGenerator;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
@@ -21,6 +22,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -329,7 +331,7 @@ public class fpaore implements ModInitializer {
 		ModLootTableModifiers.modifyLootTables();
 		ModItemGroup.registerItemGroups();
 		ModWorldGeneration.generateModWorldGen();
-
+		ServerPlayerEvents.COPY_FROM.register(new PlayerCopyHandler());
 		dispenser.registerDefaults();
 
 		ModFlammableBlockRegistry.registerFlammableBlocks();
