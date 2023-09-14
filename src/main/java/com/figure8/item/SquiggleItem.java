@@ -37,11 +37,11 @@ public class SquiggleItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand ) {
         final ItemStack stack = user.getStackInHand(hand);
         world.playSound(null, user.getX(), user.getY(), user.getZ(), ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.0f, 0.75f + world.random.nextFloat() * 0.5f);
-        ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
         if (!user.isCreative()) {
             stack.decrement(1);
         }
-        if (!world.isClient()) {
+        if (world.isClient()) {
+            ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
             user.heal(1);
         }
         return TypedActionResult.success(stack, world.isClient());

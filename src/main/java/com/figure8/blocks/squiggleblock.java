@@ -93,7 +93,9 @@ public class squiggleblock
 
     private void breakSquiggle(World world, BlockPos pos, BlockState state) {
 
-        ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
+        if (world.isClient()) {
+            ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
+        }
         world.playSound(null, pos, ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.7f, 0.75f + world.random.nextFloat() * 0.5f);
         world.setBlockState(pos, (BlockState)state, Block.NOTIFY_LISTENERS);
         world.breakBlock(pos, false);
