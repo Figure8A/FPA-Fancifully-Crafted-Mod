@@ -1,23 +1,15 @@
 package com.figure8.util;
 
 import com.figure8.Networktests.ModNetworkRegisters;
-import com.figure8.fpaore;
-import com.figure8.sound.ModSounds;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class SquiggleAdd {
+
+
     public static int addSquiggles(IEntityDataSaver player, int amount) {
         NbtCompound nbt = player.getPersistentData();
         int squiggles = nbt.getInt("squiggles");

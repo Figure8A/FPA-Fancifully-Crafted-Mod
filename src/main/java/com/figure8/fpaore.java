@@ -12,6 +12,7 @@ import com.figure8.entity.*;
 import com.figure8.item.*;
 
 import com.figure8.sound.ModSounds;
+
 import com.figure8.util.ModLootTableModifiers;
 import com.figure8.util.PlayerCopyHandler;
 import com.figure8.world.gen.ModWorldGeneration;
@@ -46,6 +47,7 @@ import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.*;
 import net.minecraft.resource.featuretoggle.FeatureFlag;
+import net.minecraft.scoreboard.ScoreboardCriterion;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
@@ -71,10 +73,6 @@ public class fpaore implements ModInitializer {
 
 	public static final String MOD_ID = "fpaore";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-
-
-
 
 
 	public static final Item lounge_inside_music_disk = new MusicDiscItem(6, ModSounds.lounge_inside, new FabricItemSettings().maxCount(1), 19);

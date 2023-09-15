@@ -36,8 +36,6 @@ public class SquiggleC2SPacket {
         SquiggleAdd.addSquiggles(((IEntityDataSaver) player), 1);
 
 
-
-
         SquiggleAdd.syncSquiggles(((IEntityDataSaver) player).getPersistentData().getInt("squiggles"), player);
 
         NbtCompound nbt = ((IEntityDataSaver) player).getPersistentData();
@@ -46,7 +44,7 @@ public class SquiggleC2SPacket {
         int step = 20;
         for (int i = 0; i <= 100000; i += step)
             if (squiggles == i) {
-                world.addParticle(ParticleTypes.TOTEM_OF_UNDYING, (double)player.getX() + 0.05, (double)player.getY() + 0.05, (double)player.getZ() + 0.05, 0.0, 0.0, 0.05);
+                world.addParticle(ParticleTypes.TOTEM_OF_UNDYING, true, player.getX() + 0, player.getY() + 1, player.getZ() + 0, 0.0, 2.0, 0.0);
                 ItemStack item = new ItemStack(fpaore.mayor_of_undying);
                 player.getInventory().offer(item, true);
                 world.playSound(null, player.getBlockPos(), ModSounds.EXTRALIFE, SoundCategory.MASTER, 2f, 1.0f);
