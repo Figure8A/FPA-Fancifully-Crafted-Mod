@@ -2,6 +2,7 @@ package com.figure8.entity;
 
 import com.figure8.blocks.Wallinkblot;
 import com.figure8.fpaore;
+import com.figure8.sound.ModSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -17,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
@@ -60,6 +62,7 @@ public class ThrowableBlobEntity extends ThrownItemEntity {
     @Override
     protected void onBlockHit(BlockHitResult blockHitResult) {
         var world = this.getWorld();
+        var pos = this.getBlockPos();
         super.onBlockHit(blockHitResult);
         if (!world.isClient()) {
             final Direction dir = blockHitResult.getSide();
@@ -67,9 +70,10 @@ public class ThrowableBlobEntity extends ThrownItemEntity {
             if (world.getBlockState(sidePos).isAir()) {
                 switch (dir) {
                     case UP -> {
-                        final BlockState torch = fpaore.inkblot.getDefaultState();
-                        if (torch.canPlaceAt(world, sidePos)) {
-                            world.setBlockState(sidePos, torch);
+                        final BlockState blobs = fpaore.inkblot.getDefaultState();
+                        if (blobs.canPlaceAt(world, sidePos)) {
+                            world.setBlockState(sidePos, blobs);
+                            world.playSound(null, pos, ModSounds.INKHITS, SoundCategory.PLAYERS, 2f, 1f);
                         } else {
                             onFailed();
                         }
@@ -79,6 +83,7 @@ public class ThrowableBlobEntity extends ThrownItemEntity {
                         final BlockState state = fpaore.inkblot_wall.getDefaultState().with(Wallinkblot.FACING, dir);
                         if (state.canPlaceAt(world, sidePos)) {
                             world.setBlockState(sidePos, state);
+                            world.playSound(null, pos, ModSounds.INKHITS, SoundCategory.PLAYERS, 2f, 1f);
                         } else {
                             onFailed();
                         }
@@ -91,7 +96,11 @@ public class ThrowableBlobEntity extends ThrownItemEntity {
     }
 
     void onFailed() {
+        var world = this.getWorld();
+        var pos = this.getBlockPos();
         drop();
+        world.playSound(null, pos, ModSounds.INKFAIL, SoundCategory.PLAYERS, 4f, 1f);
+
     }
     @Override
     protected void onCollision(HitResult hitResult) {
@@ -106,8 +115,12 @@ public class ThrowableBlobEntity extends ThrownItemEntity {
 
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
+        var world = this.getWorld();
+        var pos = this.getBlockPos();
         super.onEntityHit(entityHitResult);
         entityHitResult.getEntity().damage(this.getDamageSources().thrown(this, this.getOwner()), 4.0f);
+        world.playSound(null, pos, ModSounds.INKHITS, SoundCategory.PLAYERS, 2f, 1f);
+
     }
 
 

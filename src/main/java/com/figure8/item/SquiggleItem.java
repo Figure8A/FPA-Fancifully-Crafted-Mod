@@ -2,6 +2,7 @@ package com.figure8.item;
 
 import com.figure8.Networktests.ModNetworkRegisters;
 import com.figure8.entity.ThrowableBlobEntity;
+import com.figure8.fpaore;
 import com.figure8.sound.ModSounds;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -43,6 +44,11 @@ public class SquiggleItem extends Item {
         if (world.isClient()) {
             user.heal(1);
             ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
+            world.addParticle(fpaore.SQUIGGLETHINGM, (double)user.getX() + 0.5, (double)user.getY() + 0.5, (double)user.getZ() + 1, 0, 0, -0.0005);
+            world.addParticle(fpaore.SQUIGGLETHING, (double)user.getX() + 0.05, (double)user.getY() + 0.05, (double)user.getZ() + 0.05, 0.05, 0.05, 0.05);
+            world.addParticle(fpaore.SQUIGGLETHING, (double)user.getX() + 0.05, (double)user.getY() + 0.05, (double)user.getZ() + 0.05, 0.0, -0.05, 0.0);
+            world.addParticle(fpaore.SQUIGGLETHING, (double)user.getX() + 0.05, (double)user.getY() + 0.05, (double)user.getZ() + 0.05, 0.0, -0.05, 0.0);
+            world.addParticle(fpaore.SQUIGGLETHING, (double)user.getX() + 0.05, (double)user.getY() + 0.05, (double)user.getZ() + 0.05, 0.0, 0.0, 0.05);
         }
         if (!world.isClient()) {
             user.heal(1);

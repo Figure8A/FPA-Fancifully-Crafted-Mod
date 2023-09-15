@@ -100,5 +100,25 @@
     "sounds": [
       "fpaore:mayor_totem_use"
     ]
+  },
+  "extralife": {
+    "sounds": [
+      "fpaore:extralife"
+    ]
+  },
+  "faillinkthrow": {
+    "sounds": [
+      "fpaore:faillinkthrow"
+    ]
+  },
+  "inkland": {
+    "sounds": [
+      "fpaore:inkland"
+    ]
+  },
+  "inktoss": {
+    "sounds": [
+      "fpaore:inktoss"
+    ]
   }
 }

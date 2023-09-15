@@ -52,7 +52,7 @@ public class ModLootTableModifiers {
             if(GRASS_BLOCK_ID.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(0.35f)) // Drops 35% of the time
+                        .conditionally(RandomChanceLootCondition.builder(0.10f)) // Drops 35% of the time
                         .with(ItemEntry.builder(fpaore.squiggle))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)).build());
                 tableBuilder.pool(poolBuilder.build());

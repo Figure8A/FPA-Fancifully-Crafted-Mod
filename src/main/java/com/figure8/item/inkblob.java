@@ -2,6 +2,7 @@ package com.figure8.item;
 
 
 import com.figure8.entity.ThrowableBlobEntity;
+import com.figure8.sound.ModSounds;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 
@@ -26,7 +27,7 @@ public class inkblob extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         final ItemStack stack = user.getStackInHand(hand);
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+        world.playSound(null, user.getX(), user.getY(), user.getZ(), ModSounds.INKTOSS, SoundCategory.NEUTRAL, 2.0F, 1.0F);
         if (!user.isCreative()) {
             stack.decrement(1);
         }

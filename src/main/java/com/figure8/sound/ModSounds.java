@@ -34,6 +34,11 @@ public class ModSounds {
 
     public static SoundEvent FOOTSTEP = registerSoundEvent("footstep");
     public static SoundEvent MAYOR_TOTEM_USE = registerSoundEvent("mayor_totem_use");
+    public static SoundEvent EXTRALIFE = registerSoundEvent("extralife");
+    public static SoundEvent INKFAIL = registerSoundEvent("faillinkthrow");
+    public static SoundEvent INKTOSS = registerSoundEvent("inktoss");
+    public static SoundEvent INKHITS = registerSoundEvent("inkland");
+
     public static final BlockSoundGroup BRADBLOCK_BLOCK_SOUNDS = new BlockSoundGroup(2f, 1f,
             ModSounds.BRADBLOCK_BLOCK_BREAK, ModSounds.FOOTSTEP, ModSounds.BRADBLOCK_BLOCK_PLACE, ModSounds.BRADBLOCK_BLOCK_WALK,ModSounds.BRADBLOCK_BLOCK_WALK);
 

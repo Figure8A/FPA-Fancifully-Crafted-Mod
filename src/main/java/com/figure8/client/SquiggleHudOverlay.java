@@ -35,7 +35,7 @@ public class SquiggleHudOverlay implements HudRenderCallback {
         var textRenderer = MinecraftClient.getInstance();
         int squiggle = ((IEntityDataSaver) MinecraftClient.getInstance().player).getPersistentData().getInt("squiggles");
         RenderSystem.setShaderTexture(0, SQUIGGLEAMOUNT);
-        context.drawTexture(SQUIGGLEAMOUNT, x+92, y-18, 0, 0, 32, 16, 32, 16);
+        context.drawTexture(SQUIGGLEAMOUNT, x+92, y-18, 0, 0, 80, 16, 80, 16);
         context.drawTextWithShadow(client.textRenderer, String.valueOf(squiggle), x+121, y-14, 0xFFFFFF);
 
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);

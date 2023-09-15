@@ -15,16 +15,20 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Position;
+import net.minecraft.util.math.Vec3d;
 
 public class SquiggleC2SPacket {
     public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
                                PacketByteBuf buf, PacketSender responseSender) {
         // Everything here happens ONLY on the Server!
         ServerWorld world = (ServerWorld) player.getWorld();
+        BlockPos pos = player.getBlockPos();
+
             // Notify the
 
             // actually add the water level to the player
-            SquiggleAdd.addSquiggles(((IEntityDataSaver) player), 1);
+            SquiggleAdd.addSquiggles(((IEntityDataSaver) player), 1, world, pos);
 
 
 
