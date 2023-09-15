@@ -3,6 +3,7 @@ package com.figure8;
 import com.figure8.Networktests.ModNetworkRegisters;
 import com.figure8.blocks.woodtype.ModWoodType;
 
+import com.figure8.client.SquiggleHudOverlay;
 import com.figure8.entity.ModBoats;
 import com.figure8.util.ClientPlayConnectionJoin;
 import com.figure8.util.PlayerCopyHandler;
@@ -12,8 +13,10 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.render.RenderLayer;
 
@@ -36,6 +39,7 @@ public class fpaoreClient implements ClientModInitializer {
 
 		EntityRendererRegistry.register(THROWABLE_BLOB_ENTITY, FlyingItemEntityRenderer::new);
 
+		HudRenderCallback.EVENT.register(new SquiggleHudOverlay());
 		ModNetworkRegisters.registerS2CPackets();
 
 		ClientPlayConnectionEvents.JOIN.register(new ClientPlayConnectionJoin());
