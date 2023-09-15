@@ -1,10 +1,17 @@
 package com.figure8.Networktests;
 
+import com.figure8.fpaore;
+import com.figure8.sound.ModSounds;
 import com.figure8.util.IEntityDataSaver;
 import com.figure8.util.SquiggleAdd;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -21,20 +28,29 @@ import net.minecraft.util.math.Vec3d;
 public class SquiggleC2SPacket {
     public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
                                PacketByteBuf buf, PacketSender responseSender) {
-        // Everything here happens ONLY on the Server!
+
         ServerWorld world = (ServerWorld) player.getWorld();
-        BlockPos pos = player.getBlockPos();
 
-            // Notify the
 
-            // actually add the water level to the player
-            SquiggleAdd.addSquiggles(((IEntityDataSaver) player), 1, world, pos);
 
+        SquiggleAdd.addSquiggles(((IEntityDataSaver) player), 1);
 
 
 
 
         SquiggleAdd.syncSquiggles(((IEntityDataSaver) player).getPersistentData().getInt("squiggles"), player);
+
+        NbtCompound nbt = ((IEntityDataSaver) player).getPersistentData();
+        int squiggles = nbt.getInt("squiggles");
+        nbt.putInt("squiggles", squiggles);
+        int step = 20;
+        for (int i = 0; i <= 100000; i += step)
+            if (squiggles == i) {
+                world.addParticle(ParticleTypes.TOTEM_OF_UNDYING, (double)player.getX() + 0.05, (double)player.getY() + 0.05, (double)player.getZ() + 0.05, 0.0, 0.0, 0.05);
+                ItemStack item = new ItemStack(fpaore.mayor_of_undying);
+                player.getInventory().offer(item, true);
+                world.playSound(null, player.getBlockPos(), ModSounds.EXTRALIFE, SoundCategory.MASTER, 2f, 1.0f);
+            }
         }
 
 }

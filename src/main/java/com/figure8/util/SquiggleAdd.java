@@ -18,28 +18,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class SquiggleAdd {
-    public static int addSquiggles(IEntityDataSaver player, int amount, ServerWorld world, BlockPos pos) {
+    public static int addSquiggles(IEntityDataSaver player, int amount) {
         NbtCompound nbt = player.getPersistentData();
         int squiggles = nbt.getInt("squiggles");
         squiggles += amount;
         nbt.putInt("squiggles", squiggles);
-        int step = 20;
-        for (int i = 0; i <= 100000; i+=step)
-            if (squiggles == i){
-            MinecraftClient client = MinecraftClient.getInstance();
-            client.particleManager.addEmitter(((ServerPlayerEntity) player), ParticleTypes.TOTEM_OF_UNDYING, 30);
-            ItemStack item = new ItemStack(fpaore.mayor_of_undying);
-            ((ServerPlayerEntity) player).getInventory().offer(item, false);
-            world.playSound(null, pos, ModSounds.EXTRALIFE, SoundCategory.MASTER, 2f, 1.0f);
-        }
         syncSquiggles(squiggles, (ServerPlayerEntity) player);
         return squiggles;
     }
 
 
-    public static void syncSquiggles(int thirst, ServerPlayerEntity player) {
+    public static void syncSquiggles(int squiggles, ServerPlayerEntity player) {
         PacketByteBuf buffer = PacketByteBufs.create();
-        buffer.writeInt(thirst);
+        buffer.writeInt(squiggles);
         ServerPlayNetworking.send(player, ModNetworkRegisters.SQUIGGLE_SYNC_ID, buffer);
     }
 
