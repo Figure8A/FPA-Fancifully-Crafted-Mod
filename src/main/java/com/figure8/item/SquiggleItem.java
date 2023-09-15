@@ -41,7 +41,10 @@ public class SquiggleItem extends Item {
             stack.decrement(1);
         }
         if (world.isClient()) {
+            user.heal(1);
             ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
+        }
+        if (!world.isClient()) {
             user.heal(1);
         }
         return TypedActionResult.success(stack, world.isClient());

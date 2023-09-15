@@ -27,9 +27,7 @@ public class SquiggleC2SPacket {
             SquiggleAdd.addSquiggles(((IEntityDataSaver) player), 1);
 
 
-            // outputting the current thirst level of player
-            player.sendMessage(Text.literal("Squiggles: " + ((IEntityDataSaver) player).getPersistentData().getInt("squiggles"))
-                    .fillStyle(Style.EMPTY.withColor(Formatting.GOLD)), true);
+
 
 
         SquiggleAdd.syncSquiggles(((IEntityDataSaver) player).getPersistentData().getInt("squiggles"), player);

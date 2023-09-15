@@ -10,6 +10,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.Drawable;
+import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.render.GameRenderer;
 
 import net.minecraft.util.Identifier;
@@ -21,13 +22,22 @@ public class SquiggleHudOverlay implements HudRenderCallback {
 
     @Override
     public void onHudRender(DrawContext context, float tickDelta) {
-        var client = MinecraftClient.getInstance();
-        var textRenderer = MinecraftClient.getInstance();
-        int thirst = ((IEntityDataSaver) MinecraftClient.getInstance().player).getPersistentData().getInt("squiggles");
-        RenderSystem.setShaderTexture(0, SQUIGGLEAMOUNT);
+        int x = 0;
+        int y = 0;
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client != null) {
+            int width = client.getWindow().getScaledWidth();
+            int height = client.getWindow().getScaledHeight();
 
-        context.drawTexture(SQUIGGLEAMOUNT, 100, 50, 0, 0, 32, 16, 32, 16);
-        context.drawText(client.textRenderer, String.valueOf(thirst), 100, 60, 16777215, true);
+            x = width / 2;
+            y = height;
+        }
+        var textRenderer = MinecraftClient.getInstance();
+        int squiggle = ((IEntityDataSaver) MinecraftClient.getInstance().player).getPersistentData().getInt("squiggles");
+        RenderSystem.setShaderTexture(0, SQUIGGLEAMOUNT);
+        context.drawTexture(SQUIGGLEAMOUNT, x+92, y-18, 0, 0, 32, 16, 32, 16);
+        context.drawTextWithShadow(client.textRenderer, String.valueOf(squiggle), x+121, y-14, 0xFFFFFF);
+
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
     }
 }
