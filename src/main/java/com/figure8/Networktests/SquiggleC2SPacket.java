@@ -26,6 +26,7 @@ import net.minecraft.util.math.Position;
 import net.minecraft.util.math.Vec3d;
 
 public class SquiggleC2SPacket {
+
     public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
                                PacketByteBuf buf, PacketSender responseSender) {
 
@@ -41,13 +42,15 @@ public class SquiggleC2SPacket {
         NbtCompound nbt = ((IEntityDataSaver) player).getPersistentData();
         int squiggles = nbt.getInt("squiggles");
         nbt.putInt("squiggles", squiggles);
-        int step = 20;
+        int step = 50;
         for (int i = 0; i <= 100000; i += step)
             if (squiggles == i) {
                 world.addParticle(ParticleTypes.TOTEM_OF_UNDYING, true, player.getX() + 0, player.getY() + 1, player.getZ() + 0, 0.0, 2.0, 0.0);
                 ItemStack item = new ItemStack(fpaore.mayor_of_undying);
                 player.getInventory().offer(item, true);
                 world.playSound(null, player.getBlockPos(), ModSounds.EXTRALIFE, SoundCategory.MASTER, 2f, 1.0f);
+                player.sendMessage(Text.literal(player.getEntityName() + "Just Got: " + ((IEntityDataSaver) player).getPersistentData().getInt("squiggles") + " Squiggles!")
+                        .fillStyle(Style.EMPTY.withColor(Formatting.GOLD)), true);
             }
         }
 
