@@ -76,7 +76,8 @@
   "block.fpaore.stripped_fwood_trapdoor":"Stripped Fancy Trapdoor",
   "block.fpaore.squiggleblock":"Floating Squiggle",
   "tooltip.fpaore.squiggle.tooltip": "Right Click To Restore HP!",
-  "effect.fpaore.squiggleheal": "Squiggle",
+  "effect.fpaore.squiggleheal": "Squiggle Healing",
+  "effect.fpaore.squigglehealgreen": "Squiggle Green Healing",
   "item.fpaore.pbradium":"The Purified Essence of Bradium",
   "block.fpaore.spikebuth":"Harming Spike",
   "block.fpaore.fwood_hanging_sign":"Fancy Hanging Sign",
@@ -84,5 +85,6 @@
   "item.fpaore.fwood_chest_boat":"Fancy Chest Boat",
   "item.fpaore.stripped_fwood_boat":"Stripped Fancy Boat",
   "item.fpaore.stripped_fwood_chest_boat":"Stripped Fancy Chest Boat",
+  "block.fpaore.squiggleblockgreen":"Floating Green Squiggle",
   "itemgroup.fpaore": "The Fancy Pants Adventures"
 }

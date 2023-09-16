@@ -18,6 +18,7 @@ import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.FlameParticle;
+import net.minecraft.client.particle.TotemParticle;
 import net.minecraft.client.render.RenderLayer;
 
 import net.minecraft.client.render.TexturedRenderLayers;
@@ -63,6 +64,8 @@ public class fpaoreClient implements ClientModInitializer {
 
 		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHING, FlameParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHINGM, FlameParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHINGGREEN, TotemParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHINGMGREEN, TotemParticle.Factory::new);
 
 		BlockEntityRendererFactories.register(fpaore.MOD_SIGN_BLOCK_ENTITY, SignBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(fpaore.STRIPPED_MOD_SIGN_BLOCK_ENTITY, SignBlockEntityRenderer::new);
