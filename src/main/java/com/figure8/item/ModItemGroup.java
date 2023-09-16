@@ -26,6 +26,7 @@ public class ModItemGroup {    public static ItemGroup fpablocks = Registry.regi
                     entries.add(fpaore.grasspop);
                     entries.add(fpaore.squiggle);
                     entries.add(fpaore.squiggleblock);
+                    entries.add(fpaore.squiggleblockgreen);
                     entries.add(fpaore.icecream);
                     entries.add(fpaore.inkblob);
                     entries.add(fpaore.mayor_of_undying);

@@ -12,17 +12,13 @@ public class ModEffects {
     public static StatusEffect HPSQUIGGLEHEAL;
     public static StatusEffect HPSQUIGGLEHEALGREEN;
 
-    public static StatusEffect registerStatusEffect(String name) {
-        Registry.register(Registries.STATUS_EFFECT, new Identifier(fpaore.MOD_ID, name), new hphealbutfive(StatusEffectCategory.BENEFICIAL, 4056576));
-        return Registry.register(Registries.STATUS_EFFECT, new Identifier(fpaore.MOD_ID, name), new hphealbutone(StatusEffectCategory.BENEFICIAL, 10270440));
 
-
-
-    }
 
 
     public static void registerEffects() {
-        HPSQUIGGLEHEAL = registerStatusEffect("squiggleheal");
-        HPSQUIGGLEHEALGREEN = registerStatusEffect("squigglehealgreen");
+        HPSQUIGGLEHEAL = Registry.register(Registries.STATUS_EFFECT, new Identifier(fpaore.MOD_ID, "squiggleheal"), new hphealbutone(StatusEffectCategory.BENEFICIAL, 10270440));
+
+        HPSQUIGGLEHEALGREEN = Registry.register(Registries.STATUS_EFFECT, new Identifier(fpaore.MOD_ID, "squigglehealgreen"),
+                new hphealbutfive(StatusEffectCategory.BENEFICIAL, 0xc1ffc1));
     }
 }

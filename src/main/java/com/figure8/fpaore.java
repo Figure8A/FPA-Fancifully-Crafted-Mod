@@ -407,7 +407,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "stripped_fwood_planksvar"), stripped_fwood_planksvar);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "squiggleblock"), squiggleblock);
 		Registry.register(Registries.BLOCK, new Identifier("fpaore", "spikebuth"), spikebuth);
-
+		Registry.register(Registries.BLOCK, new Identifier("fpaore", "squiggleblockgreen"), squiggleblockgreen);
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradore"), new BlockItem(BradOre, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradoredsl"), new BlockItem(bradoredsl, new FabricItemSettings()));
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "bradblock"), new BlockItem(bradblock, new FabricItemSettings()));

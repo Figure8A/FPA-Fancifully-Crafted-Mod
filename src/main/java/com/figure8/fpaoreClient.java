@@ -61,11 +61,11 @@ public class fpaoreClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.potted_fwood_sapling, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.potted_fgrass, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.potted_grasspop, RenderLayer.getCutout());
-
+		BlockRenderLayerMap.INSTANCE.putBlock(fpaore.squiggleblockgreen, RenderLayer.getCutout());
 		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHING, FlameParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHINGM, FlameParticle.Factory::new);
-		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHINGGREEN, TotemParticle.Factory::new);
-		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHINGMGREEN, TotemParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHINGGREEN, FlameParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(fpaore.SQUIGGLETHINGMGREEN, FlameParticle.Factory::new);
 
 		BlockEntityRendererFactories.register(fpaore.MOD_SIGN_BLOCK_ENTITY, SignBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(fpaore.STRIPPED_MOD_SIGN_BLOCK_ENTITY, SignBlockEntityRenderer::new);

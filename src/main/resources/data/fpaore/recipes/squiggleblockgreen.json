@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#W#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "fpaore:squiggleblock"
+    },
+    "W": {
+      "item": "fpaore:pbradium"
+    }
+  },
+  "result": {
+    "item": "fpaore:squiggleblockgreen",
+    "count": 8
+  }
+}

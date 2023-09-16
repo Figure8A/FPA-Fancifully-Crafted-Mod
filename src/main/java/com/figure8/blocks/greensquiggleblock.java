@@ -80,11 +80,7 @@ public class greensquiggleblock
             ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
             ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
         }
-        world.playSound(null, pos, ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.7f, 0.75f + world.random.nextFloat() * 0.5f);
-        world.playSound(null, pos, ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.7f, 0.75f + world.random.nextFloat() * 0.5f);
-        world.playSound(null, pos, ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.7f, 0.75f + world.random.nextFloat() * 0.5f);
-        world.playSound(null, pos, ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.7f, 0.75f + world.random.nextFloat() * 0.5f);
-        world.playSound(null, pos, ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.7f, 0.75f + world.random.nextFloat() * 0.5f);
+        world.playSound(null, pos, ModSounds.FIVESQUIGGLE, SoundCategory.NEUTRAL, 2f, 1f);
         world.setBlockState(pos, (BlockState)state, Block.NOTIFY_LISTENERS);
         world.breakBlock(pos, false);
         world.addParticle(fpaore.SQUIGGLETHINGMGREEN, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 1, 0, 0, -0.0005);
@@ -116,7 +112,7 @@ public class greensquiggleblock
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add(Text.literal("Place These Down And Walk Into Them To Restore HP!").formatted(Formatting.DARK_AQUA));
+        tooltip.add(Text.literal("Place These Down And Walk Into Them To Restore 5 HP!").formatted(Formatting.DARK_AQUA));
         super.appendTooltip(stack, world, tooltip, options);
     }
 

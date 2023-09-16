@@ -42,7 +42,7 @@ public class SquiggleC2SPacket {
         NbtCompound nbt = ((IEntityDataSaver) player).getPersistentData();
         int squiggles = nbt.getInt("squiggles");
         nbt.putInt("squiggles", squiggles);
-        int step = 50;
+        int step = 1000;
         for (int i = 0; i <= 100000; i += step)
             if (squiggles == i) {
                 world.addParticle(ParticleTypes.TOTEM_OF_UNDYING, true, player.getX() + 0, player.getY() + 1, player.getZ() + 0, 0.0, 2.0, 0.0);
