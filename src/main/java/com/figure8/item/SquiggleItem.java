@@ -42,6 +42,7 @@ public class SquiggleItem extends Item {
             stack.decrement(1);
         }
         if (world.isClient()) {
+            user.addScore(1);
             user.heal(1);
             ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
             world.addParticle(fpaore.SQUIGGLETHINGM, (double)user.getX() + 0.5, (double)user.getY() + 0.5, (double)user.getZ() + 1, 0, 0, -0.0005);
