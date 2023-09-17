@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.message.MessageType;
+import net.minecraft.network.message.SentMessage;
 import net.minecraft.network.message.SignedMessage;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.MinecraftServer;
@@ -26,6 +27,8 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Position;
 import net.minecraft.util.math.Vec3d;
+
+import java.util.Objects;
 
 import static net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking.getServer;
 
@@ -46,16 +49,16 @@ public class SquiggleC2SPacket {
         NbtCompound nbt = ((IEntityDataSaver) player).getPersistentData();
         int squiggles = nbt.getInt("squiggles");
         nbt.putInt("squiggles", squiggles);
-        int step = 20;
+        int step = 1000;
         for (int i = 0; i <= 100000; i += step)
             if (squiggles == i) {
-                world.addParticle(ParticleTypes.TOTEM_OF_UNDYING, true, player.getX() + 0, player.getY() + 1, player.getZ() + 0, 0.0, 2.0, 0.0);
+                world.spawnParticles(fpaore.SQUIGGLETHINGMGREEN, player.getX(), player.getY(), player.getZ(), 100, 0.5, 0.5, 0.5, 0.1);
                 ItemStack item = new ItemStack(fpaore.mayor_of_undying);
                 player.getInventory().offer(item, true);
                 world.playSound(null, player.getBlockPos(), ModSounds.EXTRALIFE, SoundCategory.MASTER, 2f, 1.0f);
-                assert MinecraftClient.getInstance().player != null;
-                MinecraftClient.getInstance().player.sendMessage(Text.literal(player.getName() + " Just Got: " + ((IEntityDataSaver) player).getPersistentData().getInt("squiggles") + " Squiggles!").fillStyle(Style.EMPTY.withColor(Formatting.GOLD)));
-
+                if(server.isDedicated()){
+                    server.getPlayerManager().broadcast((Text.literal(player.getEntityName() + " Just Got: " + ((IEntityDataSaver) player).getPersistentData().getInt("squiggles") + " Squiggles!").fillStyle(Style.EMPTY.withColor(Formatting.GOLD))), true);
+                }
             }
         }
 
