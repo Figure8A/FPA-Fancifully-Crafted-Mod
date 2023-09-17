@@ -7,14 +7,14 @@
   ],
   "key": {
     "#": {
-      "item": "fpaore:squiggleblock"
+      "item": "fpaore:pbradium"
     },
     "W": {
-      "item": "fpaore:pbradium"
+      "item": "fpaore:squiggleblock"
     }
   },
   "result": {
     "item": "fpaore:squiggleblockgreen",
-    "count": 8
+    "count": 4
   }
 }

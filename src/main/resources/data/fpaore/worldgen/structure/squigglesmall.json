@@ -9,7 +9,7 @@
   "size": 2,
 
 
-  "max_distance_from_center": 10,
+  "max_distance_from_center": 4,
 
   "biomes": "#fpaore:has_structure/squigglesmall",
 
@@ -22,7 +22,7 @@
     "absolute": 3
   },
 
-  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+
 
 
   "use_expansion_hack": false,

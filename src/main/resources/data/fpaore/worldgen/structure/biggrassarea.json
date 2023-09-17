@@ -15,7 +15,7 @@
 
   "step": "surface_structures",
 
-
+  "terrain_adaptation": "none",
 
 
   "start_height": {

@@ -3,19 +3,19 @@
   "type": "minecraft:jigsaw",
 
 
-  "start_pool": "fpaore:squigglemedium/start_pool",
+  "start_pool": "fpaore:squigglelines/start_pool",
 
 
   "size": 2,
 
 
-  "max_distance_from_center": 10,
+  "max_distance_from_center": 35,
 
-  "biomes": "#fpaore:has_structure/squigglemedium",
+  "biomes": "#fpaore:has_structure/squigglelines",
 
-  "step": "surface_structures",
+  "step": "vegetal_decoration",
 
-
+  "terrain_adaptation": "none",
 
 
   "start_height": {

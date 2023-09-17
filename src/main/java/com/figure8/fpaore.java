@@ -239,8 +239,8 @@ public class fpaore implements ModInitializer {
 
 	public static final Block stripped_fwood_button = new ButtonBlock(AbstractBlock.Settings.copy(OAK_BUTTON).noCollision().strength(0.5f), ModBlockSetType.FWOOD, 30, true);
 
-	public static final Block squiggleblock = new squiggleblock(AbstractBlock.Settings.create().noCollision().strength(0.1f).nonOpaque().allowsSpawning(fpaore::never).noBlockBreakParticles());
-	public static final Block squiggleblockgreen = new greensquiggleblock(AbstractBlock.Settings.create().noCollision().strength(0.5f).nonOpaque().allowsSpawning(fpaore::never).noBlockBreakParticles());
+	public static final Block squiggleblock = new squiggleblock(AbstractBlock.Settings.create().noCollision().strength(0.1f).nonOpaque().allowsSpawning(fpaore::never).noBlockBreakParticles().luminance(state -> 8));
+	public static final Block squiggleblockgreen = new greensquiggleblock(AbstractBlock.Settings.create().noCollision().strength(0.5f).nonOpaque().allowsSpawning(fpaore::never).noBlockBreakParticles().luminance(state -> 8));
 
 
 	public static final RegistryKey<PlacedFeature> CUSTOM_ORE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier("fpaore","custombore"));
@@ -325,6 +325,7 @@ public class fpaore implements ModInitializer {
 
 	public static final DefaultParticleType SQUIGGLETHINGGREEN = FabricParticleTypes.simple();
 	public static final DefaultParticleType SQUIGGLETHINGMGREEN = FabricParticleTypes.simple();
+
 
 	@Override
 	public void onInitialize() {
