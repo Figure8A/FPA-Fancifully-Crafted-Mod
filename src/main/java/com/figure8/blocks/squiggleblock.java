@@ -100,7 +100,6 @@ public class squiggleblock
         if (world.isClient()) {
             ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
         }
-        world.playSound(null, pos, ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.7f, 0.75f + world.random.nextFloat() * 0.5f);
         world.setBlockState(pos, (BlockState)state, Block.NOTIFY_LISTENERS);
         world.breakBlock(pos, false);
         world.addParticle(fpaore.SQUIGGLETHINGM, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 1, 0, 0, -0.0005);

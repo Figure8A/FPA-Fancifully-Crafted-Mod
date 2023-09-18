@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 
 public class ModPotions {
     public static final Potion SQUIGGLE_POTION = registerPotion("squiggle_potion",
-            new Potion(new StatusEffectInstance(ModEffects.HPSQUIGGLEHEAL, 150, 0)));
+            new Potion(new StatusEffectInstance(ModEffects.HPSQUIGGLEHEAL, 30, 0)));
 
     private static Potion registerPotion(String name, Potion potion) {
         return Registry.register(Registries.POTION, new Identifier(fpaore.MOD_ID, name), potion);
