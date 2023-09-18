@@ -48,7 +48,7 @@ public class SquiggleSet {
         if (targets.size() == 1) {
             source.sendFeedback(() -> Text.literal("Set Squiggle Amount " + amount), true);
         } else {
-            source.sendFeedback(() -> Text.literal("Set Squiggle Amount " + amount), true);
+            source.sendFeedback(() -> Text.literal("Set Squiggle Amounts " + amount), true);
         }
         return targets.size();
     }
