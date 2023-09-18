@@ -25,5 +25,4 @@ public class SquiggleAdd {
         buffer.writeInt(squiggles);
         ServerPlayNetworking.send(player, ModNetworkRegisters.SQUIGGLE_SYNC_ID, buffer);
     }
-
 }
