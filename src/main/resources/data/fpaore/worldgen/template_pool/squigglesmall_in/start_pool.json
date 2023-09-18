@@ -1,0 +1,27 @@
+{
+
+  "name": "fpaore:squigglesmall_in/start_pool",
+
+
+  "fallback": "minecraft:empty",
+
+  "elements": [
+    {
+
+      "weight": 1,
+      "element": {
+
+        "location": "fpaore:squigglesmall_in",
+
+
+        "processors": "minecraft:empty",
+
+
+        "projection": "rigid",
+
+
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

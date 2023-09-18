@@ -6,6 +6,7 @@
     "ExampleMixin",
     "LivingEntityMixin",
     "ModEntityDataSaverMixin"
+
   ],
   "client": [
     "ClientPlayNetworkHandlerMixin",

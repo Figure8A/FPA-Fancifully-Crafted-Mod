@@ -1,6 +1,7 @@
 package com.figure8;
 
 import com.figure8.Networktests.ModNetworkRegisters;
+import com.figure8.Networktests.ServerEntityWorldChangeEventsHandler;
 import com.figure8.blocks.*;
 
 
@@ -15,6 +16,7 @@ import com.figure8.sound.ModSounds;
 
 import com.figure8.util.ModLootTableModifiers;
 import com.figure8.util.PlayerCopyHandler;
+import com.figure8.util.PlayerRespawnHandler;
 import com.figure8.world.gen.ModWorldGeneration;
 import com.figure8.world.tree.fwoodSaplingGenerator;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
@@ -23,6 +25,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -335,8 +338,9 @@ public class fpaore implements ModInitializer {
 		ModItemGroup.registerItemGroups();
 		ModWorldGeneration.generateModWorldGen();
 		ServerPlayerEvents.COPY_FROM.register(new PlayerCopyHandler());
+		ServerPlayerEvents.AFTER_RESPAWN.register(new PlayerRespawnHandler());
 		dispenser.registerDefaults();
-
+		ServerEntityWorldChangeEvents.AFTER_PLAYER_CHANGE_WORLD.register(new ServerEntityWorldChangeEventsHandler());
 		ModFlammableBlockRegistry.registerFlammableBlocks();
 		StrippableBlockRegistry.register(fpaore.fwood_log, fpaore.stripped_fwood_log);
 		StrippableBlockRegistry.register(fpaore.fwood_wood, fpaore.stripped_fwood_wood);

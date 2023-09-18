@@ -10,6 +10,7 @@ public class ModNetworkRegisters {
     public static final Identifier SQUIGGLE_SYNC_ID = new Identifier(fpaore.MOD_ID, "squiggle_sync");
 
 
+
     public static void registerC2SPackets() {
 
         ServerPlayNetworking.registerGlobalReceiver(SQUIGGLE_ID, SquiggleC2SPacket::receive);
@@ -17,6 +18,7 @@ public class ModNetworkRegisters {
 
     public static void registerS2CPackets() {
         ClientPlayNetworking.registerGlobalReceiver(SQUIGGLE_SYNC_ID, SquiggleSyncDataS2CPacket::receive);
+
 
     }
 }
