@@ -8,10 +8,13 @@ import com.figure8.blocks.*;
 import com.figure8.blocks.signstuffs.*;
 import com.figure8.blocks.woodtype.ModBlockSetType;
 import com.figure8.blocks.woodtype.ModWoodType;
+import com.figure8.commands.SquiggleSet;
 import com.figure8.effects.ModEffects;
 import com.figure8.entity.*;
 import com.figure8.item.*;
 
+import com.figure8.mixin.BrewingRecipeRegistryMixin;
+import com.figure8.potion.ModPotions;
 import com.figure8.sound.ModSounds;
 
 import com.figure8.util.ModLootTableModifiers;
@@ -25,6 +28,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -32,6 +36,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
@@ -48,6 +53,7 @@ import net.minecraft.item.*;
 
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.potion.Potions;
 import net.minecraft.registry.*;
 import net.minecraft.resource.featuretoggle.FeatureFlag;
 import net.minecraft.scoreboard.ScoreboardCriterion;
@@ -57,6 +63,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
+import net.minecraft.village.TradeOffer;
+import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
@@ -320,8 +328,61 @@ public class fpaore implements ModInitializer {
 	private static Block registerBlockWithoutBlockItem(String name, Block block) {
 		return Registry.register(Registries.BLOCK, new Identifier(fpaore.MOD_ID, name), block);
 	}
+	private static void registerPotionRecipes() {
+		BrewingRecipeRegistryMixin.invokeRegisterPotionRecipe(Potions.AWKWARD, fpaore.squiggle, ModPotions.SQUIGGLE_POTION);
+	}
+	private static void registerCustomTrades() {
+		TradeOfferHelper.registerVillagerOffers(VillagerProfession.TOOLSMITH, 4,
+				factories -> {
+					factories.add((entity, random) -> new TradeOffer(
+							new ItemStack(Items.EMERALD, 8),
+							new ItemStack(fpaore.bradium, 1), 4, 7, 0.09f
+					));
+				});
 
-
+		TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 3,
+				factories -> {
+					factories.add((entity, random) -> new TradeOffer(
+							new ItemStack(Items.EMERALD, 10),
+							new ItemStack(fpaore.bradium, 2), 3, 6, 0.09f
+					));
+				});
+		TradeOfferHelper.registerVillagerOffers(VillagerProfession.WEAPONSMITH, 3,
+				factories -> {
+					factories.add((entity, random) -> new TradeOffer(
+							new ItemStack(Items.EMERALD, 6),
+							new ItemStack(fpaore.bradium, 1), 4, 10, 0.08f
+					));
+				});
+		TradeOfferHelper.registerVillagerOffers(VillagerProfession.MASON, 2,
+				factories -> {
+					factories.add((entity, random) -> new TradeOffer(
+							new ItemStack(Items.EMERALD, 1),
+							new ItemStack(fpaore.fpagrounda, 8), 10, 5, 0.02f
+					));
+				});
+		TradeOfferHelper.registerWanderingTraderOffers(1,
+				factories -> {
+					factories.add((entity, random) -> new TradeOffer(
+							new ItemStack(Items.EMERALD, 1),
+							new ItemStack(fpaore.fwood_planks, 32),
+							1, 12, 0.075f));
+				});
+		TradeOfferHelper.registerWanderingTraderOffers(1,
+				factories -> {
+					factories.add((entity, random) -> new TradeOffer(
+							new ItemStack(Items.EMERALD, 5),
+							new ItemStack(fpaore.fwood_sapling, 1),
+							1, 12, 0.04f));
+				});
+		TradeOfferHelper.registerWanderingTraderOffers(1,
+				factories -> {
+					factories.add((entity, random) -> new TradeOffer(
+							new ItemStack(Items.EMERALD, 1),
+							new ItemStack(fpaore.inkblob, 16),
+							8, 5, 0.075f));
+				});
+	}
 
 	public static final DefaultParticleType SQUIGGLETHING = FabricParticleTypes.simple();
 	public static final DefaultParticleType SQUIGGLETHINGM = FabricParticleTypes.simple();
@@ -332,7 +393,7 @@ public class fpaore implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-
+		CommandRegistrationCallback.EVENT.register(SquiggleSet::register);
 		ModNetworkRegisters.registerC2SPackets();
 		ModLootTableModifiers.modifyLootTables();
 		ModItemGroup.registerItemGroups();
@@ -348,7 +409,9 @@ public class fpaore implements ModInitializer {
 		StrippableBlockRegistry.register(fpaore.packed_fpvground_column, fpaore.packed_fpvground);
 		StrippableBlockRegistry.register(fpaore.stripped_fwood_planks, fpaore.stripped_fwood_planksvar);
 		ModEffects.registerEffects();
-
+		ModPotions.registerPotions();
+		registerPotionRecipes();
+		registerCustomTrades();
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier("fpaore", "squigglething"), SQUIGGLETHING);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier("fpaore", "squigglethingm"), SQUIGGLETHINGM);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier("fpaore", "squigglethinggreen"), SQUIGGLETHINGGREEN);

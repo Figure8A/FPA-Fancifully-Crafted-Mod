@@ -22,7 +22,7 @@
     "absolute": 3
   },
 
-
+  "project_start_to_heightmap": "MOTION_BLOCKING_NO_LEAVES",
 
 
   "use_expansion_hack": false,

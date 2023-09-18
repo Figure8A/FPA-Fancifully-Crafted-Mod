@@ -86,5 +86,8 @@
   "item.fpaore.stripped_fwood_boat":"Stripped Fancy Boat",
   "item.fpaore.stripped_fwood_chest_boat":"Stripped Fancy Chest Boat",
   "block.fpaore.squiggleblockgreen":"Floating Green Squiggle",
+  "item.minecraft.potion.effect.squiggle_potion": "Squiggle Potion",
+  "item.minecraft.splash_potion.effect.squiggle_potion": "Squiggle Splash Potion",
+  "item.minecraft.lingering_potion.effect.squiggle_potion": "Squiggle Lingering Potion",
   "itemgroup.fpaore": "The Fancy Pants Adventures"
 }

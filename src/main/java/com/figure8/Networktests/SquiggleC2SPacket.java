@@ -50,7 +50,7 @@ public class SquiggleC2SPacket {
         int squiggles = nbt.getInt("squiggles");
         nbt.putInt("squiggles", squiggles);
         int step = 1000;
-        for (int i = 0; i <= 100000; i += step)
+        for (int i = 0; i <= 10000000; i += step)
             if (squiggles == i) {
                 world.spawnParticles(fpaore.SQUIGGLETHINGMGREEN, player.getX(), player.getY(), player.getZ(), 100, 0.5, 0.5, 0.5, 0.1);
                 ItemStack item = new ItemStack(fpaore.mayor_of_undying);
