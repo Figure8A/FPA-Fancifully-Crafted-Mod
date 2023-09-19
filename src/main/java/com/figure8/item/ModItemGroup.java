@@ -1,8 +1,10 @@
 package com.figure8.item;
 
 import com.figure8.fpaore;
+import com.figure8.potion.ModPotions;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
@@ -92,13 +94,6 @@ public class ModItemGroup {    public static ItemGroup fpablocks = Registry.regi
                     entries.add(fpaore.fchiseled_sandstone);
                     entries.add(fpaore.smoothsandstone_verticalslab);
                     entries.add(fpaore.sandstonebedrock);
-
-
-
-
-
-
-
                 }).build());
 
     public static void registerItemGroups() {

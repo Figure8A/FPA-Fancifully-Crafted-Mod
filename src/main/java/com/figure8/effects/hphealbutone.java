@@ -1,6 +1,9 @@
 package com.figure8.effects;
 
+import com.figure8.Networktests.ModNetworkRegisters;
 import com.figure8.sound.ModSounds;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -23,7 +26,6 @@ public class hphealbutone extends StatusEffect {
         World world = entity.getWorld();
 
         world.playSound(null, BlockPos.ofFloored(entity.getPos()), ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.0f, 0.75f + world.random.nextFloat() * 0.5f);
-
     }
     @Override
     public boolean canApplyUpdateEffect(int pDuration, int pAmplifier) {

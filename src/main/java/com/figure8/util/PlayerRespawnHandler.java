@@ -9,5 +9,6 @@ public class PlayerRespawnHandler implements ServerPlayerEvents.AfterRespawn {
     public void afterRespawn(ServerPlayerEntity oldPlayer, ServerPlayerEntity newPlayer, boolean alive) {
         ((IEntityDataSaver) newPlayer).getPersistentData().putInt("squiggles",
                 ((IEntityDataSaver) oldPlayer).getPersistentData().getInt("squiggles"));
+        SquiggleAdd.syncSquiggles(((IEntityDataSaver) newPlayer).getPersistentData().getInt("squiggles"), newPlayer);
     }
 }

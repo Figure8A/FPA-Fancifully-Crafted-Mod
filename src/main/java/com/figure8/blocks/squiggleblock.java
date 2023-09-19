@@ -89,17 +89,16 @@ public class squiggleblock
         world.breakBlock(pos, false, entity);
         super.onEntityCollision(state, world, pos, entity);
         if (entity instanceof LivingEntity && !(livingEntity = (LivingEntity)entity).isInvulnerableTo(world.getDamageSources().wither())) {
-            livingEntity.addStatusEffect(new StatusEffectInstance(ModEffects.HPSQUIGGLEHEAL, 1, 1, false, false, false));
+            livingEntity.addStatusEffect(new StatusEffectInstance(ModEffects.HPSQUIGGLEHEAL, 0, 0, false, false, false));
         }
-
+        if (world.isClient()) {
+            ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
+        }
     }
 
 
     private void breakSquiggle(World world, BlockPos pos, BlockState state) {
 
-        if (world.isClient()) {
-            ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
-        }
         world.setBlockState(pos, (BlockState)state, Block.NOTIFY_LISTENERS);
         world.breakBlock(pos, false);
         world.addParticle(fpaore.SQUIGGLETHINGM, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 1, 0, 0, -0.0005);

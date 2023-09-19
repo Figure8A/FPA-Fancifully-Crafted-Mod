@@ -14,6 +14,7 @@ import com.figure8.entity.*;
 import com.figure8.item.*;
 
 import com.figure8.mixin.BrewingRecipeRegistryMixin;
+import com.figure8.paintings.ModPaintings;
 import com.figure8.potion.ModPotions;
 import com.figure8.sound.ModSounds;
 
@@ -330,7 +331,10 @@ public class fpaore implements ModInitializer {
 	}
 	private static void registerPotionRecipes() {
 		BrewingRecipeRegistryMixin.invokeRegisterPotionRecipe(Potions.AWKWARD, fpaore.squiggle, ModPotions.SQUIGGLE_POTION);
+		BrewingRecipeRegistryMixin.invokeRegisterPotionRecipe(ModPotions.SQUIGGLE_POTION, Items.REDSTONE, ModPotions.SQUIGGLE_POTION_LONG);
+
 	}
+
 	private static void registerCustomTrades() {
 		TradeOfferHelper.registerVillagerOffers(VillagerProfession.TOOLSMITH, 4,
 				factories -> {
@@ -412,6 +416,7 @@ public class fpaore implements ModInitializer {
 		ModPotions.registerPotions();
 		registerPotionRecipes();
 		registerCustomTrades();
+		ModPaintings.registerPaintings();
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier("fpaore", "squigglething"), SQUIGGLETHING);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier("fpaore", "squigglethingm"), SQUIGGLETHINGM);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier("fpaore", "squigglethinggreen"), SQUIGGLETHINGGREEN);

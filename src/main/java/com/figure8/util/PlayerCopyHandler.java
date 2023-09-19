@@ -8,5 +8,6 @@ public class PlayerCopyHandler implements ServerPlayerEvents.CopyFrom {
     public void copyFromPlayer(ServerPlayerEntity oldPlayer, ServerPlayerEntity newPlayer, boolean alive) {
         ((IEntityDataSaver) newPlayer).getPersistentData().putInt("squiggles",
                 ((IEntityDataSaver) oldPlayer).getPersistentData().getInt("squiggles"));
+        SquiggleAdd.syncSquiggles(((IEntityDataSaver) newPlayer).getPersistentData().getInt("squiggles"), newPlayer);
     }
 }

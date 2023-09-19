@@ -90,5 +90,11 @@
   "item.minecraft.splash_potion.effect.squiggle_potion": "Squiggle Splash Potion",
   "item.minecraft.lingering_potion.effect.squiggle_potion": "Squiggle Lingering Potion",
   "item.minecraft.tipped_arrow.effect.squiggle_potion": "Arrow of Squiggle",
+  "item.minecraft.potion.effect.squiggle_potion_long": "Squiggle Potion II",
+  "item.minecraft.splash_potion.effect.squiggle_potion_long": "Squiggle Splash Potion II",
+  "item.minecraft.lingering_potion.effect.squiggle_potion_long": "Squiggle Lingering Potion II",
+  "item.minecraft.tipped_arrow.effect.squiggle_potion_long": "Arrow of Squiggle II",
+  "painting.fpaore.thumbsup.title": "Thumbs Up",
+  "painting.fpaore.thumbsup.author": "Adapted by Figure8",
   "itemgroup.fpaore": "The Fancy Pants Adventures"
 }
