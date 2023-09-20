@@ -56,7 +56,7 @@ public abstract class LivingEntityMixin {
 			for(int var6 = 0; var6 < var5; ++var6) {
 				Hand hand = var4[var6];
 				ItemStack itemStack2 = this.getStackInHand(hand);
-				if (itemStack2.isOf(Items.TOTEM_OF_UNDYING) || itemStack2.isOf(fpaore.mayor_of_undying) || itemStack.isOf(fpaore.pants)) {
+				if (itemStack2.isOf(Items.TOTEM_OF_UNDYING) || itemStack2.isOf(fpaore.mayor_of_undying) || itemStack2.isOf(fpaore.pants)) {
 					itemStack = itemStack2.copy();
 					itemStack2.decrement(1);
 					break;
@@ -74,7 +74,6 @@ public abstract class LivingEntityMixin {
 					((LivingEntity) (Object) this).getWorld().sendEntityStatus(((LivingEntity)(Object)this), (byte)35);
 				}
 				if(itemStack.isOf(fpaore.mayor_of_undying)){
-
 					this.setHealth(10.0F);
 					this.clearStatusEffects();
 					this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 1205, 4));
@@ -84,21 +83,16 @@ public abstract class LivingEntityMixin {
 					((LivingEntity) (Object) this).getWorld().sendEntityStatus(((LivingEntity)(Object)this), (byte)100);
 
 				}
-				ItemStack stack = null;
-
-				if(isPant(stack)) {
-
+				boolean itemStack2 = this.getActiveItem().getItem() instanceof PantsItem;
+				if(itemStack2){
 					this.setHealth(12.0F);
-					this.clearStatusEffects();
 					((LivingEntity) (Object) this).getWorld().sendEntityStatus(((LivingEntity)(Object)this), (byte)69);
+
 				}
 			}
 
 			cir.setReturnValue(itemStack != null);
 		}
-	}
-	private boolean isPant(final ItemStack stack) {
-		return !stack.isEmpty() && stack.getItem() instanceof PantsItem;
 	}
 
 }
