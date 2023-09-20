@@ -94,6 +94,7 @@ public class ModItemGroup {    public static ItemGroup fpablocks = Registry.regi
                     entries.add(fpaore.fchiseled_sandstone);
                     entries.add(fpaore.smoothsandstone_verticalslab);
                     entries.add(fpaore.sandstonebedrock);
+                    entries.add(fpaore.pants);
                 }).build());
 
     public static void registerItemGroups() {

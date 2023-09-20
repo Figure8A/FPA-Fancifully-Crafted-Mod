@@ -394,7 +394,7 @@ public class fpaore implements ModInitializer {
 	public static final DefaultParticleType SQUIGGLETHINGGREEN = FabricParticleTypes.simple();
 	public static final DefaultParticleType SQUIGGLETHINGMGREEN = FabricParticleTypes.simple();
 
-
+	public static final Item pants = new PantsItem(new FabricItemSettings().rarity(Rarity.EPIC).maxCount(999).fireproof());
 	@Override
 	public void onInitialize() {
 		CommandRegistrationCallback.EVENT.register(SquiggleSet::register);
@@ -552,7 +552,7 @@ public class fpaore implements ModInitializer {
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "mayor_theme_music_disk"), mayor_theme_music_disk);
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "level_four_music_disk"), level_four_music_disk);
 		Registry.register(Registries.ITEM, new Identifier("fpaore", "pbradium"), pbradium);
-
+		Registry.register(Registries.ITEM, new Identifier("fpaore", "pants"), pants);
 
 
 

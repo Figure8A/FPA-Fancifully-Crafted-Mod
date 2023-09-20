@@ -2,6 +2,7 @@ package com.figure8.mixin;
 
 import com.figure8.fpaore;
 
+import com.figure8.item.PantsItem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.world.ClientWorld;
@@ -10,6 +11,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.DamageTypeTags;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -39,6 +42,8 @@ public abstract class LivingEntityMixin {
 
 	@Shadow public abstract boolean addStatusEffect(StatusEffectInstance effect);
 
+	@Shadow public abstract ItemStack getActiveItem();
+
 	@Inject(at = @At("HEAD"), method = "tryUseTotem", cancellable = true)
 	private void tryUseTotem(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
 		if (source.isIn(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
@@ -51,7 +56,7 @@ public abstract class LivingEntityMixin {
 			for(int var6 = 0; var6 < var5; ++var6) {
 				Hand hand = var4[var6];
 				ItemStack itemStack2 = this.getStackInHand(hand);
-				if (itemStack2.isOf(Items.TOTEM_OF_UNDYING) || itemStack2.isOf(fpaore.mayor_of_undying)) {
+				if (itemStack2.isOf(Items.TOTEM_OF_UNDYING) || itemStack2.isOf(fpaore.mayor_of_undying) || itemStack.isOf(fpaore.pants)) {
 					itemStack = itemStack2.copy();
 					itemStack2.decrement(1);
 					break;
@@ -79,10 +84,21 @@ public abstract class LivingEntityMixin {
 					((LivingEntity) (Object) this).getWorld().sendEntityStatus(((LivingEntity)(Object)this), (byte)100);
 
 				}
+				ItemStack stack = null;
+
+				if(isPant(stack)) {
+
+					this.setHealth(12.0F);
+					this.clearStatusEffects();
+					((LivingEntity) (Object) this).getWorld().sendEntityStatus(((LivingEntity)(Object)this), (byte)69);
+				}
 			}
 
 			cir.setReturnValue(itemStack != null);
 		}
+	}
+	private boolean isPant(final ItemStack stack) {
+		return !stack.isEmpty() && stack.getItem() instanceof PantsItem;
 	}
 
 }

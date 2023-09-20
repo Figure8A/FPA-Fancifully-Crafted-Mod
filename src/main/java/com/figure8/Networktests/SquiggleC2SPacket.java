@@ -58,14 +58,14 @@ public class SquiggleC2SPacket {
         int step2 = 10000;
         for (int i = 0; i <= 10000000; i += step)
             if (squiggles == i) {
-                ItemStack item = new ItemStack(fpaore.mayor_of_undying);
+                ItemStack item = new ItemStack(fpaore.pants);
                 player.getInventory().offer(item, true);
             }
         for (int b = 0; b <= 10000; b += step2)
             for (int i = 0; i <= 10000000; i += step)
             if (squiggles == i) {
                 if (squiggles == b) {
-                    ItemStack item = new ItemStack(fpaore.mayor_of_undying);
+                    ItemStack item = new ItemStack(fpaore.pants);
                     player.getInventory().offer(item, true);
                     player.takeKnockback( 10, 10, 10);
                     for (ServerPlayerEntity playersound : world.getPlayers())
