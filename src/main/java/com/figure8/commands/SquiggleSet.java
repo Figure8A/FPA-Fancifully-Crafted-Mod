@@ -40,11 +40,9 @@ public class SquiggleSet {
 
 
     private static int executeAdd(ServerCommandSource source, Collection<? extends ServerPlayerEntity> targets, int amount) {
-        IEntityDataSaver player = ((IEntityDataSaver) source.getPlayer());
-        NbtCompound nbt = ((IEntityDataSaver) player).getPersistentData();
-        int squiggles = nbt.getInt("squiggles");
-        nbt.putInt("squiggles", squiggles);
-        SquiggleAdd.addSquiggles(((IEntityDataSaver) player), amount);
+        for (ServerPlayerEntity serverPlayerEntity : targets) {
+            SquiggleAdd.addSquiggles(((IEntityDataSaver) serverPlayerEntity), amount);
+        }
         if (targets.size() == 1) {
             source.sendFeedback(() -> Text.literal("Set Squiggle Amount " + amount), true);
         } else {

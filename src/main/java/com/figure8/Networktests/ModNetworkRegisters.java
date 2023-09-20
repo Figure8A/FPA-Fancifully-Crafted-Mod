@@ -23,9 +23,9 @@ public class ModNetworkRegisters {
 
         ServerPlayNetworking.registerGlobalReceiver(SQUIGGLE_ID, SquiggleC2SPacket::receive);
     }
-
     public static void registerS2CPackets() {
         ClientPlayNetworking.registerGlobalReceiver(SQUIGGLE_SYNC_ID, SquiggleSyncDataS2CPacket::receive);
+
     }
 
 

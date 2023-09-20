@@ -39,6 +39,7 @@ public class ModSounds {
     public static SoundEvent INKTOSS = registerSoundEvent("inktoss");
     public static SoundEvent INKHITS = registerSoundEvent("inkland");
     public static SoundEvent FIVESQUIGGLE = registerSoundEvent("fivesquiggle");
+    public static SoundEvent SQUGGLEANNOUNCE = registerSoundEvent("allplayerannounce");
 
     public static final BlockSoundGroup BRADBLOCK_BLOCK_SOUNDS = new BlockSoundGroup(2f, 1f,
             ModSounds.BRADBLOCK_BLOCK_BREAK, ModSounds.FOOTSTEP, ModSounds.BRADBLOCK_BLOCK_PLACE, ModSounds.BRADBLOCK_BLOCK_WALK,ModSounds.BRADBLOCK_BLOCK_WALK);

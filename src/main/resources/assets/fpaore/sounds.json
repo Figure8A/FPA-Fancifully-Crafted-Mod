@@ -125,5 +125,10 @@
     "sounds": [
       "fpaore:fivesquiggle"
     ]
+  },
+  "allplayerannounce": {
+    "sounds": [
+      "fpaore:allplayerannounce"
+    ]
   }
 }

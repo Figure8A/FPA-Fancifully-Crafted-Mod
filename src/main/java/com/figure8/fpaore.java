@@ -226,7 +226,7 @@ public class fpaore implements ModInitializer {
 
 
 
-	public static final Item mayor_of_undying = new Item(new FabricItemSettings().rarity(Rarity.EPIC).maxCount(1));
+	public static final Item mayor_of_undying = new Item(new FabricItemSettings().rarity(Rarity.EPIC).maxCount(1).fireproof());
 
 
 	public static final Item icecream = new Item(new FabricItemSettings().food(new FoodComponent.Builder().statusEffect(new StatusEffectInstance(SPEED, 200, 3), 0.1f).statusEffect(new StatusEffectInstance(JUMP_BOOST, 250, 3), 0.25f).statusEffect(new StatusEffectInstance(STRENGTH, 150, 3), 0.10f).statusEffect(new StatusEffectInstance(RESISTANCE, 300, 3), 0.25f).hunger(4).saturationModifier(2.5F).build()));

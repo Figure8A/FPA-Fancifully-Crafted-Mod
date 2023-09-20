@@ -10,6 +10,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 public class SquiggleAdd {
 
 
+
+
     public static int addSquiggles(IEntityDataSaver player, int amount) {
         NbtCompound nbt = player.getPersistentData();
         int squiggles = nbt.getInt("squiggles");

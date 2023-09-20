@@ -25,7 +25,7 @@ public class hphealbutone extends StatusEffect {
             entity.heal(1);}
         World world = entity.getWorld();
 
-        world.playSound(null, BlockPos.ofFloored(entity.getPos()), ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.0f, 0.75f + world.random.nextFloat() * 0.5f);
+        world.playSound(null, BlockPos.ofFloored(entity.getPos()), ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.MASTER, 2.0f, 0.75f + world.random.nextFloat() * 0.5f);
     }
     @Override
     public boolean canApplyUpdateEffect(int pDuration, int pAmplifier) {

@@ -94,6 +94,10 @@ public class squiggleblock
         if (world.isClient()) {
             ClientPlayNetworking.send(ModNetworkRegisters.SQUIGGLE_ID, PacketByteBufs.create());
         }
+        if (!world.isClient()) {
+            world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), ModSounds.GRASSPOP_BLOCK_BREAK, SoundCategory.NEUTRAL, 1.0f, 0.75f + world.random.nextFloat() * 0.5f);
+
+        }
     }
 
 

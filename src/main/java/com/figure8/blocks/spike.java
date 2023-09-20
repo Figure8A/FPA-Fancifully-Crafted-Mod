@@ -163,8 +163,8 @@ public class spike extends AmethystBlock
                 if (!livingEntity.teleport(g, h, j, true)) continue;
                 world.emitGameEvent(GameEvent.TELEPORT, vec3d, GameEvent.Emitter.of(entity));
                 SoundEvent soundEvent = livingEntity instanceof FoxEntity ? ModSounds.SPIKE_OW_OWHIT : ModSounds.SPIKE_OW_OWHIT;
-                world.playSound(null, d, e, f, soundEvent, SoundCategory.PLAYERS, 1.0f, 1.0f);
-                livingEntity.playSound(soundEvent, 1.0f, 1.0f);
+                world.playSound(null, d, e, f, soundEvent, SoundCategory.MASTER, 2.0f, 1.0f);
+                livingEntity.playSound(soundEvent, 2.0f, 1.0f);
 
                 break;
             }
