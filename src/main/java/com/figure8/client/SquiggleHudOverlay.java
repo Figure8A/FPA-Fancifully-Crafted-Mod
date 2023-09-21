@@ -57,7 +57,7 @@ public class SquiggleHudOverlay implements HudRenderCallback {
                 pants += stack.getCount();
             }
         }
-        if (pants > 1) {
+        if (pants > 0) {
             RenderSystem.setShaderTexture(0, PANTS);
             context.drawTexture(PANTS, x+150, y-15, 0, 0, 16, 16, 16, 16);
             context.drawText(client.textRenderer, String.valueOf(pants), x+166, y-8, 0xffffff, true);

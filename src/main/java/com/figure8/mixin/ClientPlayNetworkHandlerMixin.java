@@ -1,6 +1,7 @@
 package com.figure8.mixin;
 
 import com.figure8.fpaore;
+import com.figure8.item.PantsItem;
 import com.figure8.sound.ModSounds;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -72,20 +73,20 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
                     this.client.gameRenderer.showFloatingItem(ClientPlayNetworkHandlerMixin.getActiveTotemOfUndying(this.client.player));
                     break;
                 }
-                case 100: {
+                case 110: {
+                    int i = 40;
+                    this.client.particleManager.addEmitter(entity, fpaore.SQUIGGLETHINGMGREEN, 15);
+                    this.world.playSound(entity.getX(), entity.getY(), entity.getZ(), ModSounds.SPIKE_OW_OWHIT, entity.getSoundCategory(), 1.0f, 1.0f, false);
+                    if (entity != this.client.player) break;
+                    this.client.gameRenderer.showFloatingItem(ClientPlayNetworkHandlerMixin.getActiveTotemOfUndyingP(this.client.player));
+                    break;
+                }
+                case 100:
                     int i = 40;
                     this.client.particleManager.addEmitter(entity, fpaore.SQUIGGLETHINGM, 30);
                     this.world.playSound(entity.getX(), entity.getY(), entity.getZ(), ModSounds.MAYOR_TOTEM_USE, entity.getSoundCategory(), 1.0F, 1.0F, false);
                     if (entity == this.client.player) {
                         this.client.gameRenderer.showFloatingItem(ClientPlayNetworkHandlerMixin.getActiveTotemOfUndyingM(this.client.player));
-                    }
-                }
-                case 69:
-                    int i = 40;
-                    this.client.particleManager.addEmitter(entity, fpaore.SQUIGGLETHING, 15);
-                    this.world.playSound(entity.getX(), entity.getY(), entity.getZ(), ModSounds.SPIKE_OW_OWHIT, entity.getSoundCategory(), 1.0F, 1.0F, false);
-                    if (entity == this.client.player) {
-                        this.client.gameRenderer.showFloatingItem(ClientPlayNetworkHandlerMixin.getActiveTotemOfUndyingP(this.client.player));
                     }
                     break;
                 default: {
@@ -93,20 +94,6 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
                 }
             }
         }
-    }
-    private static ItemStack getActiveTotemOfUndyingM(PlayerEntity player) {
-        Hand[] var1 = Hand.values();
-        int var2 = var1.length;
-
-        for(int var3 = 0; var3 < var2; ++var3) {
-            Hand hand = var1[var3];
-            ItemStack itemStack = player.getStackInHand(hand);
-            if (itemStack.isOf(fpaore.mayor_of_undying)) {
-                return itemStack;
-            }
-        }
-
-        return new ItemStack(fpaore.mayor_of_undying);
     }
     private static ItemStack getActiveTotemOfUndyingP(PlayerEntity player) {
         Hand[] var1 = Hand.values();
@@ -121,6 +108,20 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
         }
 
         return new ItemStack(fpaore.pants);
+    }
+    private static ItemStack getActiveTotemOfUndyingM(PlayerEntity player) {
+        Hand[] var1 = Hand.values();
+        int var2 = var1.length;
+
+        for(int var3 = 0; var3 < var2; ++var3) {
+            Hand hand = var1[var3];
+            ItemStack itemStack = player.getStackInHand(hand);
+            if (itemStack.isOf(fpaore.mayor_of_undying)) {
+                return itemStack;
+            }
+        }
+
+        return new ItemStack(fpaore.mayor_of_undying);
     }
 
 }

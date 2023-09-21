@@ -1,6 +1,8 @@
 package com.figure8.item;
 
+import com.figure8.fpaore;
 import com.figure8.sound.ModSounds;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

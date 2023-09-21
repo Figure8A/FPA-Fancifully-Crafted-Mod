@@ -394,7 +394,7 @@ public class fpaore implements ModInitializer {
 	public static final DefaultParticleType SQUIGGLETHINGGREEN = FabricParticleTypes.simple();
 	public static final DefaultParticleType SQUIGGLETHINGMGREEN = FabricParticleTypes.simple();
 
-	public static final Item pants = new PantsItem(new FabricItemSettings().rarity(Rarity.EPIC).maxCount(999).fireproof());
+	public static final Item pants = new PantsItem(new FabricItemSettings().rarity(Rarity.EPIC).fireproof());
 	@Override
 	public void onInitialize() {
 		CommandRegistrationCallback.EVENT.register(SquiggleSet::register);

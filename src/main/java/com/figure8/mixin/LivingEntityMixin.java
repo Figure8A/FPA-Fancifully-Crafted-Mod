@@ -3,17 +3,16 @@ package com.figure8.mixin;
 import com.figure8.fpaore;
 
 import com.figure8.item.PantsItem;
+import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.block.ChestBlock;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.particle.ParticleManager;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.DamageTypeTags;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.stat.Stats;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -22,18 +21,28 @@ import org.spongepowered.asm.mixin.injection.Inject;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
+
+
+	@Unique
+	private ItemStack totemStackInventoryFallback(LivingEntity entity, Hand hand) {
+		if (hand == Hand.OFF_HAND && !entity.getOffHandStack().isOf(fpaore.pants) && entity instanceof PlayerEntity player && player.getInventory().contains(fpaore.pants.getDefaultStack())) {
+			return player.getInventory().getStack(player.getInventory().getSlotWithStack(fpaore.pants.getDefaultStack()));
+		}
+		return entity.getStackInHand(hand);
+	}
+	@Unique
+	private final LivingEntity  entity = (LivingEntity)(Object) this;
+
 	@Shadow public abstract ItemStack getStackInHand(Hand hand);
 
 	@Shadow public abstract void setHealth(float health);
@@ -42,7 +51,7 @@ public abstract class LivingEntityMixin {
 
 	@Shadow public abstract boolean addStatusEffect(StatusEffectInstance effect);
 
-	@Shadow public abstract ItemStack getActiveItem();
+
 
 	@Inject(at = @At("HEAD"), method = "tryUseTotem", cancellable = true)
 	private void tryUseTotem(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
@@ -55,13 +64,18 @@ public abstract class LivingEntityMixin {
 
 			for(int var6 = 0; var6 < var5; ++var6) {
 				Hand hand = var4[var6];
-				ItemStack itemStack2 = this.getStackInHand(hand);
+
+				ItemStack itemStack2 = this.totemStackInventoryFallback(entity,hand);
+
 				if (itemStack2.isOf(Items.TOTEM_OF_UNDYING) || itemStack2.isOf(fpaore.mayor_of_undying) || itemStack2.isOf(fpaore.pants)) {
 					itemStack = itemStack2.copy();
+
 					itemStack2.decrement(1);
+
 					break;
 				}
 			}
+
 
 			if(itemStack != null){
 				if (itemStack.isOf(Items.TOTEM_OF_UNDYING)) {
@@ -81,16 +95,15 @@ public abstract class LivingEntityMixin {
 					this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 500, 2));
 					this.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 500, 2));
 					((LivingEntity) (Object) this).getWorld().sendEntityStatus(((LivingEntity)(Object)this), (byte)100);
-
 				}
-				boolean itemStack2 = this.getActiveItem().getItem() instanceof PantsItem;
-				if(itemStack2){
+				if(itemStack.isOf(fpaore.pants)) {
 					this.setHealth(12.0F);
-					((LivingEntity) (Object) this).getWorld().sendEntityStatus(((LivingEntity)(Object)this), (byte)69);
+					this.clearStatusEffects();
+					this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 2));
+					((LivingEntity) (Object) this).getWorld().sendEntityStatus(((LivingEntity)(Object)this), (byte)110);
 
 				}
 			}
-
 			cir.setReturnValue(itemStack != null);
 		}
 	}
