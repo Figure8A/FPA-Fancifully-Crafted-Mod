@@ -296,8 +296,6 @@ public class fpaore implements ModInitializer {
 		return Registry.register(Registries.ENTITY_TYPE, new Identifier(fpaore.MOD_ID, id),
 				FabricEntityTypeBuilder.<ThrowableBlobEntity>create(SpawnGroup.MISC, ThrowableBlobEntity::new)
 						.dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-						.trackRangeBlocks(4)
-						.trackedUpdateRate(10)
 						.build());
 	}
 	public static final BlockEntityType<ModSignBlockEntity> MOD_SIGN_BLOCK_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,

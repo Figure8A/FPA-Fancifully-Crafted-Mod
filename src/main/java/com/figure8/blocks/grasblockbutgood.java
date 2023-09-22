@@ -50,8 +50,10 @@ public class grasblockbutgood extends SpreadableBlock
     }
 
 
+
+
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         return world.getBlockState(pos.up()).isAir();
     }
 
@@ -128,5 +130,10 @@ public class grasblockbutgood extends SpreadableBlock
                 world.setBlockState(blockPos, (BlockState)blockState.with(SNOWY, world.getBlockState(blockPos.up()).isOf(Blocks.SNOW)));
             }
         }
+    }
+
+    @Override
+    public boolean isEnabled(FeatureSet enabledFeatures) {
+        return super.isEnabled(enabledFeatures);
     }
 }

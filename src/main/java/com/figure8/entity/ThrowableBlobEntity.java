@@ -4,10 +4,7 @@ import com.figure8.blocks.Wallinkblot;
 import com.figure8.fpaore;
 import com.figure8.sound.ModSounds;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -18,6 +15,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
+import net.minecraft.particle.ItemStackParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
@@ -47,11 +47,20 @@ public class ThrowableBlobEntity extends ThrownItemEntity {
     }
 
 
+    @Override
+    public void handleStatus(byte status) {
+        if (status == EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES) {
+            double d = 0.08;
+            for (int i = 0; i < 8; ++i) {
+                this.getWorld().addParticle(new ItemStackParticleEffect(ParticleTypes.ITEM, this.getStack()), this.getX(), this.getY(), this.getZ(), ((double)this.random.nextFloat() - 0.5) * 0.08, ((double)this.random.nextFloat() - 0.5) * 0.08, ((double)this.random.nextFloat() - 0.5) * 0.08);
+            }
+        }
+    }
 
 
     @Override
     public Packet<ClientPlayPacketListener> createSpawnPacket() {
-        return super.createSpawnPacket();
+        return new EntitySpawnS2CPacket(this);
     }
 
     @Override
@@ -99,7 +108,7 @@ public class ThrowableBlobEntity extends ThrownItemEntity {
         var world = this.getWorld();
         var pos = this.getBlockPos();
         drop();
-        world.playSound(null, pos, ModSounds.INKFAIL, SoundCategory.PLAYERS, 4f, 1f);
+        world.playSound(null, pos, ModSounds.INKFAIL, SoundCategory.PLAYERS, 5f, 1f);
 
     }
     @Override

@@ -2,21 +2,14 @@ package com.figure8.util;
 
 import com.figure8.fpaore;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.condition.EntityPropertiesLootCondition;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
-import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LootPoolEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.predicate.entity.EntityEquipmentPredicate;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
@@ -44,7 +37,6 @@ public class ModLootTableModifiers {
             = new Identifier("minecraft", "gameplay/fishing/treasure");
     private static final Identifier SUSPICIOUS_SAND
             = new Identifier("minecraft", "archaeology/desert_pyramid");
-
 
 
     public static void modifyLootTables() {
@@ -93,10 +85,7 @@ public class ModLootTableModifiers {
             if(CREEPER_ID.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(0.15f))
-                        .conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.KILLER,
-                                new EntityPredicate.Builder().equipment(EntityEquipmentPredicate.Builder.create()
-                                        .mainhand(ItemPredicate.Builder.create().items(fpaore.pencilsword).build()).build()).build()))
+                        .conditionally(RandomChanceLootCondition.builder(0.20f)) // Drops 85% of the time
                         .with(ItemEntry.builder(fpaore.bradium))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)).build());
 
@@ -128,15 +117,6 @@ public class ModLootTableModifiers {
             }
 
         });
-        LootTableEvents.REPLACE.register((resourceManager, lootManager, id, original, source) -> {
-            if (SUSPICIOUS_SAND.equals(id)) {
-                List<LootPoolEntry> entries = new ArrayList<>(Arrays.asList(original.pools[0].entries));
-                entries.add(ItemEntry.builder(fpaore.bradium).build());
-                LootPool.Builder pool = LootPool.builder().with(entries);
-                return LootTable.builder().pool(pool).build();
-            }
 
-            return null;
-        });
     }
 }

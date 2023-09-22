@@ -8,11 +8,11 @@ import net.minecraft.util.Identifier;
 
 public class ModPaintings {
 
-    public static final PaintingVariant THUMBSUP = registerPainting("thumbsup", new PaintingVariant(32, 32));
+    public static final PaintingVariant THUMBSUP = registerPainting(new PaintingVariant(32, 32));
 
 
-    private static PaintingVariant registerPainting(String name, PaintingVariant paintingVariant) {
-        return Registry.register(Registries.PAINTING_VARIANT, new Identifier(fpaore.MOD_ID, name), paintingVariant);
+    private static PaintingVariant registerPainting(PaintingVariant paintingVariant) {
+        return Registry.register(Registries.PAINTING_VARIANT, new Identifier(fpaore.MOD_ID, "thumbsup"), paintingVariant);
     }
 
     public static void registerPaintings() {

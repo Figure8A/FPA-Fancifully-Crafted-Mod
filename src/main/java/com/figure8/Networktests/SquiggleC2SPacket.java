@@ -31,6 +31,7 @@ import net.minecraft.util.math.Position;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 import static net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking.getServer;
 
@@ -50,39 +51,34 @@ public class SquiggleC2SPacket {
 
 
 
-
+        ItemStack item = new ItemStack(fpaore.pants);
         NbtCompound nbt = ((IEntityDataSaver) player).getPersistentData();
         int squiggles = nbt.getInt("squiggles");
         nbt.putInt("squiggles", squiggles);
         int step = 1000;
         int step2 = 10000;
+
         for (int i = 0; i <= 10000000; i += step)
-            if (squiggles == i) {
-                ItemStack item = new ItemStack(fpaore.pants);
-                player.getInventory().offer(item, true);
-            }
-        for (int b = 0; b <= 10000; b += step2)
-            for (int i = 0; i <= 10000000; i += step)
-            if (squiggles == i) {
-                if (squiggles == b) {
-                    ItemStack item = new ItemStack(fpaore.pants);
+            for (int b = 0; b <= 1000000; b += step2)
+                if (squiggles == i) {
+                    player.getInventory().offer(item, true);
+                    if (squiggles == b) {
+                        player.getInventory().offer(item, true);
+                    }
+                    world.playSound(null, player.getBlockPos(), ModSounds.EXTRALIFE, SoundCategory.MASTER, 2f, 1.0f);
+                    world.spawnParticles(fpaore.SQUIGGLETHINGMGREEN, player.getX(), player.getY(), player.getZ(), 100, 0.5, 0.5, 0.5, 0.1);
+                    if(server.isDedicated() && squiggles == b) {
+                        server.getPlayerManager().broadcast((Text.literal(player.getEntityName() + " Just Got: " + ((IEntityDataSaver) player).getPersistentData().getInt("squiggles") + " Squiggles!!!").fillStyle(Style.EMPTY.withColor(Formatting.ITALIC).withColor(Formatting.DARK_AQUA))), true);
+                    } else {
+                        server.getPlayerManager().broadcast((Text.literal(player.getEntityName() + " Just Got: " + ((IEntityDataSaver) player).getPersistentData().getInt("squiggles") + " Squiggles!").fillStyle(Style.EMPTY.withColor(Formatting.GOLD))), true);
+                    }
+                    return;
+                } else if (squiggles == b) {
                     player.getInventory().offer(item, true);
                     player.takeKnockback( 10, 10, 10);
                     for (ServerPlayerEntity playersound : world.getPlayers())
-                        playersound.playSound(ModSounds.SQUGGLEANNOUNCE, SoundCategory.MASTER, 1, 1);
-                    world.spawnParticles(fpaore.SQUIGGLETHINGMGREEN, player.getX(), player.getY(), player.getZ(), 1000, 0.5, 0.5, 0.5, 0.2);
-                    if(server.isDedicated()){
-                        server.getPlayerManager().broadcast((Text.literal(player.getEntityName() + " Just Got: " + ((IEntityDataSaver) player).getPersistentData().getInt("squiggles") + " Squiggles!!!").fillStyle(Style.EMPTY.withColor(Formatting.ITALIC).withColor(Formatting.DARK_AQUA))), true);
-                    }
-                } else {
-                    world.playSound(null, player.getBlockPos(), ModSounds.EXTRALIFE, SoundCategory.MASTER, 2f, 1.0f);
-                    world.spawnParticles(fpaore.SQUIGGLETHINGMGREEN, player.getX(), player.getY(), player.getZ(), 100, 0.5, 0.5, 0.5, 0.1);
-
-                    if(server.isDedicated()){
-                        server.getPlayerManager().broadcast((Text.literal(player.getEntityName() + " Just Got: " + ((IEntityDataSaver) player).getPersistentData().getInt("squiggles") + " Squiggles!").fillStyle(Style.EMPTY.withColor(Formatting.GOLD))), true);
-                    }
-                }
+                        playersound.playSound(ModSounds.SQUGGLEANNOUNCE, SoundCategory.PLAYERS, 0.50f, 1);
+                    world.spawnParticles(fpaore.SQUIGGLETHINGMGREEN, player.getX(), player.getY(), player.getZ(), 500, 0.5, 0.5, 0.5, 0.2);
             }
-
-        }
+    }
 }

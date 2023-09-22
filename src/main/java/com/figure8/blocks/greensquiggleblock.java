@@ -112,7 +112,7 @@ public class greensquiggleblock
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add(Text.literal("Place These Down And Walk Into Them To Restore 5 HP!").formatted(Formatting.DARK_AQUA));
+        tooltip.add(Text.literal("Walk Into These To Restore 5 HP!").formatted(Formatting.DARK_AQUA));
         super.appendTooltip(stack, world, tooltip, options);
     }
 

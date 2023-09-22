@@ -2,8 +2,11 @@ package com.figure8.mixin;
 
 import com.figure8.fpaore;
 import com.figure8.item.PantsItem;
+import com.figure8.item.mayor_of_undying;
 import com.figure8.sound.ModSounds;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientCommonNetworkHandler;
+import net.minecraft.client.network.ClientConnectionState;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.sound.GuardianAttackSoundInstance;
 import net.minecraft.client.sound.SnifferDigSoundInstance;
@@ -13,7 +16,7 @@ import net.minecraft.entity.mob.GuardianEntity;
 import net.minecraft.entity.passive.SnifferEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.network.ClientConnection;
 import net.minecraft.network.NetworkThreadUtils;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.listener.TickablePacketListener;
@@ -21,28 +24,21 @@ import net.minecraft.network.packet.s2c.play.EntityStatusS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayNetworkHandler.class)
-public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketListener,
+public abstract class ClientPlayNetworkHandlerMixin extends ClientCommonNetworkHandler implements TickablePacketListener,
         ClientPlayPacketListener {
-
-
-
-
-
-    @Shadow @Final
-    private MinecraftClient client;
-
     @Shadow private ClientWorld world;
+
+    protected ClientPlayNetworkHandlerMixin(MinecraftClient client, ClientConnection connection, ClientConnectionState connectionState) {
+        super(client, connection, connectionState);
+    }
 
 
     @Shadow
@@ -51,7 +47,7 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
     }
 
 
-    @Inject(at = @At("HEAD"), method = "onEntityStatus", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "onEntityStatus")
     public void onEntityStatus(EntityStatusS2CPacket packet, CallbackInfo ci) {
         NetworkThreadUtils.forceMainThread(packet, this, this.client);
         Entity entity = packet.getEntity(this.world);

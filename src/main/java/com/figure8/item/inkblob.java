@@ -34,7 +34,7 @@ public class inkblob extends Item {
         if (!world.isClient()) {
             final ThrowableBlobEntity entity = new ThrowableBlobEntity(entityType, user, world);
             entity.setItem(stack);
-            entity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 0.0F);
+            entity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 0.0F);
             world.spawnEntity(entity);
         }
         return TypedActionResult.success(stack, world.isClient());

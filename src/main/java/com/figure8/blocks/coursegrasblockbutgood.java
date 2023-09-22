@@ -3,11 +3,15 @@ package com.figure8.blocks;
 import com.figure8.fpaore;
 import net.minecraft.block.*;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.Nullable;
 
 public class coursegrasblockbutgood extends Block implements Fertilizable {
     public coursegrasblockbutgood(AbstractBlock.Settings settings) {
@@ -15,7 +19,7 @@ public class coursegrasblockbutgood extends Block implements Fertilizable {
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         if (!world.getBlockState(pos.up()).isTransparent(world, pos)) {
             return false;
         }
@@ -53,6 +57,16 @@ public class coursegrasblockbutgood extends Block implements Fertilizable {
         } else if (bl) {
             world.setBlockState(pos, fpaore.grasblockbutgood.getDefaultState(), Block.NOTIFY_ALL);
         }
+    }
+
+    @Override
+    public BlockState getAppearance(BlockState state, BlockRenderView renderView, BlockPos pos, Direction side, @Nullable BlockState sourceState, @Nullable BlockPos sourcePos) {
+        return super.getAppearance(state, renderView, pos, side, sourceState, sourcePos);
+    }
+
+    @Override
+    public boolean isEnabled(FeatureSet enabledFeatures) {
+        return super.isEnabled(enabledFeatures);
     }
 }
 

@@ -2,6 +2,7 @@ package com.figure8.blocks.woodtype;
 
 import com.figure8.fpaore;
 import com.figure8.sound.ModSounds;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeRegistry;
 import net.minecraft.block.BlockSetType;
 import net.minecraft.sound.BlockSoundGroup;

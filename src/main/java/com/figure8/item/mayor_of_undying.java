@@ -27,4 +27,5 @@ public class mayor_of_undying extends Item {
 
     }
 
+
 }
